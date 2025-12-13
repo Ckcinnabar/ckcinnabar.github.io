@@ -51,6 +51,11 @@ class LanguageToggle {
             langEnSpan.style.display = 'none';
             langZhSpan.style.display = 'inline';
         }
+
+        // Update education modal language if it exists
+        if (typeof educationModal !== 'undefined' && educationModal) {
+            educationModal.updateLanguage(lang);
+        }
     }
 
     toggleLanguage() {
@@ -436,7 +441,6 @@ class EducationModal {
         const date = item.querySelector('.date').textContent;
         const degree = item.querySelector('.degree');
         const location = item.querySelector('.location') ? item.querySelector('.location').textContent : '';
-        const courses = item.querySelectorAll('.course-list li');
 
         document.getElementById('eduModalTitle').textContent = school;
 
@@ -472,32 +476,8 @@ class EducationModal {
             modalHeader.insertAdjacentHTML('beforeend', logoHTML);
         }
 
-        // Build courses HTML
-        let coursesHTML = '<div class="modal-section">';
-        coursesHTML += `<h3 data-en="Key Courses" data-zh="重點課程">${this.currentLang === 'en' ? 'Key Courses' : '重點課程'}</h3>`;
-        coursesHTML += '<ul>';
-        courses.forEach(course => {
-            const courseText = this.currentLang === 'en' ?
-                course.getAttribute('data-en') :
-                course.getAttribute('data-zh');
-            coursesHTML += `<li>${courseText}</li>`;
-        });
-        coursesHTML += '</ul></div>';
-
-        // Add graduation photo for NSYSU
-        let imagesHTML = '';
-        if (school.includes('Sun Yat-Sen')) {
-            imagesHTML = `
-                <div class="modal-section">
-                    <h3 data-en="Graduation Photo" data-zh="畢業照片">${this.currentLang === 'en' ? 'Graduation Photo' : '畢業照片'}</h3>
-                    <div class="modal-images">
-                        <img src="photos/畢業典禮.jpg" alt="Graduation Photo" class="modal-image graduation">
-                    </div>
-                </div>
-            `;
-        }
-
-        document.getElementById('eduModalBody').innerHTML = coursesHTML + imagesHTML;
+        // Render modal content (courses and images)
+        this.renderModalContent(index);
 
         // Calculate scrollbar width and set CSS variable
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -515,6 +495,68 @@ class EducationModal {
 
     updateLanguage(lang) {
         this.currentLang = lang;
+
+        // If modal is currently open, re-render it
+        if (this.modal && this.modal.classList.contains('active')) {
+            const modalTitle = document.getElementById('eduModalTitle').textContent;
+            const educationItems = document.querySelectorAll('.education-item.clickable');
+
+            // Find which school modal is open
+            let schoolIndex = -1;
+            educationItems.forEach((item, index) => {
+                const school = item.querySelector('h4').textContent;
+                if (school === modalTitle) {
+                    schoolIndex = index;
+                }
+            });
+
+            // Re-render the modal if we found it
+            if (schoolIndex !== -1) {
+                this.renderModalContent(schoolIndex);
+            }
+        }
+    }
+
+    renderModalContent(index) {
+        const educationItems = document.querySelectorAll('.education-item.clickable');
+        const item = educationItems[index];
+
+        const school = item.querySelector('h4').textContent;
+        const degree = item.querySelector('.degree');
+        const courses = item.querySelectorAll('.course-list li');
+
+        // Update degree text
+        const degreeText = this.currentLang === 'en' ?
+            degree.getAttribute('data-en') :
+            degree.getAttribute('data-zh');
+        document.getElementById('eduModalDegree').textContent = degreeText;
+
+        // Build courses HTML
+        let coursesHTML = '<div class="modal-section">';
+        coursesHTML += `<h3>${this.currentLang === 'en' ? 'Key Courses' : '重點課程'}</h3>`;
+        coursesHTML += '<ul>';
+        courses.forEach(course => {
+            const courseText = this.currentLang === 'en' ?
+                course.getAttribute('data-en') :
+                course.getAttribute('data-zh');
+            coursesHTML += `<li>${courseText}</li>`;
+        });
+        coursesHTML += '</ul></div>';
+
+        // Add graduation photo for NSYSU
+        let imagesHTML = '';
+        if (school.includes('Sun Yat-Sen')) {
+            imagesHTML = `
+                <div class="modal-section">
+                    <h3>${this.currentLang === 'en' ? 'Graduation Photo' : '畢業照片'}</h3>
+                    <div class="modal-images">
+                        <img src="photos/畢業典禮.jpg" alt="Graduation Photo" class="modal-image graduation">
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('eduModalBody').innerHTML = coursesHTML + imagesHTML;
     }
 }
 
@@ -548,6 +590,9 @@ class ProjectNavigation {
     }
 }
 
+// Global reference for education modal
+let educationModal;
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize language toggle
@@ -559,8 +604,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize experience modal
     new ExperienceModal();
 
-    // Initialize education modal
-    new EducationModal();
+    // Initialize education modal (store globally)
+    educationModal = new EducationModal();
 
     // Initialize project navigation
     new ProjectNavigation();
