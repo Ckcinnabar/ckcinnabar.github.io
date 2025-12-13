@@ -946,6 +946,10 @@ body.modal-open .navbar {
         grid-template-columns: 1fr;
     }
 
+    .modal-header {
+        padding-right: 7rem;
+    }
+
     .modal-header-logo {
         height: 80px;
         right: 1rem;
@@ -999,10 +1003,14 @@ body.modal-open .navbar {
         font-size: 1rem;
     }
 
+    .modal-header {
+        padding-right: 5rem;
+    }
+
     .modal-header-logo {
-        height: 40px;
+        height: 60px;
         right: 0.5rem;
         top: 0.5rem;
-        padding: 0.25rem;
+        padding: 0.3rem;
     }
 }
