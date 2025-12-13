@@ -277,6 +277,13 @@ class ExperienceModal {
                 }
             });
         }
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal && this.modal.classList.contains('active')) {
+                this.closeModal();
+            }
+        });
     }
 
     createModal() {
@@ -339,7 +346,7 @@ class ExperienceModal {
 
     closeModal() {
         this.modal.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.style.removeProperty('overflow');
     }
 }
 
