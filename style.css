@@ -845,17 +845,17 @@ body.modal-open .navbar {
     }
 
     .timeline {
-        padding-left: 4rem;
+        padding-left: 5rem;
     }
 
     .timeline::before {
-        left: 2.5rem;
+        left: 3.5rem;
     }
 
     .timeline-year {
         font-size: 1.5rem;
-        margin-left: -4rem;
-        width: 3.5rem;
+        margin-left: -5rem;
+        width: 3rem;
         padding-right: 0.5rem;
     }
 
@@ -904,17 +904,17 @@ body.modal-open .navbar {
     }
 
     .timeline {
-        padding-left: 3rem;
+        padding-left: 4rem;
     }
 
     .timeline::before {
-        left: 2rem;
+        left: 3rem;
     }
 
     .timeline-year {
         font-size: 1.3rem;
-        margin-left: -3rem;
-        width: 3rem;
+        margin-left: -4rem;
+        width: 2.5rem;
         padding-right: 0.3rem;
         border-bottom-width: 2px;
     }
