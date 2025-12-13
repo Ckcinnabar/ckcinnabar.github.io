@@ -337,12 +337,10 @@ section {
 }
 
 .timeline-year {
-    position: relative;
-    left: -8rem;
     font-size: 2rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin: 2rem 0 1.5rem 0;
+    margin: 2rem 0 1.5rem -8rem;
     padding-bottom: 0.5rem;
     border-bottom: 3px solid var(--primary-color);
     width: 4.5rem;
@@ -847,7 +845,18 @@ body.modal-open .navbar {
     }
 
     .timeline {
-        padding-left: 2rem;
+        padding-left: 4rem;
+    }
+
+    .timeline::before {
+        left: 2.5rem;
+    }
+
+    .timeline-year {
+        font-size: 1.5rem;
+        margin-left: -4rem;
+        width: 3.5rem;
+        padding-right: 0.5rem;
     }
 
     .timeline-dot {
@@ -892,5 +901,33 @@ body.modal-open .navbar {
     .btn {
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
+    }
+
+    .timeline {
+        padding-left: 3rem;
+    }
+
+    .timeline::before {
+        left: 2rem;
+    }
+
+    .timeline-year {
+        font-size: 1.3rem;
+        margin-left: -3rem;
+        width: 3rem;
+        padding-right: 0.3rem;
+        border-bottom-width: 2px;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .timeline-content h4 {
+        font-size: 1rem;
     }
 }
