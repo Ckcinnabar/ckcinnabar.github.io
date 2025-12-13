@@ -700,6 +700,18 @@ body.modal-open .navbar {
     position: relative;
 }
 
+.modal-header-logo {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    height: 80px;
+    width: auto;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+}
+
 .modal-close {
     position: absolute;
     top: 1rem;

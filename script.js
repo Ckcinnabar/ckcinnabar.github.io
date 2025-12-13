@@ -454,12 +454,22 @@ class EducationModal {
         `;
         document.getElementById('eduModalMeta').innerHTML = metaHTML;
 
-        // Add school logo
+        // Add school logo to header
+        const modalHeader = this.modal.querySelector('.modal-header');
+        const existingLogo = modalHeader.querySelector('.modal-header-logo');
+        if (existingLogo) {
+            existingLogo.remove();
+        }
+
         let logoHTML = '';
         if (school.includes('University of Florida')) {
-            logoHTML = '<img src="photos/uf-university-of-florida.webp" alt="UF Logo" class="modal-logo">';
+            logoHTML = '<img src="photos/uf-university-of-florida.webp" alt="UF Logo" class="modal-header-logo">';
         } else if (school.includes('Sun Yat-Sen')) {
-            logoHTML = '<img src="photos/NSYSU-Logo.png" alt="NSYSU Logo" class="modal-logo">';
+            logoHTML = '<img src="photos/NSYSU-Logo.png" alt="NSYSU Logo" class="modal-header-logo">';
+        }
+
+        if (logoHTML) {
+            modalHeader.insertAdjacentHTML('beforeend', logoHTML);
         }
 
         // Build courses HTML
@@ -487,7 +497,7 @@ class EducationModal {
             `;
         }
 
-        document.getElementById('eduModalBody').innerHTML = logoHTML + coursesHTML + imagesHTML;
+        document.getElementById('eduModalBody').innerHTML = coursesHTML + imagesHTML;
 
         // Calculate scrollbar width and set CSS variable
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
