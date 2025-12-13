@@ -945,6 +945,12 @@ body.modal-open .navbar {
     .contact-info {
         grid-template-columns: 1fr;
     }
+
+    .modal-header-logo {
+        height: 80px;
+        right: 1rem;
+        top: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -991,5 +997,12 @@ body.modal-open .navbar {
 
     .timeline-content h4 {
         font-size: 1rem;
+    }
+
+    .modal-header-logo {
+        height: 60px;
+        right: 0.5rem;
+        top: 0.5rem;
+        padding: 0.3rem;
     }
 }
