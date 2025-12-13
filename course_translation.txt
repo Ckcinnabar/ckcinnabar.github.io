@@ -1,0 +1,71 @@
+UF
+
+Programming for Applied Data Science
+A.I. Ethics for Tech Leaders
+Math Foundations for DS for Engineer I.
+Intro to Data Science
+Applied Machine Learning
+Math Foundations for DS for Engineer II
+Applied Machine Learning II
+Fundamentals of Machine Learning
+Artificial Intelligence and Machine Learning for Engineering Applications
+
+
+中山大學
+國文（一） - Chinese (I)
+運動與健康：體適能 - Exercise and Health: Physical Fitness
+微積分（一） - Calculus (I)
+線性代數（一） - Linear Algebra (I)
+計算機概論 - Introduction to Computers
+數學導論（一） - Introduction to Mathematics (I)
+運動與健康：初級游泳 - Exercise and Health: Beginner Swimming
+國文（二） - Chinese (II)
+人際溝通與情緒管理 - Interpersonal Communication and Emotional Management
+微積分（二） - Calculus (II)
+線性代數（二） - Linear Algebra (II)
+計算機程式 - Computer Programming
+數學導論（二） - Introduction to Mathematics (II)
+會計學（一） - Accounting (I)
+數位時代的倫理議題 - Ethical Issues in the Digital Age
+經濟學 - Economics
+服務學習：人人都是科學家！ - Service Learning: Everyone is a Scientist!
+高等微積分（一） - Advanced Calculus (I)
+離散數學（一） - Discrete Mathematics (I)
+機率論（一） - Probability Theory (I)
+資料結構 - Data Structures
+性與人生 - Sex and Life
+心理學 - Psychology
+高等微積分（二） - Advanced Calculus (II)
+微分方程（一） - Differential Equations (I)
+統計學（一） - Statistics (I)
+離散數學（二） - Discrete Mathematics (II)
+機率論（二） - Probability Theory (II)
+普通物理（一） - General Physics (I)
+地球生命概論 - Introduction to Earth and Life Sciences
+數值分析（一） - Numerical Analysis (I)
+複變函數論（一） - Complex Analysis (I)
+代數學（一） - Algebra (I)
+微分方程（二） - Differential Equations (II)
+量子物理（一） - Quantum Physics (I)
+設計心理學 - Design Psychology
+女性主義思潮 - Feminist Thought
+都市營造與空間規劃 - Urban Design and Spatial Planning
+青少年、流行文化與社會 - Youth, Popular Culture, and Society
+自來水工程導論 - Introduction to Water Supply Engineering
+運動與健康：初級肌肉適能 - Exercise and Health: Beginner Muscular Fitness
+毒理學(研) - Toxicology (Graduate)
+Python與機器學習之理論實現(研) - Python and Machine Learning: Theory and Implementation (Graduate)
+物理發展史 - History of Physics
+藻類學 - Phycology (Algal Studies)
+智慧金融 - Intelligent Finance
+智慧城市與智慧運輸趨勢、發展及課題研析 - Smart Cities and Intelligent Transportation: Trends, Development, and Issues
+智慧城市數位轉型 - Digital Transformation of Smart Cities
+運動與健康：初級壘球 - Exercise and Health: Beginner Softball
+智慧型運輸系統 - Intelligent Transportation Systems
+科學史 - History of Science
+數位行銷傳播 - Digital Marketing Communication
+剖析都市：數據分析方法與應用 - Analyzing Cities: Data Analysis Methods and Applications
+統計學與資料視覺化 - Statistics and Data Visualization
+資料分析與應用-R語言之應用 - Data Analysis and Applications: Using R
+數據科學實務與創新 - Data Science Practice and Innovation
+矩陣理論(研) - Matrix Theory (Graduate)
