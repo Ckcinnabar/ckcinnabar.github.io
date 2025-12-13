@@ -282,6 +282,32 @@ section {
     transition: var(--transition);
 }
 
+.education-item.clickable {
+    cursor: pointer;
+}
+
+.education-item.clickable::after {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.education-item.clickable {
+    position: relative;
+}
+
+.education-item.clickable:hover::after {
+    opacity: 1;
+}
+
 .education-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
@@ -724,6 +750,30 @@ body.modal-open .navbar {
 
 .modal-body {
     padding: 2rem;
+}
+
+.modal-logo {
+    width: 150px;
+    height: auto;
+    margin: 1rem 0;
+    display: block;
+}
+
+.modal-images {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.modal-image {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.modal-image.graduation {
+    max-width: 400px;
 }
 
 .modal-section {

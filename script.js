@@ -367,6 +367,147 @@ class ExperienceModal {
     }
 }
 
+// Education Modal Functionality
+class EducationModal {
+    constructor() {
+        this.modal = null;
+        this.currentLang = localStorage.getItem('language') || 'en';
+        this.init();
+    }
+
+    init() {
+        // Create modal HTML structure
+        this.createModal();
+
+        // Add click listeners to education items
+        const educationItems = document.querySelectorAll('.education-item.clickable');
+        educationItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                this.openModal(index);
+            });
+        });
+
+        // Close modal when clicking outside
+        if (this.modal) {
+            this.modal.addEventListener('click', (e) => {
+                if (e.target === this.modal) {
+                    this.closeModal();
+                }
+            });
+        }
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal && this.modal.classList.contains('active')) {
+                this.closeModal();
+            }
+        });
+    }
+
+    createModal() {
+        const modalHTML = `
+            <div id="educationModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="modal-close" id="eduModalCloseBtn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <h2 class="modal-title" id="eduModalTitle"></h2>
+                        <p class="modal-subtitle" id="eduModalDegree"></p>
+                        <div class="modal-meta" id="eduModalMeta"></div>
+                    </div>
+                    <div class="modal-body" id="eduModalBody"></div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        this.modal = document.getElementById('educationModal');
+
+        // Add close button listener
+        const closeBtn = document.getElementById('eduModalCloseBtn');
+        closeBtn.addEventListener('click', () => this.closeModal());
+    }
+
+    openModal(index) {
+        const educationItems = document.querySelectorAll('.education-item.clickable');
+        const item = educationItems[index];
+
+        const school = item.querySelector('h4').textContent;
+        const date = item.querySelector('.date').textContent;
+        const degree = item.querySelector('.degree');
+        const location = item.querySelector('.location') ? item.querySelector('.location').textContent : '';
+        const courses = item.querySelectorAll('.course-list li');
+
+        document.getElementById('eduModalTitle').textContent = school;
+
+        const degreeText = this.currentLang === 'en' ?
+            degree.getAttribute('data-en') :
+            degree.getAttribute('data-zh');
+        document.getElementById('eduModalDegree').textContent = degreeText;
+
+        const metaHTML = `
+            <div class="modal-meta-item">
+                <i class="fas fa-calendar"></i>
+                <span>${date}</span>
+            </div>
+            ${location ? `<div class="modal-meta-item"><i class="fas fa-map-marker-alt"></i><span>${location}</span></div>` : ''}
+        `;
+        document.getElementById('eduModalMeta').innerHTML = metaHTML;
+
+        // Add school logo
+        let logoHTML = '';
+        if (school.includes('University of Florida')) {
+            logoHTML = '<img src="photos/uf-university-of-florida.webp" alt="UF Logo" class="modal-logo">';
+        } else if (school.includes('Sun Yat-Sen')) {
+            logoHTML = '<img src="photos/NSYSU-Logo.png" alt="NSYSU Logo" class="modal-logo">';
+        }
+
+        // Build courses HTML
+        let coursesHTML = '<div class="modal-section">';
+        coursesHTML += `<h3 data-en="Key Courses" data-zh="重點課程">${this.currentLang === 'en' ? 'Key Courses' : '重點課程'}</h3>`;
+        coursesHTML += '<ul>';
+        courses.forEach(course => {
+            const courseText = this.currentLang === 'en' ?
+                course.getAttribute('data-en') :
+                course.getAttribute('data-zh');
+            coursesHTML += `<li>${courseText}</li>`;
+        });
+        coursesHTML += '</ul></div>';
+
+        // Add graduation photo for NSYSU
+        let imagesHTML = '';
+        if (school.includes('Sun Yat-Sen')) {
+            imagesHTML = `
+                <div class="modal-section">
+                    <h3 data-en="Graduation Photo" data-zh="畢業照片">${this.currentLang === 'en' ? 'Graduation Photo' : '畢業照片'}</h3>
+                    <div class="modal-images">
+                        <img src="photos/畢業典禮.jpg" alt="Graduation Photo" class="modal-image graduation">
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('eduModalBody').innerHTML = logoHTML + coursesHTML + imagesHTML;
+
+        // Calculate scrollbar width and set CSS variable
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+
+        this.modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        document.documentElement.style.removeProperty('--scrollbar-width');
+    }
+
+    updateLanguage(lang) {
+        this.currentLang = lang;
+    }
+}
+
 // Project Card Click Handler
 class ProjectNavigation {
     constructor() {
@@ -407,6 +548,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize experience modal
     new ExperienceModal();
+
+    // Initialize education modal
+    new EducationModal();
 
     // Initialize project navigation
     new ProjectNavigation();
