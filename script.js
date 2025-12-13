@@ -548,7 +548,7 @@ class EducationModal {
         if (school.includes('Sun Yat-Sen')) {
             imagesHTML = `
                 <div class="modal-section">
-                    <h3>${this.currentLang === 'en' ? 'Graduation Photo' : '畢業照片'}</h3>
+                    <h3>${this.currentLang === 'en' ? 'Honors: Valedictorian of Department' : '榮譽：系畢業生代表'}</h3>
                     <div class="modal-images">
                         <img src="photos/畢業典禮.jpg" alt="Graduation Photo" class="modal-image graduation">
                     </div>
