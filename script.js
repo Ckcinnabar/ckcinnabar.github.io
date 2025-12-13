@@ -341,12 +341,12 @@ class ExperienceModal {
         document.getElementById('modalBody').innerHTML = responsibilitiesHTML;
 
         this.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
     }
 
     closeModal() {
         this.modal.classList.remove('active');
-        document.body.style.removeProperty('overflow');
+        document.body.classList.remove('modal-open');
     }
 }
 
