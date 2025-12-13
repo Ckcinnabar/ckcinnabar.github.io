@@ -366,7 +366,7 @@ section {
     font-size: 2rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin: 2rem 0 1.5rem -8rem;
+    margin: 2rem 0 1.5rem -8.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 3px solid var(--primary-color);
     width: 4.5rem;
@@ -916,7 +916,7 @@ body.modal-open .navbar {
 
     .timeline-year {
         font-size: 1.5rem;
-        margin-left: -5rem;
+        margin-left: -5.5rem;
         width: 3rem;
         padding-right: 0.5rem;
     }
@@ -981,7 +981,7 @@ body.modal-open .navbar {
 
     .timeline-year {
         font-size: 1.3rem;
-        margin-left: -4rem;
+        margin-left: -4.5rem;
         width: 2.5rem;
         padding-right: 0.3rem;
         border-bottom-width: 2px;
