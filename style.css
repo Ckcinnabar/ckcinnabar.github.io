@@ -394,6 +394,17 @@ section {
     line-height: 1.6;
 }
 
+.timeline-summary {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.timeline-details {
+    display: none;
+}
+
 /* ===== Projects Section ===== */
 .projects {
     background-color: var(--bg-secondary);
