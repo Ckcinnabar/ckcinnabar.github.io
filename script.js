@@ -1,0 +1,294 @@
+// Language Toggle Functionality
+class LanguageToggle {
+    constructor() {
+        this.currentLang = localStorage.getItem('language') || 'en';
+        this.langToggleBtn = document.getElementById('langToggle');
+        this.init();
+    }
+
+    init() {
+        // Set initial language
+        this.setLanguage(this.currentLang);
+
+        // Add event listener to toggle button
+        this.langToggleBtn.addEventListener('click', () => {
+            this.toggleLanguage();
+        });
+
+        // Add smooth scroll to navigation links
+        this.setupSmoothScroll();
+
+        // Add navbar scroll effect
+        this.setupNavbarScroll();
+
+        // Add intersection observer for animations
+        this.setupScrollAnimations();
+    }
+
+    setLanguage(lang) {
+        this.currentLang = lang;
+        document.documentElement.lang = lang;
+        localStorage.setItem('language', lang);
+
+        // Update all elements with data-en and data-zh attributes
+        const elements = document.querySelectorAll('[data-en][data-zh]');
+        elements.forEach(element => {
+            if (lang === 'en') {
+                element.textContent = element.getAttribute('data-en');
+            } else {
+                element.textContent = element.getAttribute('data-zh');
+            }
+        });
+
+        // Update language toggle button
+        const langEnSpan = this.langToggleBtn.querySelector('.lang-en');
+        const langZhSpan = this.langToggleBtn.querySelector('.lang-zh');
+
+        if (lang === 'en') {
+            langEnSpan.style.display = 'inline';
+            langZhSpan.style.display = 'none';
+        } else {
+            langEnSpan.style.display = 'none';
+            langZhSpan.style.display = 'inline';
+        }
+    }
+
+    toggleLanguage() {
+        const newLang = this.currentLang === 'en' ? 'zh' : 'en';
+        this.setLanguage(newLang);
+    }
+
+    setupSmoothScroll() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    setupNavbarScroll() {
+        const navbar = document.querySelector('.navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+            } else {
+                navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    }
+
+    setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        const animatedElements = document.querySelectorAll('.education-item, .timeline-item, .project-card, .skill-category, .contact-item');
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    }
+}
+
+// Active Navigation Link Highlight
+class NavigationHighlight {
+    constructor() {
+        this.sections = document.querySelectorAll('section[id]');
+        this.navLinks = document.querySelectorAll('.nav-menu a');
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('scroll', () => {
+            this.highlightActiveLink();
+        });
+    }
+
+    highlightActiveLink() {
+        const scrollPosition = window.pageYOffset + 100;
+
+        this.sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                this.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+}
+
+// Typing Effect for Hero Title
+class TypingEffect {
+    constructor(element, texts, typeSpeed = 100, deleteSpeed = 50, delayBetween = 2000) {
+        this.element = element;
+        this.texts = texts;
+        this.typeSpeed = typeSpeed;
+        this.deleteSpeed = deleteSpeed;
+        this.delayBetween = delayBetween;
+        this.textIndex = 0;
+        this.charIndex = 0;
+        this.isDeleting = false;
+    }
+
+    type() {
+        const currentText = this.texts[this.textIndex];
+
+        if (this.isDeleting) {
+            this.element.textContent = currentText.substring(0, this.charIndex - 1);
+            this.charIndex--;
+        } else {
+            this.element.textContent = currentText.substring(0, this.charIndex + 1);
+            this.charIndex++;
+        }
+
+        let typeSpeed = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+
+        if (!this.isDeleting && this.charIndex === currentText.length) {
+            typeSpeed = this.delayBetween;
+            this.isDeleting = true;
+        } else if (this.isDeleting && this.charIndex === 0) {
+            this.isDeleting = false;
+            this.textIndex = (this.textIndex + 1) % this.texts.length;
+        }
+
+        setTimeout(() => this.type(), typeSpeed);
+    }
+}
+
+// Particle Background (Optional Enhancement)
+class ParticleBackground {
+    constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) return;
+
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.particleCount = 50;
+        this.init();
+    }
+
+    init() {
+        this.resize();
+        this.createParticles();
+        this.animate();
+
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    createParticles() {
+        for (let i = 0; i < this.particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                radius: Math.random() * 2 + 1,
+                vx: Math.random() * 0.5 - 0.25,
+                vy: Math.random() * 0.5 - 0.25
+            });
+        }
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.particles.forEach(particle => {
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+            if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            this.ctx.fill();
+        });
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize language toggle
+    new LanguageToggle();
+
+    // Initialize navigation highlight
+    new NavigationHighlight();
+
+    // Add active class style for navigation
+    const style = document.createElement('style');
+    style.textContent = `
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Log to console
+    console.log('Portfolio website loaded successfully!');
+    console.log('Language toggle, smooth scrolling, and animations are active.');
+});
+
+// Optional: Add easter egg
+let konamiCode = [];
+const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+document.addEventListener('keydown', (e) => {
+    konamiCode.push(e.key);
+    konamiCode = konamiCode.slice(-10);
+
+    if (konamiCode.join('') === konamiSequence.join('')) {
+        document.body.style.transform = 'rotate(360deg)';
+        document.body.style.transition = 'transform 2s';
+        setTimeout(() => {
+            document.body.style.transform = 'rotate(0deg)';
+        }, 2000);
+        console.log('🎉 Konami Code activated! You found the easter egg!');
+    }
+});
