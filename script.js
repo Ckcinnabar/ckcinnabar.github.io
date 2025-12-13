@@ -250,6 +250,125 @@ class ParticleBackground {
     }
 }
 
+// Modal Functionality for Work Experience
+class ExperienceModal {
+    constructor() {
+        this.modal = null;
+        this.init();
+    }
+
+    init() {
+        // Create modal HTML structure
+        this.createModal();
+
+        // Add click listeners to experience items
+        const experienceItems = document.querySelectorAll('.timeline-content');
+        experienceItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                this.openModal(index);
+            });
+        });
+
+        // Close modal when clicking outside
+        if (this.modal) {
+            this.modal.addEventListener('click', (e) => {
+                if (e.target === this.modal) {
+                    this.closeModal();
+                }
+            });
+        }
+    }
+
+    createModal() {
+        const modalHTML = `
+            <div id="experienceModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="modal-close" onclick="document.getElementById('experienceModal').classList.remove('active')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <h2 class="modal-title" id="modalTitle"></h2>
+                        <p class="modal-subtitle" id="modalCompany"></p>
+                        <div class="modal-meta" id="modalMeta"></div>
+                    </div>
+                    <div class="modal-body" id="modalBody"></div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        this.modal = document.getElementById('experienceModal');
+    }
+
+    openModal(index) {
+        const experienceItems = document.querySelectorAll('.timeline-content');
+        const item = experienceItems[index];
+
+        const title = item.querySelector('h3').textContent;
+        const company = item.querySelector('h4').textContent;
+        const date = item.querySelector('.date').textContent;
+        const location = item.querySelector('.location') ? item.querySelector('.location').textContent : '';
+        const responsibilities = item.querySelectorAll('li');
+
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalCompany').textContent = company;
+
+        const metaHTML = `
+            <div class="modal-meta-item">
+                <i class="fas fa-calendar"></i>
+                <span>${date}</span>
+            </div>
+            ${location ? `<div class="modal-meta-item"><i class="fas fa-map-marker-alt"></i><span>${location}</span></div>` : ''}
+        `;
+        document.getElementById('modalMeta').innerHTML = metaHTML;
+
+        let responsibilitiesHTML = '<div class="modal-section"><h3>Key Responsibilities</h3><ul>';
+        responsibilities.forEach(resp => {
+            responsibilitiesHTML += `<li>${resp.textContent}</li>`;
+        });
+        responsibilitiesHTML += '</ul></div>';
+
+        document.getElementById('modalBody').innerHTML = responsibilitiesHTML;
+
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Project Card Click Handler
+class ProjectNavigation {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        const projectCards = document.querySelectorAll('.project-card');
+
+        // Define project links mapping
+        const projectLinks = {
+            0: 'projects/cauldron.html',
+            1: 'projects/sports-career.html',
+            2: 'projects/darts.html'
+        };
+
+        projectCards.forEach((card, index) => {
+            if (projectLinks[index]) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', (e) => {
+                    // Don't navigate if clicking on a tag or button
+                    if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+                        window.location.href = projectLinks[index];
+                    }
+                });
+            }
+        });
+    }
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize language toggle
@@ -257,6 +376,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize navigation highlight
     new NavigationHighlight();
+
+    // Initialize experience modal
+    new ExperienceModal();
+
+    // Initialize project navigation
+    new ProjectNavigation();
 
     // Add active class style for navigation
     const style = document.createElement('style');
@@ -272,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Log to console
     console.log('Portfolio website loaded successfully!');
-    console.log('Language toggle, smooth scrolling, and animations are active.');
+    console.log('Language toggle, smooth scrolling, animations, modals, and project navigation are active.');
 });
 
 // Optional: Add easter egg

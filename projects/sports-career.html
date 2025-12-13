@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-League Sports Career Modeling - Kuan-Chen Chen</title>
+    <link rel="stylesheet" href="project-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Portfolio" data-zh="返回作品集">Back to Portfolio</span>
+            </a>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh" style="display:none;">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title" data-en="Cross-League Sports Career Modeling System" data-zh="跨聯盟運動職業建模系統">Cross-League Sports Career Modeling System</h1>
+            <p class="project-subtitle" data-en="ML-Based Career Trajectory Prediction for Athletes" data-zh="基於機器學習的運動員職業軌跡預測">
+                ML-Based Career Trajectory Prediction for Athletes
+            </p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Jan 2025 - May 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>University of Florida</span>
+                </div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">Dash</span>
+                <span class="tag">Feature Engineering</span>
+                <span class="tag">Data Analytics</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <div class="container">
+            <section class="content-section">
+                <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
+                <p class="content-text" data-en="Developed a cross-sport athlete success prediction model using data from NFL, NBA, and FIFA. The system uses advanced machine learning techniques to predict 10-year career trajectories based on physical attributes and position-specific features, helping young athletes understand their potential career paths." data-zh="開發跨運動項目的運動員成功預測模型，使用來自 NFL、NBA 和 FIFA 的數據。該系統使用先進的機器學習技術，基於身體屬性和位置特定功能預測 10 年職業軌跡，幫助年輕運動員了解他們潛在的職業道路。">
+                    Developed a cross-sport athlete success prediction model using data from NFL, NBA, and FIFA. The system uses advanced machine learning techniques to predict 10-year career trajectories based on physical attributes and position-specific features, helping young athletes understand their potential career paths.
+                </p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Key Features" data-zh="核心功能">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏈</div>
+                        <h3 data-en="Multi-Sport Dataset" data-zh="多運動數據集">Multi-Sport Dataset</h3>
+                        <p data-en="Comprehensive dataset of 1,800+ athletes from NFL, NBA, and FIFA with detailed physical attributes, performance metrics, and career duration data." data-zh="包含 1,800+ 名來自 NFL、NBA 和 FIFA 的運動員的綜合數據集，具有詳細的身體屬性、表現指標和職業持續時間數據。">
+                            Comprehensive dataset of 1,800+ athletes from NFL, NBA, and FIFA with detailed physical attributes, performance metrics, and career duration data.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3 data-en="Advanced Feature Engineering" data-zh="先進特徵工程">Advanced Feature Engineering</h3>
+                        <p data-en="Hierarchical position encoding (NFL: 18→8, NBA: 5→3) and BMI-based features to standardize cross-sport comparisons and improve prediction accuracy." data-zh="分層位置編碼（NFL: 18→8, NBA: 5→3）和基於 BMI 的特徵，以標準化跨運動比較並提高預測準確性。">
+                            Hierarchical position encoding (NFL: 18→8, NBA: 5→3) and BMI-based features to standardize cross-sport comparisons and improve prediction accuracy.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 data-en="Interactive Dashboard" data-zh="互動式儀表板">Interactive Dashboard</h3>
+                        <p data-en="Built with Dash framework, allowing users to input physical attributes and receive personalized career recommendations with visualization of trajectory trends." data-zh="使用 Dash 框架構建，允許用戶輸入身體屬性並獲得個性化職業建議，並可視化軌跡趨勢。">
+                            Built with Dash framework, allowing users to input physical attributes and receive personalized career recommendations with visualization of trajectory trends.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Approach" data-zh="技術方法">Technical Approach</h2>
+                <ul class="highlights-list">
+                    <li data-en="Collected and preprocessed data from 1,800+ professional athletes across three major sports leagues" data-zh="收集並預處理來自三大運動聯盟的 1,800+ 名職業運動員的數據">
+                        Collected and preprocessed data from 1,800+ professional athletes across three major sports leagues
+                    </li>
+                    <li data-en="Implemented hierarchical position encoding to reduce dimensionality while preserving position-specific information" data-zh="實現分層位置編碼以減少維度同時保留位置特定資訊">
+                        Implemented hierarchical position encoding to reduce dimensionality while preserving position-specific information
+                    </li>
+                    <li data-en="Optimized 5 regression models (Linear, Ridge, Lasso, Random Forest, Gradient Boosting) using GridSearchCV" data-zh="使用 GridSearchCV 優化 5 個回歸模型（線性、Ridge、Lasso、隨機森林、梯度提升）">
+                        Optimized 5 regression models (Linear, Ridge, Lasso, Random Forest, Gradient Boosting) using GridSearchCV
+                    </li>
+                    <li data-en="Achieved sport-specific best performance with cross-validation and hyperparameter tuning" data-zh="通過交叉驗證和超參數調整達到各運動項目的最佳性能">
+                        Achieved sport-specific best performance with cross-validation and hyperparameter tuning
+                    </li>
+                    <li data-en="Deployed interactive web application for real-time predictions and visualizations" data-zh="部署互動式網頁應用程式進行實時預測和可視化">
+                        Deployed interactive web application for real-time predictions and visualizations
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Results & Impact" data-zh="結果與影響">Results & Impact</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-number">1,800+</div>
+                        <div class="result-label" data-en="Athletes Analyzed" data-zh="分析的運動員">Athletes Analyzed</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">3</div>
+                        <div class="result-label" data-en="Sports Leagues" data-zh="運動聯盟">Sports Leagues</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">5</div>
+                        <div class="result-label" data-en="ML Models" data-zh="機器學習模型">ML Models</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">10</div>
+                        <div class="result-label" data-en="Year Predictions" data-zh="年預測">Year Predictions</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Scikit-learn</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-table"></i>
+                        <span>Pandas</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Dash</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>NumPy</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-area"></i>
+                        <span>Plotly</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="links-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Project Links" data-zh="專案連結">Project Links</h2>
+            <div class="project-links">
+                <a href="#" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    <span data-en="View Code" data-zh="查看代碼">View Code</span>
+                </a>
+                <a href="../index.html#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    <span data-en="Contact Me" data-zh="聯絡我">Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

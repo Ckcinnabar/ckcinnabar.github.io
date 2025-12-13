@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cAIuldron - Kuan-Chen Chen</title>
+    <link rel="stylesheet" href="project-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Portfolio" data-zh="返回作品集">Back to Portfolio</span>
+            </a>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh" style="display:none;">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title">cAIuldron</h1>
+            <p class="project-subtitle" data-en="AI-Powered Recipe Generation from Food Images" data-zh="基於食物圖像的 AI 食譜生成系統">
+                AI-Powered Recipe Generation from Food Images
+            </p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Aug 2025 - Dec 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>University of Florida</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span data-en="Individual Project" data-zh="個人專案">Individual Project</span>
+                </div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Computer Vision</span>
+                <span class="tag">LLM Fine-tuning</span>
+                <span class="tag">CLIP</span>
+                <span class="tag">DETR</span>
+                <span class="tag">Llama 3.2</span>
+                <span class="tag">QLoRA</span>
+                <span class="tag">Gradio</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="container">
+            <!-- Overview -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
+                <p class="content-text" data-en="cAIuldron is an end-to-end machine learning pipeline that combines state-of-the-art computer vision and large language models to automatically detect ingredients from food images and generate complete, nutritionally-aware recipes. The system integrates CLIP for visual understanding, DETR for object detection, and a fine-tuned Llama 3.2 model for recipe generation." data-zh="cAIuldron 是一個端到端的機器學習管道，結合了最先進的電腦視覺和大型語言模型，可以自動從食物圖像中檢測成分並生成完整的、營養感知的食譜。該系統整合了用於視覺理解的 CLIP、用於物體檢測的 DETR，以及用於食譜生成的微調 Llama 3.2 模型。">
+                    cAIuldron is an end-to-end machine learning pipeline that combines state-of-the-art computer vision and large language models to automatically detect ingredients from food images and generate complete, nutritionally-aware recipes. The system integrates CLIP for visual understanding, DETR for object detection, and a fine-tuned Llama 3.2 model for recipe generation.
+                </p>
+            </section>
+
+            <!-- Key Features -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Key Features" data-zh="核心功能">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3 data-en="Multi-Ingredient Detection" data-zh="多成分檢測">Multi-Ingredient Detection</h3>
+                        <p data-en="Utilizes CLIP (ViT-Base) and DETR (ResNet-50) for accurate detection of 525+ ingredient classes with 88% F1 score and 85-95% accuracy through two-stage zero-shot classification." data-zh="利用 CLIP (ViT-Base) 和 DETR (ResNet-50) 通過兩階段零樣本分類準確檢測 525+ 種成分類別，F1 分數達 88%，準確率達 85-95%。">
+                            Utilizes CLIP (ViT-Base) and DETR (ResNet-50) for accurate detection of 525+ ingredient classes with 88% F1 score and 85-95% accuracy through two-stage zero-shot classification.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 data-en="LLM-Powered Recipe Generation" data-zh="LLM 驅動的食譜生成">LLM-Powered Recipe Generation</h3>
+                        <p data-en="Fine-tuned Llama 3.2 1B model with QLoRA on consumer GPU, achieving 92/100 quality score while training only 0.23% of parameters (2.8M out of 1.2B)." data-zh="在消費級 GPU 上使用 QLoRA 微調 Llama 3.2 1B 模型，僅訓練 0.23% 的參數（1.2B 中的 2.8M）即達到 92/100 品質分數。">
+                            Fine-tuned Llama 3.2 1B model with QLoRA on consumer GPU, achieving 92/100 quality score while training only 0.23% of parameters (2.8M out of 1.2B).
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🍎</div>
+                        <h3 data-en="Nutrition Estimation" data-zh="營養估算">Nutrition Estimation</h3>
+                        <p data-en="Integrates with USDA FoodData Central to provide accurate nutritional information including calories, macronutrients, vitamins, and minerals for each ingredient." data-zh="與 USDA FoodData Central 整合，為每種成分提供準確的營養資訊，包括卡路里、宏量營養素、維生素和礦物質。">
+                            Integrates with USDA FoodData Central to provide accurate nutritional information including calories, macronutrients, vitamins, and minerals for each ingredient.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 data-en="Fast Processing" data-zh="快速處理">Fast Processing</h3>
+                        <p data-en="Complete pipeline processes from image input to recipe output in 15-25 seconds with 98%+ recipe completeness rate through modular architecture and LLM-based fallback validation." data-zh="通過模組化架構和基於 LLM 的後備驗證，完整管道在 15-25 秒內從圖像輸入處理到食譜輸出，食譜完整度達 98%+。">
+                            Complete pipeline processes from image input to recipe output in 15-25 seconds with 98%+ recipe completeness rate through modular architecture and LLM-based fallback validation.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 data-en="Interactive Web UI" data-zh="互動式網頁介面">Interactive Web UI</h3>
+                        <p data-en="User-friendly Gradio interface allowing users to upload food images, view detected ingredients, customize recipes, and explore nutritional information in real-time." data-zh="用戶友好的 Gradio 介面，允許用戶上傳食物圖像、查看檢測到的成分、自定義食譜，並實時探索營養資訊。">
+                            User-friendly Gradio interface allowing users to upload food images, view detected ingredients, customize recipes, and explore nutritional information in real-time.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3 data-en="Modular Architecture" data-zh="模組化架構">Modular Architecture</h3>
+                        <p data-en="5 independent components (detection, nutrition, generation, validation, UI) that can be developed, tested, and deployed separately for maximum flexibility and maintainability." data-zh="5 個獨立組件（檢測、營養、生成、驗證、UI），可以分別開發、測試和部署，以實現最大的靈活性和可維護性。">
+                            5 independent components (detection, nutrition, generation, validation, UI) that can be developed, tested, and deployed separately for maximum flexibility and maintainability.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Approach -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Approach" data-zh="技術方法">Technical Approach</h2>
+                <h3 data-en="1. Ingredient Detection Pipeline" data-zh="1. 成分檢測管道">1. Ingredient Detection Pipeline</h3>
+                <ul class="highlights-list">
+                    <li data-en="Used DETR (Detection Transformer with ResNet-50 backbone) to identify regions of interest in food images" data-zh="使用 DETR（帶有 ResNet-50 主幹的檢測轉換器）識別食物圖像中的感興趣區域">
+                        Used DETR (Detection Transformer with ResNet-50 backbone) to identify regions of interest in food images
+                    </li>
+                    <li data-en="Implemented two-stage zero-shot classification using CLIP (ViT-Base/32) for ingredient identification across 525+ classes" data-zh="使用 CLIP (ViT-Base/32) 實現兩階段零樣本分類，在 525+ 個類別中進行成分識別">
+                        Implemented two-stage zero-shot classification using CLIP (ViT-Base/32) for ingredient identification across 525+ classes
+                    </li>
+                    <li data-en="Integrated USDA FoodData Central API for nutritional data enrichment" data-zh="整合 USDA FoodData Central API 進行營養數據豐富化">
+                        Integrated USDA FoodData Central API for nutritional data enrichment
+                    </li>
+                    <li data-en="Achieved 88% F1 score and 85-95% accuracy across different ingredient categories" data-zh="在不同成分類別中達到 88% F1 分數和 85-95% 準確率">
+                        Achieved 88% F1 score and 85-95% accuracy across different ingredient categories
+                    </li>
+                </ul>
+
+                <h3 data-en="2. Recipe Generation with LLM Fine-tuning" data-zh="2. 使用 LLM 微調進行食譜生成">2. Recipe Generation with LLM Fine-tuning</h3>
+                <ul class="highlights-list">
+                    <li data-en="Fine-tuned Llama 3.2 1B (1.2 billion parameters) using QLoRA (Quantized Low-Rank Adaptation)" data-zh="使用 QLoRA（量化低秩適應）微調 Llama 3.2 1B（12 億參數）">
+                        Fine-tuned Llama 3.2 1B (1.2 billion parameters) using QLoRA (Quantized Low-Rank Adaptation)
+                    </li>
+                    <li data-en="Trained on consumer GPU (NVIDIA RTX 3060, 6GB VRAM) demonstrating parameter-efficient fine-tuning" data-zh="在消費級 GPU（NVIDIA RTX 3060，6GB VRAM）上訓練，展示參數高效微調">
+                        Trained on consumer GPU (NVIDIA RTX 3060, 6GB VRAM) demonstrating parameter-efficient fine-tuning
+                    </li>
+                    <li data-en="Optimized only 2.8M parameters (0.23% of total) while keeping base model frozen" data-zh="僅優化 2.8M 參數（總數的 0.23%），同時保持基礎模型凍結">
+                        Optimized only 2.8M parameters (0.23% of total) while keeping base model frozen
+                    </li>
+                    <li data-en="Curated training dataset from RecipeNLG with 7,913 high-quality recipes" data-zh="從 RecipeNLG 精選包含 7,913 個高質量食譜的訓練數據集">
+                        Curated training dataset from RecipeNLG with 7,913 high-quality recipes
+                    </li>
+                    <li data-en="Achieved 92/100 quality score on recipe generation evaluation metrics" data-zh="在食譜生成評估指標上達到 92/100 品質分數">
+                        Achieved 92/100 quality score on recipe generation evaluation metrics
+                    </li>
+                </ul>
+
+                <h3 data-en="3. System Architecture" data-zh="3. 系統架構">3. System Architecture</h3>
+                <ul class="highlights-list">
+                    <li data-en="Designed modular system with 5 independent components for scalability and maintainability" data-zh="設計具有 5 個獨立組件的模組化系統，以實現可擴展性和可維護性">
+                        Designed modular system with 5 independent components for scalability and maintainability
+                    </li>
+                    <li data-en="Implemented LLM-based fallback validation to ensure recipe completeness and correctness" data-zh="實現基於 LLM 的後備驗證以確保食譜完整性和正確性">
+                        Implemented LLM-based fallback validation to ensure recipe completeness and correctness
+                    </li>
+                    <li data-en="Built Gradio web interface for seamless user interaction and real-time feedback" data-zh="構建 Gradio 網頁介面以實現無縫用戶交互和實時反饋">
+                        Built Gradio web interface for seamless user interaction and real-time feedback
+                    </li>
+                    <li data-en="Optimized pipeline to process complete workflow in 15-25 seconds" data-zh="優化管道以在 15-25 秒內處理完整工作流程">
+                        Optimized pipeline to process complete workflow in 15-25 seconds
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Results -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Results & Performance" data-zh="結果與性能">Results & Performance</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-number">88%</div>
+                        <div class="result-label" data-en="F1 Score" data-zh="F1 分數">F1 Score</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">525+</div>
+                        <div class="result-label" data-en="Ingredient Classes" data-zh="成分類別">Ingredient Classes</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">92/100</div>
+                        <div class="result-label" data-en="Quality Score" data-zh="品質分數">Quality Score</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">98%+</div>
+                        <div class="result-label" data-en="Recipe Completeness" data-zh="食譜完整度">Recipe Completeness</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">15-25s</div>
+                        <div class="result-label" data-en="Processing Time" data-zh="處理時間">Processing Time</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">0.23%</div>
+                        <div class="result-label" data-en="Parameters Trained" data-zh="訓練參數">Parameters Trained</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <span>PyTorch</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-eye"></i>
+                        <span>CLIP</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-search"></i>
+                        <span>DETR</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Llama 3.2</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span>QLoRA</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-desktop"></i>
+                        <span>Gradio</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <span>USDA API</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Challenges & Solutions -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Challenges & Solutions" data-zh="挑戰與解決方案">Challenges & Solutions</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3 data-en="Limited GPU Memory" data-zh="有限的 GPU 記憶體">Limited GPU Memory</h3>
+                        <p data-en="Solution: Implemented QLoRA for parameter-efficient fine-tuning, enabling training of 1.2B parameter model on consumer GPU with only 6GB VRAM." data-zh="解決方案：實現 QLoRA 進行參數高效微調，使 12 億參數模型能夠在僅有 6GB VRAM 的消費級 GPU 上訓練。">
+                            Solution: Implemented QLoRA for parameter-efficient fine-tuning, enabling training of 1.2B parameter model on consumer GPU with only 6GB VRAM.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 data-en="Ingredient Diversity" data-zh="成分多樣性">Ingredient Diversity</h3>
+                        <p data-en="Solution: Used zero-shot classification with CLIP to handle 525+ ingredient classes without requiring labeled training data for each class." data-zh="解決方案：使用 CLIP 的零樣本分類處理 525+ 種成分類別，無需為每個類別提供標記的訓練數據。">
+                            Solution: Used zero-shot classification with CLIP to handle 525+ ingredient classes without requiring labeled training data for each class.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 data-en="Recipe Quality" data-zh="食譜品質">Recipe Quality</h3>
+                        <p data-en="Solution: Curated high-quality dataset from RecipeNLG and implemented LLM-based validation to ensure recipe completeness and correctness." data-zh="解決方案：從 RecipeNLG 精選高質量數據集，並實現基於 LLM 的驗證以確保食譜完整性和正確性。">
+                            Solution: Curated high-quality dataset from RecipeNLG and implemented LLM-based validation to ensure recipe completeness and correctness.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Links -->
+    <section class="links-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Project Links" data-zh="專案連結">Project Links</h2>
+            <div class="project-links">
+                <a href="#" class="btn btn-primary">
+                    <i class="fab fa-github"></i>
+                    <span data-en="View Code" data-zh="查看代碼">View Code</span>
+                </a>
+                <a href="../index.html#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    <span data-en="Contact Me" data-zh="聯絡我">Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
