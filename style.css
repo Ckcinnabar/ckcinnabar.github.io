@@ -323,17 +323,29 @@ section {
 /* ===== Experience Section ===== */
 .timeline {
     position: relative;
-    padding-left: 3rem;
+    padding-left: 8rem;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 5rem;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background-color: var(--primary-color);
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+}
+
+.timeline-year {
+    position: relative;
+    left: -5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 2rem 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+    width: 4rem;
 }
 
 .timeline-item {
