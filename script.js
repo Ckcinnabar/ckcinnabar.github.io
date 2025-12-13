@@ -340,13 +340,30 @@ class ExperienceModal {
 
         document.getElementById('modalBody').innerHTML = responsibilitiesHTML;
 
+        // Calculate scrollbar width and set CSS variable
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+
+        console.log('Opening modal - adding modal-open class to body');
+        console.log('Body classes before:', document.body.className);
+
         this.modal.classList.add('active');
         document.body.classList.add('modal-open');
+
+        console.log('Body classes after:', document.body.className);
+        console.log('Body overflow style:', window.getComputedStyle(document.body).overflow);
     }
 
     closeModal() {
+        console.log('Closing modal - removing modal-open class from body');
+        console.log('Body classes before close:', document.body.className);
+
         this.modal.classList.remove('active');
         document.body.classList.remove('modal-open');
+        document.documentElement.style.removeProperty('--scrollbar-width');
+
+        console.log('Body classes after close:', document.body.className);
+        console.log('Body overflow style after close:', window.getComputedStyle(document.body).overflow);
     }
 }
 

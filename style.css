@@ -605,7 +605,12 @@ section {
 
 /* ===== Modal Styles ===== */
 body.modal-open {
-    overflow: hidden;
+    overflow: hidden !important;
+    padding-right: var(--scrollbar-width, 0px);
+}
+
+body.modal-open .navbar {
+    padding-right: var(--scrollbar-width, 0px);
 }
 
 .modal {
