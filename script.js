@@ -284,7 +284,7 @@ class ExperienceModal {
             <div id="experienceModal" class="modal">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button class="modal-close" onclick="document.getElementById('experienceModal').classList.remove('active')">
+                        <button class="modal-close" id="modalCloseBtn">
                             <i class="fas fa-times"></i>
                         </button>
                         <h2 class="modal-title" id="modalTitle"></h2>
@@ -297,6 +297,10 @@ class ExperienceModal {
         `;
         document.body.insertAdjacentHTML('beforeend', modalHTML);
         this.modal = document.getElementById('experienceModal');
+
+        // Add close button listener
+        const closeBtn = document.getElementById('modalCloseBtn');
+        closeBtn.addEventListener('click', () => this.closeModal());
     }
 
     openModal(index) {
