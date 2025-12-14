@@ -620,7 +620,7 @@ class RotatingSubtitle {
         // Start typing after initial animation
         setTimeout(() => {
             this.type();
-        }, 3000);
+        }, 1000);
 
         // Listen for language changes
         window.addEventListener('languageChanged', (e) => {
@@ -629,6 +629,8 @@ class RotatingSubtitle {
             this.charIndex = 0;
             this.isDeleting = false;
             this.subtitleElement.textContent = '';
+            // Restart typing with new language immediately
+            setTimeout(() => this.type(), 100);
         });
     }
 
