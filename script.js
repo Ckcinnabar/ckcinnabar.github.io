@@ -608,7 +608,7 @@ class RotatingSubtitle {
         this.isDeleting = false;
         this.typeSpeed = 100;
         this.deleteSpeed = 50;
-        this.pauseAfterType = 2000;
+        this.pauseAfterType = 4000;
         this.pauseAfterDelete = 500;
         this.init();
     }
