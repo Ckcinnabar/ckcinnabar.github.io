@@ -610,6 +610,8 @@ class RotatingSubtitle {
         this.deleteSpeed = 50;
         this.pauseAfterType = 6000;
         this.pauseAfterDelete = 500;
+        this.isRunning = false;
+        this.timeoutId = null;
         this.init();
     }
 
@@ -619,22 +621,42 @@ class RotatingSubtitle {
 
         // Start typing after initial animation
         setTimeout(() => {
-            this.type();
+            this.startTyping();
         }, 1000);
 
         // Listen for language changes
         window.addEventListener('languageChanged', (e) => {
+            // Stop current animation
+            this.stopTyping();
+
+            // Reset state
             this.currentLang = e.detail.lang;
             this.currentIndex = 0;
             this.charIndex = 0;
             this.isDeleting = false;
             this.subtitleElement.textContent = '';
-            // Restart typing with new language immediately
-            setTimeout(() => this.type(), 100);
+
+            // Restart typing with new language
+            setTimeout(() => this.startTyping(), 100);
         });
     }
 
+    startTyping() {
+        this.isRunning = true;
+        this.type();
+    }
+
+    stopTyping() {
+        this.isRunning = false;
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
+    }
+
     type() {
+        if (!this.isRunning) return;
+
         const currentText = this.titles[this.currentLang][this.currentIndex];
 
         if (this.isDeleting) {
@@ -661,7 +683,7 @@ class RotatingSubtitle {
             delay = this.pauseAfterDelete;
         }
 
-        setTimeout(() => this.type(), delay);
+        this.timeoutId = setTimeout(() => this.type(), delay);
     }
 }
 
