@@ -623,12 +623,18 @@ class RotatingSubtitle {
 
     rotate() {
         setInterval(() => {
-            this.subtitleElement.style.opacity = '0';
+            // Add fade-out animation
+            this.subtitleElement.classList.add('fade-out');
+            this.subtitleElement.classList.remove('fade-in');
 
             setTimeout(() => {
+                // Change text
                 this.currentIndex = (this.currentIndex + 1) % this.titles[this.currentLang].length;
                 this.updateText();
-                this.subtitleElement.style.opacity = '1';
+
+                // Add fade-in animation
+                this.subtitleElement.classList.remove('fade-out');
+                this.subtitleElement.classList.add('fade-in');
             }, 500);
         }, 3000);
     }
