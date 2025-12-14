@@ -163,6 +163,7 @@ body {
     animation: fadeInUp 0.8s ease 0.2s both;
     min-height: 4.25rem;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .hero-subtitle::after {
