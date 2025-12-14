@@ -157,11 +157,11 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 2.4rem;
+    font-size: 4.5rem;
     font-weight: 400;
     margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s ease 0.2s both;
-    min-height: 3rem;
+    min-height: 5rem;
     display: inline-block;
 }
 
