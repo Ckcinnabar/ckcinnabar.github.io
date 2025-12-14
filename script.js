@@ -61,6 +61,10 @@ class LanguageToggle {
     toggleLanguage() {
         const newLang = this.currentLang === 'en' ? 'zh' : 'en';
         this.setLanguage(newLang);
+
+        // Dispatch custom event for language change
+        const event = new CustomEvent('languageChanged', { detail: { lang: newLang } });
+        window.dispatchEvent(event);
     }
 
     setupSmoothScroll() {
@@ -590,6 +594,50 @@ class ProjectNavigation {
     }
 }
 
+// Rotating Subtitle for Hero Section
+class RotatingSubtitle {
+    constructor() {
+        this.subtitleElement = document.querySelector('.hero-subtitle');
+        this.currentLang = localStorage.getItem('language') || 'en';
+        this.titles = {
+            en: ['Data Scientist', 'Machine Learning Engineer'],
+            zh: ['數據科學家', '機器學習工程師']
+        };
+        this.currentIndex = 0;
+        this.init();
+    }
+
+    init() {
+        // Start rotation after initial animation
+        setTimeout(() => {
+            this.rotate();
+        }, 3000);
+
+        // Listen for language changes
+        window.addEventListener('languageChanged', (e) => {
+            this.currentLang = e.detail.lang;
+            this.currentIndex = 0;
+            this.updateText();
+        });
+    }
+
+    rotate() {
+        setInterval(() => {
+            this.subtitleElement.style.opacity = '0';
+
+            setTimeout(() => {
+                this.currentIndex = (this.currentIndex + 1) % this.titles[this.currentLang].length;
+                this.updateText();
+                this.subtitleElement.style.opacity = '1';
+            }, 500);
+        }, 3000);
+    }
+
+    updateText() {
+        this.subtitleElement.textContent = this.titles[this.currentLang][this.currentIndex];
+    }
+}
+
 // Global reference for education modal
 let educationModal;
 
@@ -609,6 +657,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize project navigation
     new ProjectNavigation();
+
+    // Initialize rotating subtitle
+    new RotatingSubtitle();
 
     // Add active class style for navigation
     const style = document.createElement('style');
