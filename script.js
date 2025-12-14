@@ -594,53 +594,72 @@ class ProjectNavigation {
     }
 }
 
-// Rotating Subtitle for Hero Section
+// Typing Effect for Hero Subtitle
 class RotatingSubtitle {
     constructor() {
         this.subtitleElement = document.querySelector('.hero-subtitle');
         this.currentLang = localStorage.getItem('language') || 'en';
         this.titles = {
-            en: ['Data Scientist', 'Machine Learning Engineer'],
-            zh: ['數據科學家', '機器學習工程師']
+            en: ['Machine Learning Engineer', 'Data Scientist'],
+            zh: ['機器學習工程師', '數據科學家']
         };
         this.currentIndex = 0;
+        this.charIndex = 0;
+        this.isDeleting = false;
+        this.typeSpeed = 100;
+        this.deleteSpeed = 50;
+        this.pauseAfterType = 2000;
+        this.pauseAfterDelete = 500;
         this.init();
     }
 
     init() {
-        // Start rotation after initial animation
+        // Clear initial text
+        this.subtitleElement.textContent = '';
+
+        // Start typing after initial animation
         setTimeout(() => {
-            this.rotate();
+            this.type();
         }, 3000);
 
         // Listen for language changes
         window.addEventListener('languageChanged', (e) => {
             this.currentLang = e.detail.lang;
             this.currentIndex = 0;
-            this.updateText();
+            this.charIndex = 0;
+            this.isDeleting = false;
+            this.subtitleElement.textContent = '';
         });
     }
 
-    rotate() {
-        setInterval(() => {
-            // Add fade-out animation
-            this.subtitleElement.classList.add('fade-out');
-            this.subtitleElement.classList.remove('fade-in');
+    type() {
+        const currentText = this.titles[this.currentLang][this.currentIndex];
 
-            setTimeout(() => {
-                // Change text
-                this.currentIndex = (this.currentIndex + 1) % this.titles[this.currentLang].length;
-                this.updateText();
+        if (this.isDeleting) {
+            // Deleting characters
+            this.subtitleElement.textContent = currentText.substring(0, this.charIndex - 1);
+            this.charIndex--;
+        } else {
+            // Typing characters
+            this.subtitleElement.textContent = currentText.substring(0, this.charIndex + 1);
+            this.charIndex++;
+        }
 
-                // Add fade-in animation
-                this.subtitleElement.classList.remove('fade-out');
-                this.subtitleElement.classList.add('fade-in');
-            }, 500);
-        }, 3000);
-    }
+        let delay = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
 
-    updateText() {
-        this.subtitleElement.textContent = this.titles[this.currentLang][this.currentIndex];
+        // If finished typing
+        if (!this.isDeleting && this.charIndex === currentText.length) {
+            delay = this.pauseAfterType;
+            this.isDeleting = true;
+        }
+        // If finished deleting
+        else if (this.isDeleting && this.charIndex === 0) {
+            this.isDeleting = false;
+            this.currentIndex = (this.currentIndex + 1) % this.titles[this.currentLang].length;
+            delay = this.pauseAfterDelete;
+        }
+
+        setTimeout(() => this.type(), delay);
     }
 }
 
