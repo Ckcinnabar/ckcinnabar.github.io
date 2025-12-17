@@ -1014,13 +1014,17 @@ body.modal-open .navbar {
 
 /* Sports Career Modal Specific Styles */
 #sports-career-modal .modal-body {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
     max-height: 70vh;
     overflow-y: auto;
 }
 
 #sports-career-modal .modal-section {
     margin-bottom: 1.5rem;
+}
+
+#sports-career-modal .modal-section:first-child {
+    margin-top: 0;
 }
 
 #sports-career-modal .modal-section:last-child {
@@ -1030,6 +1034,7 @@ body.modal-open .navbar {
 #sports-career-modal .modal-section h3 {
     font-size: 1.2rem;
     margin-bottom: 0.75rem;
+    margin-top: 0;
 }
 
 .modal-list {
