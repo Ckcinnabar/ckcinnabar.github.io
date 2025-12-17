@@ -1013,16 +1013,35 @@ body.modal-open .navbar {
 }
 
 /* Sports Career Modal Specific Styles */
+#sports-career-modal .modal-body {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#sports-career-modal .modal-section {
+    margin-bottom: 1.5rem;
+}
+
+#sports-career-modal .modal-section:last-child {
+    margin-bottom: 0;
+}
+
+#sports-career-modal .modal-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
 .modal-list {
     list-style: none;
     padding-left: 0;
 }
 
 .modal-list li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     padding-left: 1.5rem;
     position: relative;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .modal-list li::before {
@@ -1036,16 +1055,16 @@ body.modal-open .navbar {
 .modal-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
 }
 
 .modal-tag {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
 }
 
