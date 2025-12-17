@@ -1011,3 +1011,50 @@ body.modal-open .navbar {
         padding: 0.3rem;
     }
 }
+
+/* Sports Career Modal Specific Styles */
+.modal-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.modal-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.7;
+}
+
+.modal-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.modal-tag {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#sports-career-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#sports-career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}

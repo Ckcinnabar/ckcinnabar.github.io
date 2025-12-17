@@ -577,7 +577,8 @@ class ProjectNavigation {
         const projectLinks = {
             0: 'projects/cauldron.html',
             1: 'projects/speech-emotion.html',
-            2: 'projects/darts.html'
+            2: 'modal', // Sports Career - opens modal instead
+            3: 'projects/darts.html'
         };
 
         projectCards.forEach((card, index) => {
@@ -586,9 +587,52 @@ class ProjectNavigation {
                 card.addEventListener('click', (e) => {
                     // Don't navigate if clicking on a tag or button
                     if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
-                        window.location.href = projectLinks[index];
+                        if (projectLinks[index] === 'modal') {
+                            // Open Sports Career modal
+                            const modal = document.getElementById('sports-career-modal');
+                            if (modal) {
+                                modal.classList.add('active');
+                                document.body.classList.add('modal-open');
+                            }
+                        } else {
+                            window.location.href = projectLinks[index];
+                        }
                     }
                 });
+            }
+        });
+
+        // Sports Career Modal Close Functionality
+        this.initSportsCareerModal();
+    }
+
+    initSportsCareerModal() {
+        const modal = document.getElementById('sports-career-modal');
+        const closeBtn = modal?.querySelector('.modal-close');
+
+        // Close modal when clicking X button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            });
+        }
+
+        // Close modal when clicking outside
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.classList.remove('modal-open');
+                }
+            });
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal?.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
             }
         });
     }

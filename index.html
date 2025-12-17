@@ -324,7 +324,7 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3 data-en="Speech Emotion Recognition System" data-zh="語音情緒識別系統">Speech Emotion Recognition System</h3>
-                        <span class="project-date">Fall 2024</span>
+                        <span class="project-date">Jan 2025 - Apr 2025</span>
                     </div>
                     <p class="project-description" data-en="Deep learning system classifying emotional content from speech using CNN-LSTM hybrid architecture with 87.41% accuracy" data-zh="使用 CNN-LSTM 混合架構對語音情緒內容進行分類的深度學習系統，準確率達 87.41%">
                         Deep learning system classifying emotional content from speech using CNN-LSTM hybrid architecture with 87.41% accuracy
@@ -346,6 +346,33 @@
                         <span class="tag">Deep Learning</span>
                         <span class="tag">Audio Processing</span>
                         <span class="tag">Librosa</span>
+                    </div>
+                </div>
+
+                <div class="project-card" id="sports-career-card">
+                    <div class="project-header">
+                        <h3 data-en="Cross-League Sports Career Modeling System" data-zh="跨聯盟運動職業建模系統">Cross-League Sports Career Modeling System</h3>
+                        <span class="project-date">Jan 2025 - May 2025</span>
+                    </div>
+                    <p class="project-description" data-en="ML-based prediction system for athlete career trajectories across NFL, NBA, and FIFA" data-zh="基於機器學習的運動員職業軌跡預測系統，涵蓋 NFL、NBA 和 FIFA">
+                        ML-based prediction system for athlete career trajectories across NFL, NBA, and FIFA
+                    </p>
+                    <ul class="project-highlights">
+                        <li data-en="Multi-sport analysis of 1,800+ athletes with hierarchical encoding and BMI features" data-zh="分析 1,800+ 名運動員，採用分層編碼和 BMI 特徵">
+                            Multi-sport analysis of 1,800+ athletes with hierarchical encoding and BMI features
+                        </li>
+                        <li data-en="GridSearchCV optimization for 10-year predictions with Random Forest and Gradient Boosting" data-zh="GridSearchCV 優化 10 年預測，使用隨機森林和梯度提升">
+                            GridSearchCV optimization for 10-year predictions with Random Forest and Gradient Boosting
+                        </li>
+                        <li data-en="Interactive Dash dashboard with career trajectory visualization" data-zh="互動式 Dash 儀表板，具有職業軌跡可視化">
+                            Interactive Dash dashboard with career trajectory visualization
+                        </li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Dash</span>
+                        <span class="tag">Feature Engineering</span>
                     </div>
                 </div>
 
@@ -463,6 +490,70 @@
             <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
         </div>
     </footer>
+
+    <!-- Sports Career Modal -->
+    <div id="sports-career-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h2 data-en="Cross-League Sports Career Modeling System" data-zh="跨聯盟運動職業建模系統">Cross-League Sports Career Modeling System</h2>
+                <p class="modal-subtitle" data-en="Machine Learning for Athletic Career Prediction" data-zh="機器學習運動職業預測">Machine Learning for Athletic Career Prediction</p>
+            </div>
+            <div class="modal-body">
+                <section class="modal-section">
+                    <h3 data-en="Project Overview" data-zh="專案概述">Project Overview</h3>
+                    <p data-en="Developed a comprehensive machine learning system that predicts athletic career longevity across three major professional sports leagues: NFL (American Football), NBA (Basketball), and FIFA (Soccer). The system analyzes physical attributes, performance metrics, and positional data to forecast career trajectories over a 10-year span." data-zh="開發全面的機器學習系統，預測三大職業運動聯盟的運動員職業生涯長度：NFL（美式足球）、NBA（籃球）和 FIFA（足球）。系統分析身體屬性、表現指標和位置數據，預測 10 年職業軌跡。">
+                        Developed a comprehensive machine learning system that predicts athletic career longevity across three major professional sports leagues: NFL (American Football), NBA (Basketball), and FIFA (Soccer). The system analyzes physical attributes, performance metrics, and positional data to forecast career trajectories over a 10-year span.
+                    </p>
+                </section>
+
+                <section class="modal-section">
+                    <h3 data-en="Key Technical Features" data-zh="主要技術特色">Key Technical Features</h3>
+                    <ul class="modal-list">
+                        <li data-en="<strong>Multi-Sport Dataset Integration:</strong> Analyzed 1,800+ professional athletes across NFL, NBA, and FIFA, creating unified feature engineering pipeline handling sport-specific attributes" data-zh="<strong>多運動數據集整合：</strong>分析 1,800+ 名職業運動員（NFL、NBA、FIFA），創建統一特徵工程流程處理運動特定屬性">
+                            <strong>Multi-Sport Dataset Integration:</strong> Analyzed 1,800+ professional athletes across NFL, NBA, and FIFA, creating unified feature engineering pipeline handling sport-specific attributes
+                        </li>
+                        <li data-en="<strong>Hierarchical Position Encoding:</strong> Designed custom encoding system capturing positional similarities within and across sports (e.g., NFL Quarterback vs NBA Point Guard leadership roles)" data-zh="<strong>分層位置編碼：</strong>設計自定義編碼系統，捕捉運動內部和跨運動的位置相似性（例如，NFL 四分衛與 NBA 控球後衛的領導角色）">
+                            <strong>Hierarchical Position Encoding:</strong> Designed custom encoding system capturing positional similarities within and across sports (e.g., NFL Quarterback vs NBA Point Guard leadership roles)
+                        </li>
+                        <li data-en="<strong>BMI-Based Feature Engineering:</strong> Calculated Body Mass Index and derived metabolic efficiency features, accounting for sport-specific physical demands and injury risk patterns" data-zh="<strong>基於 BMI 的特徵工程：</strong>計算身體質量指數並衍生代謝效率特徵，考量運動特定身體需求和受傷風險模式">
+                            <strong>BMI-Based Feature Engineering:</strong> Calculated Body Mass Index and derived metabolic efficiency features, accounting for sport-specific physical demands and injury risk patterns
+                        </li>
+                        <li data-en="<strong>GridSearchCV Hyperparameter Optimization:</strong> Systematically tuned 5 regression models (Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting) with cross-validation" data-zh="<strong>GridSearchCV 超參數優化：</strong>系統性調校 5 個回歸模型（線性回歸、Ridge、Lasso、隨機森林、梯度提升）配合交叉驗證">
+                            <strong>GridSearchCV Hyperparameter Optimization:</strong> Systematically tuned 5 regression models (Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting) with cross-validation
+                        </li>
+                        <li data-en="<strong>Sport-Specific Model Selection:</strong> Selected Random Forest for NFL (complex positional interactions) and Gradient Boosting for NBA/FIFA (sequential performance dependencies)" data-zh="<strong>運動特定模型選擇：</strong>為 NFL 選擇隨機森林（複雜位置互動），為 NBA/FIFA 選擇梯度提升（序列性能依賴）">
+                            <strong>Sport-Specific Model Selection:</strong> Selected Random Forest for NFL (complex positional interactions) and Gradient Boosting for NBA/FIFA (sequential performance dependencies)
+                        </li>
+                        <li data-en="<strong>Interactive Dash Dashboard:</strong> Built production-ready web application with real-time career trajectory predictions, peak performance identification, and comparative analytics across sports" data-zh="<strong>互動式 Dash 儀表板：</strong>構建生產就緒的網頁應用程式，具有即時職業軌跡預測、峰值表現識別和跨運動比較分析">
+                            <strong>Interactive Dash Dashboard:</strong> Built production-ready web application with real-time career trajectory predictions, peak performance identification, and comparative analytics across sports
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="modal-section">
+                    <h3 data-en="Technology Stack" data-zh="技術棧">Technology Stack</h3>
+                    <div class="modal-tags">
+                        <span class="modal-tag">Python</span>
+                        <span class="modal-tag">Scikit-learn</span>
+                        <span class="modal-tag">Pandas</span>
+                        <span class="modal-tag">NumPy</span>
+                        <span class="modal-tag">Dash</span>
+                        <span class="modal-tag">Plotly</span>
+                        <span class="modal-tag">Random Forest</span>
+                        <span class="modal-tag">Gradient Boosting</span>
+                    </div>
+                </section>
+
+                <section class="modal-section">
+                    <h3 data-en="Applications & Impact" data-zh="應用與影響">Applications & Impact</h3>
+                    <p data-en="This system provides actionable insights for team management, player contract negotiations, and scouting decisions. By predicting career longevity, organizations can make data-driven decisions on long-term investments in athletes, optimizing roster composition and salary cap allocation." data-zh="此系統為球隊管理、球員合約談判和球探決策提供可行的洞察。透過預測職業生涯長度，組織可以對運動員的長期投資做出數據驅動的決策，優化陣容組成和薪資上限配置。">
+                        This system provides actionable insights for team management, player contract negotiations, and scouting decisions. By predicting career longevity, organizations can make data-driven decisions on long-term investments in athletes, optimizing roster composition and salary cap allocation.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
