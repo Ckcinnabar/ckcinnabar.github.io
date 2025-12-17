@@ -1020,7 +1020,7 @@ body.modal-open .navbar {
 }
 
 #sports-career-modal .modal-section {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 #sports-career-modal .modal-section:first-child {
@@ -1033,7 +1033,7 @@ body.modal-open .navbar {
 
 #sports-career-modal .modal-section h3 {
     font-size: 1.2rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     margin-top: 0;
 }
 
@@ -1043,10 +1043,10 @@ body.modal-open .navbar {
 }
 
 .modal-list li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
     padding-left: 1.5rem;
     position: relative;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 .modal-list li::before {
