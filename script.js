@@ -577,8 +577,8 @@ class ProjectNavigation {
         const projectLinks = {
             0: 'projects/cauldron.html',
             1: 'projects/speech-emotion.html',
-            2: 'modal', // Sports Career - opens modal instead
-            3: 'projects/darts.html'
+            2: 'projects/darts.html',
+            3: 'modal' // Sports Career - opens modal instead
         };
 
         projectCards.forEach((card, index) => {
