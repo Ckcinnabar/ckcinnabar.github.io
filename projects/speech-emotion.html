@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Emotion Recognition - Kuan-Chen Chen</title>
+    <link rel="stylesheet" href="project-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Portfolio" data-zh="返回作品集">Back to Portfolio</span>
+            </a>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh" style="display:none;">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title">Speech Emotion Recognition System</h1>
+            <p class="project-subtitle" data-en="CNN-LSTM Hybrid Architecture for Emotion Classification" data-zh="CNN-LSTM 混合架構的情緒分類">
+                CNN-LSTM Hybrid Architecture for Emotion Classification
+            </p>
+            <div class="project-meta">
+                <div class="meta-item"><i class="fas fa-calendar"></i><span>Fall 2024</span></div>
+                <div class="meta-item"><i class="fas fa-graduation-cap"></i><span>University of Florida</span></div>
+                <div class="meta-item"><i class="fas fa-chart-line"></i><span data-en="87.41% Accuracy" data-zh="87.41% 準確率">87.41% Accuracy</span></div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">PyTorch</span>
+                <span class="tag">CNN-LSTM</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Audio Processing</span>
+                <span class="tag">Time Series</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <div class="container">
+            <section class="content-section">
+                <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
+                <p class="content-text" data-en="Developed a deep learning system that classifies emotional content from speech audio into 5 emotion categories using a hybrid CNN-LSTM architecture. The system processes 3-second audio clips at 48kHz, extracts mel-spectrogram features, and achieves 87.41% test accuracy through advanced data augmentation and regularization techniques. This project demonstrates proficiency in audio signal processing, deep learning architecture design, and PyTorch implementation." data-zh="開發深度學習系統，使用 CNN-LSTM 混合架構將語音音訊情緒內容分類為 5 種情緒類別。系統處理 48kHz 的 3 秒音訊片段，提取 mel-spectrogram 特徵，並透過進階數據增強和正則化技術達到 87.41% 測試準確率。此專案展現音訊信號處理、深度學習架構設計和 PyTorch 實作的專業能力。">
+                    Developed a deep learning system that classifies emotional content from speech audio into 5 emotion categories using a hybrid CNN-LSTM architecture. The system processes 3-second audio clips at 48kHz, extracts mel-spectrogram features, and achieves 87.41% test accuracy through advanced data augmentation and regularization techniques. This project demonstrates proficiency in audio signal processing, deep learning architecture design, and PyTorch implementation.
+                </p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Key Achievements" data-zh="主要成就">Key Achievements</h2>
+                <ul class="highlights-list">
+                    <li data-en="Achieved 87.41% test accuracy on 5-class emotion classification, outperforming Random Forest baseline by 9.6%" data-zh="在 5 類情緒分類中達到 87.41% 測試準確率，超越隨機森林基準 9.6%">Achieved 87.41% test accuracy on 5-class emotion classification, outperforming Random Forest baseline by 9.6%</li>
+                    <li data-en="Designed and implemented hybrid CNN-LSTM architecture with 2.75M parameters, combining spatial and temporal feature extraction" data-zh="設計並實作具有 275 萬參數的 CNN-LSTM 混合架構，結合空間和時序特徵提取">Designed and implemented hybrid CNN-LSTM architecture with 2.75M parameters, combining spatial and temporal feature extraction</li>
+                    <li data-en="Implemented 5x data augmentation strategy (Gaussian noise, time shifting, volume scaling) preventing overfitting despite model complexity" data-zh="實作 5 倍數據增強策略（高斯雜訊、時間位移、音量縮放），在模型複雜度下防止過擬合">Implemented 5x data augmentation strategy (Gaussian noise, time shifting, volume scaling) preventing overfitting despite model complexity</li>
+                    <li data-en="Processed mel-spectrogram features (128 mel bands × 282 time frames) using librosa for robust audio representation" data-zh="使用 librosa 處理 mel-spectrogram 特徵（128 個 mel 帶 × 282 個時間幀），實現強健的音訊表示">Processed mel-spectrogram features (128 mel bands × 282 time frames) using librosa for robust audio representation</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="CNN-LSTM Hybrid Architecture" data-zh="CNN-LSTM 混合架構">CNN-LSTM Hybrid Architecture</h2>
+                <p class="content-text" data-en="The model combines Convolutional Neural Networks for spatial feature extraction from mel-spectrograms with Bidirectional LSTM layers for temporal dependency modeling:" data-zh="模型結合卷積神經網路從 mel-spectrograms 提取空間特徵，以及雙向 LSTM 層進行時序依賴建模：">
+                    The model combines Convolutional Neural Networks for spatial feature extraction from mel-spectrograms with Bidirectional LSTM layers for temporal dependency modeling:
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="CNN Feature Extraction (3 Layers)" data-zh="CNN 特徵提取（3 層）">🔷 CNN Feature Extraction</h4>
+                        <p data-en="Three convolutional layers with batch normalization and max pooling progressively extract hierarchical spatial features from mel-spectrograms. Architecture: Conv2d(1→32)→Conv2d(32→64)→Conv2d(64→128) with 3×3 kernels, reducing dimensions from (1,128,282) to (128,16,35)." data-zh="三個卷積層配合批次正規化和最大池化，逐步從 mel-spectrograms 提取分層空間特徵。架構：Conv2d(1→32)→Conv2d(32→64)→Conv2d(64→128)，使用 3×3 核心，將維度從 (1,128,282) 縮減至 (128,16,35)。">
+                            Three convolutional layers with batch normalization and max pooling progressively extract hierarchical spatial features from mel-spectrograms. Architecture: Conv2d(1→32)→Conv2d(32→64)→Conv2d(64→128) with 3×3 kernels, reducing dimensions from (1,128,282) to (128,16,35).
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Bidirectional LSTM (2 Layers)" data-zh="雙向 LSTM（2 層）">🔄 Bidirectional LSTM</h4>
+                        <p data-en="Bidirectional LSTM with 128 hidden units per direction processes temporal sequences in both forward and backward directions, capturing long-range dependencies in emotional speech patterns. Outputs 256-dimensional feature vectors per time step." data-zh="雙向 LSTM 每個方向具有 128 個隱藏單元，在正向和反向處理時序序列，捕捉情緒語音模式中的長程依賴。每個時間步輸出 256 維特徵向量。">
+                            Bidirectional LSTM with 128 hidden units per direction processes temporal sequences in both forward and backward directions, capturing long-range dependencies in emotional speech patterns. Outputs 256-dimensional feature vectors per time step.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Regularization Strategy" data-zh="正則化策略">🛡️ Regularization Strategy</h4>
+                        <p data-en="Multiple dropout layers (30% rate) after CNN, LSTM, and FC layers prevent overfitting. Combined with weight decay (1e-5) and learning rate scheduling (ReduceLROnPlateau), achieves stable training with ~99% train accuracy while maintaining 87.41% test accuracy." data-zh="在 CNN、LSTM 和全連接層後設置多個 dropout 層（30% 比率）防止過擬合。結合權重衰減（1e-5）和學習率調度（ReduceLROnPlateau），在訓練準確率約 99% 的同時維持 87.41% 測試準確率。">
+                            Multiple dropout layers (30% rate) after CNN, LSTM, and FC layers prevent overfitting. Combined with weight decay (1e-5) and learning rate scheduling (ReduceLROnPlateau), achieves stable training with ~99% train accuracy while maintaining 87.41% test accuracy.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Fully Connected Classifier" data-zh="全連接分類器">📊 Fully Connected Classifier</h4>
+                        <p data-en="Two fully connected layers (256→128→5) with ReLU activation and dropout transform LSTM outputs into final emotion predictions. Cross-entropy loss function optimizes 5-class classification with balanced class support." data-zh="兩個全連接層（256→128→5）配合 ReLU 激活和 dropout，將 LSTM 輸出轉換為最終情緒預測。交叉熵損失函數優化具有平衡類別支持的 5 類分類。">
+                            Two fully connected layers (256→128→5) with ReLU activation and dropout transform LSTM outputs into final emotion predictions. Cross-entropy loss function optimizes 5-class classification with balanced class support.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Audio Signal Processing Pipeline" data-zh="音訊信號處理流程">Audio Signal Processing Pipeline</h2>
+                <p class="content-text" data-en="Raw audio data undergoes sophisticated preprocessing to extract meaningful features for emotion recognition:" data-zh="原始音訊數據經過複雜的預處理以提取情緒識別的有意義特徵：">
+                    Raw audio data undergoes sophisticated preprocessing to extract meaningful features for emotion recognition:
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Mel-Spectrogram Extraction" data-zh="Mel-Spectrogram 提取">🎵 Mel-Spectrogram Extraction</h4>
+                        <p data-en="3-second audio clips (144,000 samples at 48kHz) converted to mel-spectrograms using librosa. Configuration: 1024 FFT window, 512 hop length, 128 mel bands, 8kHz max frequency. Results in (128×282) 2D representation capturing both frequency and temporal patterns." data-zh="3 秒音訊片段（48kHz 的 144,000 個樣本）使用 librosa 轉換為 mel-spectrograms。配置：1024 FFT 窗口、512 跳躍長度、128 個 mel 帶、8kHz 最大頻率。產生 (128×282) 二維表示，捕捉頻率和時序模式。">
+                            3-second audio clips (144,000 samples at 48kHz) converted to mel-spectrograms using librosa. Configuration: 1024 FFT window, 512 hop length, 128 mel bands, 8kHz max frequency. Results in (128×282) 2D representation capturing both frequency and temporal patterns.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Data Augmentation (5x)" data-zh="數據增強（5 倍）">🔄 Data Augmentation (5x)</h4>
+                        <p data-en="Three augmentation techniques applied with >30% probability: Gaussian noise (factor=0.008), time shifting (up to 25%), and volume scaling (0.7-1.3x). Multiplies effective training data from 630 to 3,150 samples per epoch, crucial for preventing overfitting with 2.75M parameters." data-zh="三種增強技術以 >30% 機率應用：高斯雜訊（因子=0.008）、時間位移（最多 25%）和音量縮放（0.7-1.3 倍）。將有效訓練數據從每個 epoch 的 630 個樣本增加到 3,150 個，對於防止 275 萬參數的過擬合至關重要。">
+                            Three augmentation techniques applied with >30% probability: Gaussian noise (factor=0.008), time shifting (up to 25%), and volume scaling (0.7-1.3x). Multiplies effective training data from 630 to 3,150 samples per epoch, crucial for preventing overfitting with 2.75M parameters.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Stratified Data Splitting" data-zh="分層數據分割">📂 Stratified Data Splitting</h4>
+                        <p data-en="900 total samples split using stratified sampling: 70% training (630), 15% validation (135), 15% test (135). Ensures balanced class distribution across all splits, preventing class imbalance issues during training and evaluation." data-zh="900 個總樣本使用分層採樣分割：70% 訓練（630）、15% 驗證（135）、15% 測試（135）。確保所有分割中的平衡類別分布，防止訓練和評估期間的類別不平衡問題。">
+                            900 total samples split using stratified sampling: 70% training (630), 15% validation (135), 15% test (135). Ensures balanced class distribution across all splits, preventing class imbalance issues during training and evaluation.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Log-Scale Normalization" data-zh="對數尺度正規化">📏 Log-Scale Normalization</h4>
+                        <p data-en="Mel-spectrograms converted to decibel (dB) scale using log transformation, normalizing dynamic range and emphasizing perceptually relevant features. Standard practice in audio ML for improved model convergence and performance." data-zh="Mel-spectrograms 使用對數轉換轉換為分貝（dB）尺度，正規化動態範圍並強調感知相關特徵。音訊機器學習中的標準做法，用於改善模型收斂和性能。">
+                            Mel-spectrograms converted to decibel (dB) scale using log transformation, normalizing dynamic range and emphasizing perceptually relevant features. Standard practice in audio ML for improved model convergence and performance.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Model Training & Optimization" data-zh="模型訓練與優化">Model Training & Optimization</h2>
+                <ul class="highlights-list">
+                    <li data-en="Hardware: NVIDIA GeForce RTX 3060 Laptop GPU (6.44GB VRAM) with CUDA 11.8 acceleration" data-zh="硬體：NVIDIA GeForce RTX 3060 筆記型電腦 GPU（6.44GB VRAM）配合 CUDA 11.8 加速">
+                        <strong>Hardware:</strong> NVIDIA GeForce RTX 3060 Laptop GPU (6.44GB VRAM) with CUDA 11.8 acceleration
+                    </li>
+                    <li data-en="Optimizer: Adam with learning rate 0.001 and weight decay 1e-5 for L2 regularization" data-zh="優化器：Adam，學習率 0.001，權重衰減 1e-5 用於 L2 正則化">
+                        <strong>Optimizer:</strong> Adam with learning rate 0.001 and weight decay 1e-5 for L2 regularization
+                    </li>
+                    <li data-en="Scheduler: ReduceLROnPlateau (factor=0.5, patience=5) dynamically reduces learning rate when validation loss plateaus" data-zh="調度器：ReduceLROnPlateau（因子=0.5，耐心=5）在驗證損失停滯時動態降低學習率">
+                        <strong>Scheduler:</strong> ReduceLROnPlateau (factor=0.5, patience=5) dynamically reduces learning rate when validation loss plateaus
+                    </li>
+                    <li data-en="Early Stopping: Patience of 35 epochs prevents overfitting by halting training when validation accuracy stops improving" data-zh="早停：35 個 epoch 的耐心透過在驗證準確率停止改善時停止訓練來防止過擬合">
+                        <strong>Early Stopping:</strong> Patience of 35 epochs prevents overfitting by halting training when validation accuracy stops improving
+                    </li>
+                    <li data-en="Batch Size: 32 samples per batch, optimized for GPU memory and training stability" data-zh="批次大小：每批次 32 個樣本，針對 GPU 記憶體和訓練穩定性優化">
+                        <strong>Batch Size:</strong> 32 samples per batch, optimized for GPU memory and training stability
+                    </li>
+                    <li data-en="Loss Function: Cross-entropy loss for multi-class classification with balanced class weights" data-zh="損失函數：用於多類別分類的交叉熵損失，具有平衡類別權重">
+                        <strong>Loss Function:</strong> Cross-entropy loss for multi-class classification with balanced class weights
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Performance Results" data-zh="性能結果">Performance Results</h2>
+                <div class="results-grid">
+                    <div class="result-card"><div class="result-number">87.41%</div><div class="result-label" data-en="Test Accuracy" data-zh="測試準確率">Test Accuracy</div></div>
+                    <div class="result-card"><div class="result-number">2.75M</div><div class="result-label" data-en="Parameters" data-zh="參數">Parameters</div></div>
+                    <div class="result-card"><div class="result-number">5x</div><div class="result-label" data-en="Augmentation" data-zh="數據增強">Augmentation</div></div>
+                    <div class="result-card"><div class="result-number">+9.6%</div><div class="result-label" data-en="vs Baseline" data-zh="超越基準">vs Baseline</div></div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Per-Class Performance Analysis" data-zh="各類別性能分析">Per-Class Performance Analysis</h2>
+                <p class="content-text" data-en="The CNN-LSTM model demonstrates strong performance across all emotion classes with macro-averaged F1-score of 0.873:" data-zh="CNN-LSTM 模型在所有情緒類別中展現強勁性能，宏平均 F1 分數為 0.873：">
+                    The CNN-LSTM model demonstrates strong performance across all emotion classes with macro-averaged F1-score of 0.873:
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">Emotion 1: 89.29% Recall</h4>
+                        <p data-en="Strong classification with 86.21% precision and 87.72% F1-score across 28 test samples, indicating reliable detection with minimal false positives." data-zh="在 28 個測試樣本中，以 86.21% 精確率和 87.72% F1 分數進行強勁分類，顯示可靠的檢測且誤判極少。">
+                            Strong classification with 86.21% precision and 87.72% F1-score across 28 test samples, indicating reliable detection with minimal false positives.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">Emotion 2: 85.19% Recall</h4>
+                        <p data-en="Excellent precision (92.00%) with 88.46% F1-score on 27 samples. High precision suggests model is highly confident when predicting this class." data-zh="在 27 個樣本上具有出色的精確率（92.00%）和 88.46% F1 分數。高精確率表明模型在預測此類別時非常有信心。">
+                            Excellent precision (92.00%) with 88.46% F1-score on 27 samples. High precision suggests model is highly confident when predicting this class.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">Emotion 3: 74.07% Recall</h4>
+                        <p data-en="Most challenging class with 95.24% precision but lower recall (74.07%). High precision indicates predictions are accurate when made, but some samples are missed." data-zh="最具挑戰性的類別，精確率為 95.24% 但召回率較低（74.07%）。高精確率表示預測準確，但會遺漏一些樣本。">
+                            Most challenging class with 95.24% precision but lower recall (74.07%). High precision indicates predictions are accurate when made, but some samples are missed.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">Emotion 4: 96.15% Recall</h4>
+                        <p data-en="Best performing class with 83.33% precision and 89.29% F1-score. Near-perfect recall (96.15%) shows model captures almost all instances of this emotion." data-zh="表現最佳的類別，精確率 83.33%，F1 分數 89.29%。近乎完美的召回率（96.15%）顯示模型捕捉到此情緒的幾乎所有實例。">
+                            Best performing class with 83.33% precision and 89.29% F1-score. Near-perfect recall (96.15%) shows model captures almost all instances of this emotion.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">Emotion 5: 92.59% Recall</h4>
+                        <p data-en="Strong performance with 83.33% precision and 87.72% F1-score on 27 samples. Balanced precision-recall trade-off indicates robust classification." data-zh="在 27 個樣本上，以 83.33% 精確率和 87.72% F1 分數展現強勁性能。平衡的精確率-召回率權衡顯示強健的分類。">
+                            Strong performance with 83.33% precision and 87.72% F1-score on 27 samples. Balanced precision-recall trade-off indicates robust classification.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #10b981;">Confusion Matrix Insights</h4>
+                        <p data-en="Highest confusion occurs between Emotion 3 and neutral emotions, reflecting acoustic similarity. Model maintains >74% recall across all classes, demonstrating consistent performance." data-zh="Emotion 3 和中性情緒之間的混淆最高，反映聲學相似性。模型在所有類別中保持 >74% 召回率，展現一致的性能。">
+                            Highest confusion occurs between Emotion 3 and neutral emotions, reflecting acoustic similarity. Model maintains >74% recall across all classes, demonstrating consistent performance.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Baseline Comparison" data-zh="基準比較">Baseline Comparison</h2>
+                <p class="content-text" data-en="CNN-LSTM significantly outperformed traditional machine learning approaches on the same dataset:" data-zh="CNN-LSTM 在同一數據集上顯著優於傳統機器學習方法：">
+                    CNN-LSTM significantly outperformed traditional machine learning approaches on the same dataset:
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Random Forest (Optimized)" data-zh="隨機森林（優化）">🌲 Random Forest (Optimized)</h4>
+                        <p data-en="150 trees, max depth 25, entropy criterion. Achieved 77.78% test accuracy using 1024 engineered features (MFCCs, pitch, energy, zero-crossing rate). GridSearchCV hyperparameter tuning improved from baseline 71.11%." data-zh="150 棵樹，最大深度 25，熵標準。使用 1024 個工程特徵（MFCCs、音高、能量、過零率）達到 77.78% 測試準確率。GridSearchCV 超參數調優從基準 71.11% 改善。">
+                            150 trees, max depth 25, entropy criterion. Achieved 77.78% test accuracy using 1024 engineered features (MFCCs, pitch, energy, zero-crossing rate). GridSearchCV hyperparameter tuning improved from baseline 71.11%.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Gradient Boosting" data-zh="梯度提升">📈 Gradient Boosting</h4>
+                        <p data-en="Alternative tree-based ensemble achieving 70.56% accuracy. Despite iterative boosting approach, unable to match Random Forest performance, suggesting feature representation limitations." data-zh="替代的基於樹的集成達到 70.56% 準確率。儘管採用迭代提升方法，無法匹配隨機森林性能，顯示特徵表示的限制。">
+                            Alternative tree-based ensemble achieving 70.56% accuracy. Despite iterative boosting approach, unable to match Random Forest performance, suggesting feature representation limitations.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Support Vector Machine" data-zh="支援向量機">🎯 Support Vector Machine</h4>
+                        <p data-en="RBF kernel SVM reached 62.22% accuracy. Lower performance indicates traditional kernel methods struggle with high-dimensional audio features compared to ensemble and deep learning approaches." data-zh="RBF 核心 SVM 達到 62.22% 準確率。較低的性能表明傳統核心方法在高維音訊特徵上表現不如集成和深度學習方法。">
+                            RBF kernel SVM reached 62.22% accuracy. Lower performance indicates traditional kernel methods struggle with high-dimensional audio features compared to ensemble and deep learning approaches.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #10b981;" data-en="CNN-LSTM Advantage" data-zh="CNN-LSTM 優勢">✨ CNN-LSTM Advantage</h4>
+                        <p data-en="9.6% improvement over best baseline (Random Forest 77.78% → CNN-LSTM 87.41%). Deep learning captures complex spectrogram patterns and temporal dependencies that handcrafted features miss, justifying increased model complexity." data-zh="比最佳基準提升 9.6%（隨機森林 77.78% → CNN-LSTM 87.41%）。深度學習捕捉手工特徵遺漏的複雜頻譜圖模式和時序依賴，證明增加模型複雜度的合理性。">
+                            9.6% improvement over best baseline (Random Forest 77.78% → CNN-LSTM 87.41%). Deep learning captures complex spectrogram patterns and temporal dependencies that handcrafted features miss, justifying increased model complexity.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Challenges & Solutions" data-zh="技術挑戰與解決方案">Technical Challenges & Solutions</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">⚡ Challenge: Overfitting Risk</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="2.75M parameters with only 630 training samples created severe overfitting risk, potentially leading to >95% train accuracy but poor generalization." data-zh="275 萬參數僅有 630 個訓練樣本造成嚴重過擬合風險，可能導致 >95% 訓練準確率但泛化能力差。">
+                            2.75M parameters with only 630 training samples created severe overfitting risk, potentially leading to >95% train accuracy but poor generalization.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p data-en="Implemented multi-layer regularization: 5x data augmentation (effective 3,150 samples/epoch), 30% dropout after each major component, weight decay (1e-5), and early stopping (patience=35). Achieved ~99% train with 87.41% test accuracy." data-zh="實作多層正則化：5 倍數據增強（有效每 epoch 3,150 個樣本）、每個主要組件後 30% dropout、權重衰減（1e-5）和早停（耐心=35）。達到約 99% 訓練準確率和 87.41% 測試準確率。">
+                            Implemented multi-layer regularization: 5x data augmentation (effective 3,150 samples/epoch), 30% dropout after each major component, weight decay (1e-5), and early stopping (patience=35). Achieved ~99% train with 87.41% test accuracy.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">⚡ Challenge: GPU Memory Constraints</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="6.44GB VRAM limited batch size with 5x augmentation (effective 160 samples per batch) and 2.75M parameter model requiring careful memory management." data-zh="6.44GB VRAM 在 5 倍增強（每批次有效 160 個樣本）和 275 萬參數模型下限制批次大小，需要仔細的記憶體管理。">
+                            6.44GB VRAM limited batch size with 5x augmentation (effective 160 samples per batch) and 2.75M parameter model requiring careful memory management.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p data-en="Optimized batch size to 32 (160 augmented), used mixed-precision training implicitly through PyTorch optimizations, and applied gradient accumulation when needed. Maintained training stability without OOM errors." data-zh="優化批次大小至 32（160 個增強），透過 PyTorch 優化隱式使用混合精度訓練，並在需要時應用梯度累積。維持訓練穩定性而無記憶體不足錯誤。">
+                            Optimized batch size to 32 (160 augmented), used mixed-precision training implicitly through PyTorch optimizations, and applied gradient accumulation when needed. Maintained training stability without OOM errors.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">⚡ Challenge: Class Imbalance Sensitivity</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="While dataset has balanced distribution (20% each), augmentation and sampling could introduce training bias toward certain emotion classes during mini-batch training." data-zh="雖然數據集具有平衡分布（各 20%），但增強和採樣可能在小批次訓練期間導致對某些情緒類別的訓練偏差。">
+                            While dataset has balanced distribution (20% each), augmentation and sampling could introduce training bias toward certain emotion classes during mini-batch training.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p data-en="Used stratified train/val/test split ensuring proportional class representation across all splits. Applied uniform augmentation to all classes maintaining balance. Result: all classes achieve >74% recall with minimal variance." data-zh="使用分層訓練/驗證/測試分割確保所有分割中的比例類別表示。對所有類別應用統一增強維持平衡。結果：所有類別達到 >74% 召回率，變異最小。">
+                            Used stratified train/val/test split ensuring proportional class representation across all splits. Applied uniform augmentation to all classes maintaining balance. Result: all classes achieve >74% recall with minimal variance.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea;">⚡ Challenge: Feature Representation</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="Choosing between handcrafted features (MFCCs, pitch, energy) versus learned representations from raw spectrograms, balancing domain knowledge with model capacity." data-zh="在手工特徵（MFCCs、音高、能量）與從原始頻譜圖學習的表示之間選擇，平衡領域知識與模型能力。">
+                            Choosing between handcrafted features (MFCCs, pitch, energy) versus learned representations from raw spectrograms, balancing domain knowledge with model capacity.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p data-en="Selected mel-spectrograms as input, allowing CNN layers to learn optimal feature hierarchies automatically. Mel-scale provides perceptually-motivated frequency representation while CNN discovers emotion-relevant patterns, outperforming 1024 handcrafted features by 9.6%." data-zh="選擇 mel-spectrograms 作為輸入，允許 CNN 層自動學習最佳特徵層次。Mel 尺度提供感知導向的頻率表示，而 CNN 發現情緒相關模式，超越 1024 個手工特徵 9.6%。">
+                            Selected mel-spectrograms as input, allowing CNN layers to learn optimal feature hierarchies automatically. Mel-scale provides perceptually-motivated frequency representation while CNN discovers emotion-relevant patterns, outperforming 1024 handcrafted features by 9.6%.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Applications & Impact" data-zh="應用與影響">Applications & Impact</h2>
+                <p class="content-text" data-en="Speech emotion recognition enables various real-world applications in human-computer interaction and assistive technologies:" data-zh="語音情緒識別在人機互動和輔助技術中實現各種實際應用：">
+                    Speech emotion recognition enables various real-world applications in human-computer interaction and assistive technologies:
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Mental Health Monitoring" data-zh="心理健康監測">🧠 Mental Health Monitoring</h4>
+                        <p data-en="Real-time emotion detection in therapeutic sessions can help clinicians identify emotional states, track patient progress, and detect early warning signs of mental health crises through voice analysis." data-zh="治療會話中的即時情緒檢測可以幫助臨床醫生識別情緒狀態、追蹤患者進展，並透過語音分析檢測心理健康危機的早期預警信號。">
+                            Real-time emotion detection in therapeutic sessions can help clinicians identify emotional states, track patient progress, and detect early warning signs of mental health crises through voice analysis.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Call Center Analytics" data-zh="客服中心分析">📞 Call Center Analytics</h4>
+                        <p data-en="Automated sentiment analysis of customer service calls enables quality monitoring, agent performance evaluation, and early escalation of frustrated customers to supervisors, improving customer satisfaction." data-zh="客戶服務通話的自動情感分析實現品質監控、客服人員績效評估，以及將受挫的客戶早期升級給主管，提高客戶滿意度。">
+                            Automated sentiment analysis of customer service calls enables quality monitoring, agent performance evaluation, and early escalation of frustrated customers to supervisors, improving customer satisfaction.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Accessibility Tools" data-zh="無障礙工具">♿ Accessibility Tools</h4>
+                        <p data-en="Assists individuals with autism spectrum disorder or social communication difficulties by providing real-time emotional cues from speech, enhancing their ability to navigate social interactions." data-zh="透過提供語音的即時情緒提示，幫助自閉症譜系障礙或社交溝通困難的個人，增強他們應對社交互動的能力。">
+                            Assists individuals with autism spectrum disorder or social communication difficulties by providing real-time emotional cues from speech, enhancing their ability to navigate social interactions.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Human-Robot Interaction" data-zh="人機互動">🤖 Human-Robot Interaction</h4>
+                        <p data-en="Empowers robots and virtual assistants to recognize user emotions and adapt responses accordingly, creating more natural and empathetic interactions in smart home devices, educational robots, and companion systems." data-zh="賦予機器人和虛擬助理識別使用者情緒並相應調整回應的能力，在智慧家居設備、教育機器人和陪伴系統中創造更自然和有同理心的互動。">
+                            Empowers robots and virtual assistants to recognize user emotions and adapt responses accordingly, creating more natural and empathetic interactions in smart home devices, educational robots, and companion systems.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-fire"></i>
+                        <span>PyTorch</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-music"></i>
+                        <span>Librosa</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <span>CNN-LSTM</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Scikit-learn</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-cube"></i>
+                        <span>NumPy</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="links-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Project Links" data-zh="專案連結">Project Links</h2>
+            <div class="project-links">
+                <a href="https://github.com/ckcinnabar/project-team-formation-intelligent-artifacts" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                    <span data-en="View on GitHub" data-zh="在 GitHub 上查看">View on GitHub</span>
+                </a>
+                <a href="SpeechEmotion/poster.pdf" class="btn btn-secondary" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    <span data-en="Research Poster" data-zh="研究海報">Research Poster</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p></div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>

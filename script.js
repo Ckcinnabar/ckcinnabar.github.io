@@ -576,7 +576,7 @@ class ProjectNavigation {
         // Define project links mapping
         const projectLinks = {
             0: 'projects/cauldron.html',
-            1: 'projects/sports-career.html',
+            1: 'projects/speech-emotion.html',
             2: 'projects/darts.html'
         };
 
