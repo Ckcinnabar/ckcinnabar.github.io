@@ -62,11 +62,301 @@
             </section>
 
             <section class="content-section">
-                <h2 class="section-title" data-en="Results" data-zh="結果">Results</h2>
+                <h2 class="section-title" data-en="System Architecture" data-zh="系統架構">System Architecture</h2>
+                <p class="content-text" data-en="DARTS integrates multiple data sources and processing modules to deliver real-time campus mobility insights:" data-zh="DARTS 整合多個數據來源和處理模組，提供即時校園交通洞察：">
+                    DARTS integrates multiple data sources and processing modules to deliver real-time campus mobility insights:
+                </p>
+                <div class="image-container" style="margin: 2rem 0;">
+                    <img src="DARTS/pipeline.jpeg" alt="DARTS System Architecture" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; color: #666; margin-top: 1rem; font-style: italic;" data-en="DARTS data processing pipeline and system architecture" data-zh="DARTS 資料處理流程與系統架構">
+                        DARTS data processing pipeline and system architecture
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Data Input Layer" data-zh="資料輸入層">Data Input Layer</h4>
+                        <p data-en="Aggregates course selection schedules, campus bus tracking (PTX API), YouBike station status (TDX API), and parking lot occupancy data through unified interface." data-zh="透過統一介面彙總課程選課時間表、校園公車追蹤（PTX API）、YouBike 站點狀態（TDX API）和停車場佔用數據。">
+                            Aggregates course selection schedules, campus bus tracking (PTX API), YouBike station status (TDX API), and parking lot occupancy data through unified interface.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Campus Numeric Route Model" data-zh="校園數值路徑模型">Campus Numeric Route Model</h4>
+                        <p data-en="Digitizes campus road network with nodes (buildings) and edges (paths), incorporating slope gradients, distance, and surface quality as base parameters for route optimization." data-zh="數位化校園路網，包含節點（建築物）和邊（路徑），整合坡度、距離和路面品質作為路線優化的基礎參數。">
+                            Digitizes campus road network with nodes (buildings) and edges (paths), incorporating slope gradients, distance, and surface quality as base parameters for route optimization.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Equivalent Route Model" data-zh="等效路徑模型">Equivalent Route Model</h4>
+                        <p data-en="Transforms numeric model using equivalent route formula, converting physical distances into perceived effort by factoring in elevation changes, weather conditions, and user preferences." data-zh="使用等效路徑公式轉換數值模型，將物理距離轉換為感知努力，考量高程變化、天氣條件和使用者偏好。">
+                            Transforms numeric model using equivalent route formula, converting physical distances into perceived effort by factoring in elevation changes, weather conditions, and user preferences.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="DARTS Kernel Strategy Module" data-zh="DARTS 核心策略模組">DARTS Kernel Strategy Module</h4>
+                        <p data-en="Core prediction engine using ARIMA (1,1,0) time series models to forecast bike availability, parking occupancy, and pedestrian flow 10 minutes ahead with 86.1% accuracy." data-zh="核心預測引擎使用 ARIMA (1,1,0) 時間序列模型，以 86.1% 準確率預測 10 分鐘後的單車可用性、停車佔用率和行人流量。">
+                            Core prediction engine using ARIMA (1,1,0) time series models to forecast bike availability, parking occupancy, and pedestrian flow 10 minutes ahead with 86.1% accuracy.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="DARTS Interface & Real-Time Visualization" data-zh="DARTS 介面與即時可視化">DARTS Interface & Real-Time Visualization</h2>
+                <p class="content-text" data-en="The DARTS web application provides an intuitive, map-based interface for real-time campus mobility monitoring and route planning:" data-zh="DARTS 網頁應用程式提供直觀的地圖介面，用於即時校園交通監控和路線規劃：">
+                    The DARTS web application provides an intuitive, map-based interface for real-time campus mobility monitoring and route planning:
+                </p>
+                <div class="image-container" style="margin: 2rem 0;">
+                    <img src="DARTS/demo.jpeg" alt="DARTS Dashboard Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; color: #666; margin-top: 1rem; font-style: italic;" data-en="DARTS beta interface showing real-time traffic flow and route recommendations" data-zh="DARTS beta 介面顯示即時交通流量和路線推薦">
+                        DARTS beta interface showing real-time traffic flow and route recommendations
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Interactive Campus Map" data-zh="互動式校園地圖">Interactive Campus Map</h4>
+                        <p data-en="Real-time visualization of campus road network with color-coded routes (yellow, green, red) indicating traffic density, recommended paths, and congestion hotspots." data-zh="校園路網即時可視化，以色碼路線（黃、綠、紅）指示交通密度、推薦路徑和壅塞熱點。">
+                            Real-time visualization of campus road network with color-coded routes (yellow, green, red) indicating traffic density, recommended paths, and congestion hotspots.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Control Panel Modules" data-zh="控制面板模組">Control Panel Modules</h4>
+                        <p data-en="Six functional modules: Historical Records, System Settings, Data Input, Initialization, Mode Selection, and CMS Integration for comprehensive traffic management control." data-zh="六大功能模組：歷史記錄、系統設定、資料輸入、初始化預測、模式選擇和 CMS 內容，提供全面的交通管理控制。">
+                            Six functional modules: Historical Records, System Settings, Data Input, Initialization, Mode Selection, and CMS Integration for comprehensive traffic management control.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Pedestrian Flow Analytics" data-zh="行人流量分析">Pedestrian Flow Analytics</h4>
+                        <p data-en="Live statistics showing top 8 high-traffic routes with percentage distributions, enabling proactive crowd management and route optimization decisions." data-zh="即時統計顯示前 8 大高流量路線及百分比分佈，實現主動人群管理和路線優化決策。">
+                            Live statistics showing top 8 high-traffic routes with percentage distributions, enabling proactive crowd management and route optimization decisions.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Multi-Modal Integration" data-zh="多模式整合">Multi-Modal Integration</h4>
+                        <p data-en="Seamlessly combines walking routes, YouBike availability, campus bus schedules, and parking information for comprehensive journey planning across all transport modes." data-zh="無縫整合步行路線、YouBike 可用性、校園公車時刻表和停車資訊，提供跨所有交通模式的全面旅程規劃。">
+                            Seamlessly combines walking routes, YouBike availability, campus bus schedules, and parking information for comprehensive journey planning across all transport modes.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="User Experience & Problem Solving" data-zh="使用者體驗與問題解決">User Experience & Problem Solving</h2>
+                <p class="content-text" data-en="DARTS addresses common campus mobility pain points through a user-centered design approach:" data-zh="DARTS 透過以使用者為中心的設計方法，解決常見的校園交通痛點：">
+                    DARTS addresses common campus mobility pain points through a user-centered design approach:
+                </p>
+                <div class="image-container" style="margin: 2rem 0;">
+                    <img src="DARTS/marketing.jpeg" alt="DARTS User Journey" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; color: #666; margin-top: 1rem; font-style: italic;" data-en="From confusion to clarity: How DARTS transforms campus mobility experience" data-zh="從困惑到清晰：DARTS 如何改變校園交通體驗">
+                        From confusion to clarity: How DARTS transforms campus mobility experience
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 style="color: #e74c3c; margin-bottom: 0.5rem;" data-en="Problem: Information Fragmentation" data-zh="問題：資訊碎片化">❌ Information Fragmentation</h4>
+                        <p data-en="Students struggle with scattered transportation information: Which YouBike station has bikes? Is it safe to walk? When does the bus arrive? No unified platform existed." data-zh="學生面對分散的交通資訊：哪個 YouBike 站有車？走路安全嗎？公車什麼時候到？缺乏統一平台。">
+                            Students struggle with scattered transportation information: Which YouBike station has bikes? Is it safe to walk? When does the bus arrive? No unified platform existed.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #27ae60; margin-bottom: 0.5rem;" data-en="Solution: One-Stop Information Hub" data-zh="解決方案：一站式資訊中心">✓ One-Stop Information Hub</h4>
+                        <p data-en="DARTS consolidates all campus mobility data into single interface, providing real-time YouBike predictions, optimized walking routes, and integrated public transit information." data-zh="DARTS 將所有校園交通數據整合到單一介面，提供即時 YouBike 預測、優化步行路線和整合公共運輸資訊。">
+                            DARTS consolidates all campus mobility data into single interface, providing real-time YouBike predictions, optimized walking routes, and integrated public transit information.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #e74c3c; margin-bottom: 0.5rem;" data-en="Problem: Parking Frustration" data-zh="問題：停車挫折">❌ Parking Frustration</h4>
+                        <p data-en="30% of campus traffic is vehicles circling for parking spots, wasting time, fuel, and emitting unnecessary CO₂ while causing congestion." data-zh="30% 的校園交通是繞行尋找停車位的車輛，浪費時間、燃料並排放不必要的 CO₂，同時造成壅塞。">
+                            30% of campus traffic is vehicles circling for parking spots, wasting time, fuel, and emitting unnecessary CO₂ while causing congestion.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #27ae60; margin-bottom: 0.5rem;" data-en="Solution: Predictive Parking Guidance" data-zh="解決方案：預測性停車導引">✓ Predictive Parking Guidance</h4>
+                        <p data-en="Real-time parking occupancy display and future availability forecasts help users choose optimal parking lots before arriving, reducing idle circulation and emissions." data-zh="即時停車佔用顯示和未來可用性預測幫助使用者在抵達前選擇最佳停車場，減少怠速繞行和排放。">
+                            Real-time parking occupancy display and future availability forecasts help users choose optimal parking lots before arriving, reducing idle circulation and emissions.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Stakeholder Collaboration Model" data-zh="利害關係人協作模式">Stakeholder Collaboration Model</h2>
+                <p class="content-text" data-en="Successful implementation of DARTS requires coordinated effort across multiple stakeholders in the campus ecosystem:" data-zh="DARTS 的成功實施需要校園生態系統中多個利害關係人的協調努力：">
+                    Successful implementation of DARTS requires coordinated effort across multiple stakeholders in the campus ecosystem:
+                </p>
+                <div class="image-container" style="margin: 2rem 0;">
+                    <img src="DARTS/situation.jpeg" alt="DARTS Stakeholder Ecosystem" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; color: #666; margin-top: 1rem; font-style: italic;" data-en="Collaborative ecosystem between university administration, lab, student association, and end users" data-zh="校方、實驗室、學生會和終端使用者之間的協作生態系統">
+                        Collaborative ecosystem between university administration, lab, student association, and end users
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="University Administration (校方)" data-zh="校方">🎓 University Administration</h4>
+                        <p data-en="Provides policy support, infrastructure access, and data authorization. Receives actionable insights for long-term campus transportation planning and sustainability goals." data-zh="提供政策支持、基礎設施存取和數據授權。獲得可行的洞察用於長期校園交通規劃和永續目標。">
+                            Provides policy support, infrastructure access, and data authorization. Receives actionable insights for long-term campus transportation planning and sustainability goals.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Planning Science Lab (社會工學實驗室)" data-zh="社會工學實驗室">🔬 Planning Science Lab</h4>
+                        <p data-en="Develops and maintains DARTS system, conducts research, provides technical expertise. Collaborates with all parties to iterate improvements based on feedback." data-zh="開發和維護 DARTS 系統，進行研究，提供技術專業知識。與各方協作根據反饋迭代改進。">
+                            Develops and maintains DARTS system, conducts research, provides technical expertise. Collaborates with all parties to iterate improvements based on feedback.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Student Association (學生會)" data-zh="學生會">👥 Student Association</h4>
+                        <p data-en="Acts as liaison between end users and administrators, collects student feedback, advocates for user needs, and helps promote system adoption across campus." data-zh="作為終端使用者和管理者之間的橋樑，收集學生反饋，倡導使用者需求，並幫助推廣系統在校園的採用。">
+                            Acts as liaison between end users and administrators, collects student feedback, advocates for user needs, and helps promote system adoption across campus.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="End Users (一般使用者)" data-zh="一般使用者">🚶 End Users</h4>
+                        <p data-en="Students, faculty, and staff use DARTS for daily mobility decisions. Their usage patterns generate valuable data while they benefit from improved transportation efficiency and convenience." data-zh="學生、教職員工使用 DARTS 進行日常交通決策。他們的使用模式產生有價值的數據，同時受益於改善的交通效率和便利性。">
+                            Students, faculty, and staff use DARTS for daily mobility decisions. Their usage patterns generate valuable data while they benefit from improved transportation efficiency and convenience.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Implementation" data-zh="技術實施">Technical Implementation</h2>
+                <ul class="highlights-list">
+                    <li data-en="ARIMA Time Series Prediction: Implemented ARIMA (1,1,0) models for 12 YouBike stations within 1km radius, predicting availability 10 minutes ahead with 86.1% accuracy" data-zh="ARIMA 時間序列預測：為 1 公里範圍內的 12 個 YouBike 站點實施 ARIMA (1,1,0) 模型，以 86.1% 準確率預測 10 分鐘後的可用性">
+                        <strong>ARIMA Time Series Prediction:</strong> Implemented ARIMA (1,1,0) models for 12 YouBike stations within 1km radius, predicting availability 10 minutes ahead with 86.1% accuracy
+                    </li>
+                    <li data-en="TDX API Integration: OAuth 2.0 authentication with Taiwan Transport Data Exchange (TDX) for real-time YouBike 2.0 station data, supporting 50 calls/second with unlimited daily requests" data-zh="TDX API 整合：與台灣運輸數據交換平台 (TDX) 的 OAuth 2.0 認證，獲取即時 YouBike 2.0 站點數據，支援每秒 50 次調用，無每日限制">
+                        <strong>TDX API Integration:</strong> OAuth 2.0 authentication with Taiwan Transport Data Exchange (TDX) for real-time YouBike 2.0 station data, supporting 50 calls/second with unlimited daily requests
+                    </li>
+                    <li data-en="Campus Numeric Route Model: Digitized NSYSU road network with nodes (buildings) and edges (paths), incorporating slope gradients, distances, and surface quality for route optimization" data-zh="校園數值路徑模型：數位化中山大學路網，包含節點（建築物）和邊（路徑），整合坡度、距離和路面品質進行路線優化">
+                        <strong>Campus Numeric Route Model:</strong> Digitized NSYSU road network with nodes (buildings) and edges (paths), incorporating slope gradients, distances, and surface quality for route optimization
+                    </li>
+                    <li data-en="Equivalent Route Formula: Transformed physical distances into perceived effort by factoring elevation changes, weather, and user preferences for human-centric route recommendations" data-zh="等效路徑公式：將物理距離轉換為感知努力，考量高程變化、天氣和使用者偏好，提供以人為本的路線推薦">
+                        <strong>Equivalent Route Formula:</strong> Transformed physical distances into perceived effort by factoring elevation changes, weather, and user preferences for human-centric route recommendations
+                    </li>
+                    <li data-en="Automated Data Collection: Python-based system collecting data every 10 minutes (600 seconds), appending to cumulative CSV storage, requiring minimum 50 records before predictions begin" data-zh="自動化數據收集：基於 Python 的系統每 10 分鐘（600 秒）收集數據，附加到累積 CSV 儲存，需要至少 50 筆記錄才開始預測">
+                        <strong>Automated Data Collection:</strong> Python-based system collecting data every 10 minutes (600 seconds), appending to cumulative CSV storage, requiring minimum 50 records before predictions begin
+                    </li>
+                    <li data-en="Multi-Source Data Fusion: Integrated course schedules, PTX public transit API, YouBike TDX API, and parking sensors into unified DARTS Kernel Strategy module for holistic mobility insights" data-zh="多源數據融合：將課程時間表、PTX 公共運輸 API、YouBike TDX API 和停車感測器整合到統一的 DARTS 核心策略模組，提供整體交通洞察">
+                        <strong>Multi-Source Data Fusion:</strong> Integrated course schedules, PTX public transit API, YouBike TDX API, and parking sensors into unified DARTS Kernel Strategy module for holistic mobility insights
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Challenges & Solutions" data-zh="技術挑戰與解決方案">Technical Challenges & Solutions</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;" data-en="Challenge: Real-Time Data Accuracy" data-zh="挑戰：即時數據準確性">⚡ Real-Time Data Accuracy</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="API latency and data inconsistencies across multiple sources (TDX, PTX, parking sensors) made it difficult to provide reliable real-time predictions." data-zh="API 延遲和多個來源（TDX、PTX、停車感測器）的數據不一致，使得提供可靠的即時預測變得困難。">
+                            API latency and data inconsistencies across multiple sources (TDX, PTX, parking sensors) made it difficult to provide reliable real-time predictions.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;" data-en="Solution:" data-zh="解決方案：">Solution:</p>
+                        <p data-en="Implemented cumulative data storage with 10-minute intervals and ARIMA warm-up period (50 records) to ensure prediction stability and accuracy before going live." data-zh="實施 10 分鐘間隔的累積數據儲存和 ARIMA 預熱期（50 筆記錄），確保預測穩定性和準確性後才上線。">
+                            Implemented cumulative data storage with 10-minute intervals and ARIMA warm-up period (50 records) to ensure prediction stability and accuracy before going live.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;" data-en="Challenge: Route Optimization Complexity" data-zh="挑戰：路線優化複雜性">⚡ Route Optimization Complexity</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="Traditional GIS shortest-path algorithms don't reflect real user experience - a steep uphill path may be shorter but feels much longer to pedestrians." data-zh="傳統 GIS 最短路徑演算法不反映真實使用者體驗 - 陡峭的上坡路徑可能較短，但對行人來說感覺長得多。">
+                            Traditional GIS shortest-path algorithms don't reflect real user experience - a steep uphill path may be shorter but feels much longer to pedestrians.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;" data-en="Solution:" data-zh="解決方案：">Solution:</p>
+                        <p data-en="Developed Equivalent Route Formula converting physical distances into perceived effort by incorporating slope gradients, weather conditions, and user preferences for human-centric routing." data-zh="開發等效路徑公式，將物理距離轉換為感知努力，整合坡度、天氣條件和使用者偏好，實現以人為本的路線規劃。">
+                            Developed Equivalent Route Formula converting physical distances into perceived effort by incorporating slope gradients, weather conditions, and user preferences for human-centric routing.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;" data-en="Challenge: Stakeholder Coordination" data-zh="挑戰：利害關係人協調">⚡ Stakeholder Coordination</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="Aligning interests of university administration (policy goals), students (convenience), and technical team (feasibility) while maintaining data privacy compliance." data-zh="在維護數據隱私合規的同時，協調校方（政策目標）、學生（便利性）和技術團隊（可行性）的利益。">
+                            Aligning interests of university administration (policy goals), students (convenience), and technical team (feasibility) while maintaining data privacy compliance.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;" data-en="Solution:" data-zh="解決方案：">Solution:</p>
+                        <p data-en="Established collaborative framework with Student Association as liaison, using de-identified data, and phased rollout approach to build trust and gather feedback incrementally." data-zh="建立協作框架，學生會作為橋樑，使用去識別化數據，並採用分階段推出方式逐步建立信任和收集反饋。">
+                            Established collaborative framework with Student Association as liaison, using de-identified data, and phased rollout approach to build trust and gather feedback incrementally.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;" data-en="Challenge: Low-Cost Hardware Implementation" data-zh="挑戰：低成本硬體實施">⚡ Low-Cost Hardware Implementation</h4>
+                        <p style="margin-bottom: 0.5rem;" data-en="Campus-wide sensor deployment (VMS boards, parking detection, traffic monitoring) would require significant infrastructure investment beyond project budget." data-zh="校園範圍的感測器部署（VMS 看板、停車檢測、交通監控）需要超出專案預算的大量基礎設施投資。">
+                            Campus-wide sensor deployment (VMS boards, parking detection, traffic monitoring) would require significant infrastructure investment beyond project budget.
+                        </p>
+                        <p style="color: #10b981; font-weight: 600;" data-en="Solution:" data-zh="解決方案：">Solution:</p>
+                        <p data-en="Prioritized software-based solutions leveraging existing public APIs and campus data sources, proposing hardware additions as future enhancements only where critical for accuracy." data-zh="優先採用基於軟體的解決方案，利用現有公共 API 和校園數據來源，僅在對準確性至關重要的地方提議硬體增強作為未來改進。">
+                            Prioritized software-based solutions leveraging existing public APIs and campus data sources, proposing hardware additions as future enhancements only where critical for accuracy.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Environmental Impact & SDG Alignment" data-zh="環境影響與 SDG 對齊">Environmental Impact & SDG Alignment</h2>
+                <p class="content-text" data-en="DARTS contributes to Taiwan's 2050 Net Zero emissions goal and UN Sustainable Development Goals through measurable environmental benefits:" data-zh="DARTS 透過可衡量的環境效益，為台灣 2050 淨零排放目標和聯合國永續發展目標做出貢獻：">
+                    DARTS contributes to Taiwan's 2050 Net Zero emissions goal and UN Sustainable Development Goals through measurable environmental benefits:
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Reduced Circling Traffic" data-zh="減少繞行交通">🚗 Reduced Circling Traffic</h4>
+                        <p data-en="30% of campus traffic is vehicles searching for parking. DARTS parking guidance eliminates unnecessary idling, saving fuel and reducing CO₂ emissions from wasted circulation." data-zh="30% 的校園交通是尋找停車位的車輛。DARTS 停車導引消除不必要的怠速，節省燃料並減少浪費循環的 CO₂ 排放。">
+                            30% of campus traffic is vehicles searching for parking. DARTS parking guidance eliminates unnecessary idling, saving fuel and reducing CO₂ emissions from wasted circulation.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Modal Shift Potential" data-zh="運具轉移潛力">🚴 Modal Shift Potential</h4>
+                        <p data-en="Research shows 4% of private vehicle users can shift to public transport/bike-sharing with better information. DARTS facilitates this transition by removing information barriers." data-zh="研究顯示，透過更好的資訊，4% 的私人車輛使用者可以轉向公共運輸/共享單車。DARTS 透過消除資訊障礙促進這一轉變。">
+                            Research shows 4% of private vehicle users can shift to public transport/bike-sharing with better information. DARTS facilitates this transition by removing information barriers.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="SDG 13: Climate Action" data-zh="SDG 13：氣候行動">🌍 SDG 13: Climate Action</h4>
+                        <p data-en="Directly addresses Taiwan's transportation sector emissions (12.9% of total, 90.52% from private vehicles) through data-driven demand management and green mobility promotion." data-zh="透過數據驅動的需求管理和綠色交通推廣，直接解決台灣運輸部門排放（總量的 12.9%，90.52% 來自私人車輛）。">
+                            Directly addresses Taiwan's transportation sector emissions (12.9% of total, 90.52% from private vehicles) through data-driven demand management and green mobility promotion.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Scalable Model" data-zh="可擴展模式">📈 Scalable Model</h4>
+                        <p data-en="DARTS framework can be replicated at other universities and institutions across Taiwan, creating cumulative impact toward national Net Zero 2050 and Vision Zero 2030 goals." data-zh="DARTS 框架可在台灣其他大學和機構複製，為國家淨零 2050 和零死亡 2030 目標創造累積影響。">
+                            DARTS framework can be replicated at other universities and institutions across Taiwan, creating cumulative impact toward national Net Zero 2050 and Vision Zero 2030 goals.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Competition Results & Recognition" data-zh="競賽結果與認可">Competition Results & Recognition</h2>
                 <div class="results-grid">
-                    <div class="result-card"><div class="result-number">86.1%</div><div class="result-label" data-en="Accuracy" data-zh="準確率">Accuracy</div></div>
+                    <div class="result-card"><div class="result-number">86.1%</div><div class="result-label" data-en="Prediction Accuracy" data-zh="預測準確率">Prediction Accuracy</div></div>
                     <div class="result-card"><div class="result-number">121</div><div class="result-label" data-en="Competing Teams" data-zh="參賽隊伍">Competing Teams</div></div>
-                    <div class="result-card"><div class="result-number">Top 10</div><div class="result-label" data-en="National Rank" data-zh="全國排名">National Rank</div></div>
+                    <div class="result-card"><div class="result-number">Top 10</div><div class="result-label" data-en="National Finalist" data-zh="全國決賽">National Finalist</div></div>
+                    <div class="result-card"><div class="result-number">12</div><div class="result-label" data-en="YouBike Stations" data-zh="YouBike 站點">YouBike Stations</div></div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>ARIMA</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-table"></i>
+                        <span>Pandas</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span>TDX API</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-code"></i>
+                        <span>Statsmodels</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-server"></i>
+                        <span>OAuth 2.0</span>
+                    </div>
                 </div>
             </section>
         </div>
@@ -76,7 +366,14 @@
         <div class="container">
             <h2 class="section-title" data-en="Project Links" data-zh="專案連結">Project Links</h2>
             <div class="project-links">
-                <a href="../index.html#contact" class="btn btn-primary"><i class="fas fa-envelope"></i><span data-en="Contact Me" data-zh="聯絡我">Contact Me</span></a>
+                <a href="https://github.com/Ckcinnabar/YouBike-Prediction-System-for-National-Sun-Yat-sen-University" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span data-en="View Code" data-zh="查看代碼">View Code</span>
+                </a>
+                <a href="../index.html#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    <span data-en="Contact Me" data-zh="聯絡我">Contact Me</span>
+                </a>
             </div>
         </div>
     </section>
