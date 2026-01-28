@@ -247,7 +247,7 @@
                         <p style="margin-bottom: 0.5rem;" data-en="2.75M parameters with only 630 training samples created severe overfitting risk, potentially leading to >95% train accuracy but poor generalization." data-zh="275 萬參數僅有 630 個訓練樣本造成嚴重過擬合風險，可能導致 >95% 訓練準確率但泛化能力差。">
                             2.75M parameters with only 630 training samples created severe overfitting risk, potentially leading to >95% train accuracy but poor generalization.
                         </p>
-                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p style="color: #10b981; font-weight: 600;" class="solution-label">Solution:</p>
                         <p data-en="Implemented multi-layer regularization: 5x data augmentation (effective 3,150 samples/epoch), 30% dropout after each major component, weight decay (1e-5), and early stopping (patience=35). Achieved ~99% train with 87.41% test accuracy." data-zh="實作多層正則化：5 倍數據增強（有效每 epoch 3,150 個樣本）、每個主要組件後 30% dropout、權重衰減（1e-5）和早停（耐心=35）。達到約 99% 訓練準確率和 87.41% 測試準確率。">
                             Implemented multi-layer regularization: 5x data augmentation (effective 3,150 samples/epoch), 30% dropout after each major component, weight decay (1e-5), and early stopping (patience=35). Achieved ~99% train with 87.41% test accuracy.
                         </p>
@@ -257,7 +257,7 @@
                         <p style="margin-bottom: 0.5rem;" data-en="6.44GB VRAM limited batch size with 5x augmentation (effective 160 samples per batch) and 2.75M parameter model requiring careful memory management." data-zh="6.44GB VRAM 在 5 倍增強（每批次有效 160 個樣本）和 275 萬參數模型下限制批次大小，需要仔細的記憶體管理。">
                             6.44GB VRAM limited batch size with 5x augmentation (effective 160 samples per batch) and 2.75M parameter model requiring careful memory management.
                         </p>
-                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p style="color: #10b981; font-weight: 600;" class="solution-label">Solution:</p>
                         <p data-en="Optimized batch size to 32 (160 augmented), used mixed-precision training implicitly through PyTorch optimizations, and applied gradient accumulation when needed. Maintained training stability without OOM errors." data-zh="優化批次大小至 32（160 個增強），透過 PyTorch 優化隱式使用混合精度訓練，並在需要時應用梯度累積。維持訓練穩定性而無記憶體不足錯誤。">
                             Optimized batch size to 32 (160 augmented), used mixed-precision training implicitly through PyTorch optimizations, and applied gradient accumulation when needed. Maintained training stability without OOM errors.
                         </p>
@@ -267,7 +267,7 @@
                         <p style="margin-bottom: 0.5rem;" data-en="While dataset has balanced distribution (20% each), augmentation and sampling could introduce training bias toward certain emotion classes during mini-batch training." data-zh="雖然數據集具有平衡分布（各 20%），但增強和採樣可能在小批次訓練期間導致對某些情緒類別的訓練偏差。">
                             While dataset has balanced distribution (20% each), augmentation and sampling could introduce training bias toward certain emotion classes during mini-batch training.
                         </p>
-                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p style="color: #10b981; font-weight: 600;" class="solution-label">Solution:</p>
                         <p data-en="Used stratified train/val/test split ensuring proportional class representation across all splits. Applied uniform augmentation to all classes maintaining balance. Result: all classes achieve >74% recall with minimal variance." data-zh="使用分層訓練/驗證/測試分割確保所有分割中的比例類別表示。對所有類別應用統一增強維持平衡。結果：所有類別達到 >74% 召回率，變異最小。">
                             Used stratified train/val/test split ensuring proportional class representation across all splits. Applied uniform augmentation to all classes maintaining balance. Result: all classes achieve >74% recall with minimal variance.
                         </p>
@@ -277,7 +277,7 @@
                         <p style="margin-bottom: 0.5rem;" data-en="Choosing between handcrafted features (MFCCs, pitch, energy) versus learned representations from raw spectrograms, balancing domain knowledge with model capacity." data-zh="在手工特徵（MFCCs、音高、能量）與從原始頻譜圖學習的表示之間選擇，平衡領域知識與模型能力。">
                             Choosing between handcrafted features (MFCCs, pitch, energy) versus learned representations from raw spectrograms, balancing domain knowledge with model capacity.
                         </p>
-                        <p style="color: #10b981; font-weight: 600;">Solution:</p>
+                        <p style="color: #10b981; font-weight: 600;" class="solution-label">Solution:</p>
                         <p data-en="Selected mel-spectrograms as input, allowing CNN layers to learn optimal feature hierarchies automatically. Mel-scale provides perceptually-motivated frequency representation while CNN discovers emotion-relevant patterns, outperforming 1024 handcrafted features by 9.6%." data-zh="選擇 mel-spectrograms 作為輸入，允許 CNN 層自動學習最佳特徵層次。Mel 尺度提供感知導向的頻率表示，而 CNN 發現情緒相關模式，超越 1024 個手工特徵 9.6%。">
                             Selected mel-spectrograms as input, allowing CNN layers to learn optimal feature hierarchies automatically. Mel-scale provides perceptually-motivated frequency representation while CNN discovers emotion-relevant patterns, outperforming 1024 handcrafted features by 9.6%.
                         </p>
