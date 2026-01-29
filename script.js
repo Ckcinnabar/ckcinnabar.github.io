@@ -1,99 +1,69 @@
-// Language Toggle Functionality
-class LanguageToggle {
+/**
+ * Digital Observatory - Portfolio JavaScript
+ * Handles language toggle, navigation, animations, and interactions
+ */
+
+class Portfolio {
     constructor() {
         this.currentLang = localStorage.getItem('language') || 'en';
-        this.langToggleBtn = document.getElementById('langToggle');
         this.init();
     }
 
     init() {
-        // Set initial language
-        this.setLanguage(this.currentLang);
-
-        // Add event listener to toggle button
-        this.langToggleBtn.addEventListener('click', () => {
-            this.toggleLanguage();
+        document.addEventListener('DOMContentLoaded', () => {
+            this.setLanguage(this.currentLang);
+            this.setupLanguageToggle();
+            this.setupNavbarScroll();
+            this.setupMobileMenu();
+            this.setupEducationCards();
+            this.setupModal();
+            this.setupSmoothScroll();
+            this.setupScrollAnimations();
+            this.setupNavigationHighlight();
         });
+    }
 
-        // Add smooth scroll to navigation links
-        this.setupSmoothScroll();
+    // Language Toggle
+    setupLanguageToggle() {
+        const langToggle = document.getElementById('langToggle');
+        if (!langToggle) return;
 
-        // Add navbar scroll effect
-        this.setupNavbarScroll();
-
-        // Add intersection observer for animations
-        this.setupScrollAnimations();
+        langToggle.addEventListener('click', () => {
+            this.currentLang = this.currentLang === 'en' ? 'zh' : 'en';
+            this.setLanguage(this.currentLang);
+            localStorage.setItem('language', this.currentLang);
+        });
     }
 
     setLanguage(lang) {
         this.currentLang = lang;
         document.documentElement.lang = lang;
-        localStorage.setItem('language', lang);
 
         // Update all elements with data-en and data-zh attributes
-        const elements = document.querySelectorAll('[data-en][data-zh]');
-        elements.forEach(element => {
-            if (lang === 'en') {
-                element.textContent = element.getAttribute('data-en');
-            } else {
-                element.textContent = element.getAttribute('data-zh');
+        document.querySelectorAll('[data-en][data-zh]').forEach(element => {
+            const text = element.getAttribute(`data-${lang}`);
+            if (text) {
+                element.textContent = text;
             }
         });
 
-        // Update language toggle button
-        const langEnSpan = this.langToggleBtn.querySelector('.lang-en');
-        const langZhSpan = this.langToggleBtn.querySelector('.lang-zh');
-
-        if (lang === 'en') {
-            langEnSpan.style.display = 'inline';
-            langZhSpan.style.display = 'none';
-        } else {
-            langEnSpan.style.display = 'none';
-            langZhSpan.style.display = 'inline';
-        }
-
-        // Update education modal language if it exists
-        if (typeof educationModal !== 'undefined' && educationModal) {
-            educationModal.updateLanguage(lang);
-        }
-    }
-
-    toggleLanguage() {
-        const newLang = this.currentLang === 'en' ? 'zh' : 'en';
-        this.setLanguage(newLang);
-
-        // Dispatch custom event for language change
-        const event = new CustomEvent('languageChanged', { detail: { lang: newLang } });
-        window.dispatchEvent(event);
-    }
-
-    setupSmoothScroll() {
-        const links = document.querySelectorAll('a[href^="#"]');
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+        // Toggle language button display
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = lang === 'en' ? 'inline' : 'none';
+        });
+        document.querySelectorAll('.lang-zh').forEach(el => {
+            el.style.display = lang === 'zh' ? 'inline' : 'none';
         });
     }
 
+    // Navbar Scroll Effect
     setupNavbarScroll() {
         const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
 
-            // Add/remove scrolled class for dark theme navbar effect
             if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
             } else {
@@ -102,467 +72,219 @@ class LanguageToggle {
         });
     }
 
+    // Mobile Menu
+    setupMobileMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (!menuToggle || !navMenu) return;
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    }
+
+    // Education Cards Expansion
+    setupEducationCards() {
+        document.querySelectorAll('.education-card.clickable').forEach(card => {
+            card.addEventListener('click', () => {
+                const courseList = card.querySelector('.course-list');
+                if (!courseList) return;
+
+                const isExpanded = card.classList.contains('expanded');
+
+                // Close all other cards
+                document.querySelectorAll('.education-card.expanded').forEach(openCard => {
+                    if (openCard !== card) {
+                        openCard.classList.remove('expanded');
+                        const openList = openCard.querySelector('.course-list');
+                        if (openList) openList.style.display = 'none';
+                    }
+                });
+
+                // Toggle current card
+                card.classList.toggle('expanded');
+                courseList.style.display = isExpanded ? 'none' : 'grid';
+            });
+        });
+    }
+
+    // Modal
+    setupModal() {
+        const modal = document.getElementById('sports-career-modal');
+        const modalTriggers = document.querySelectorAll('.modal-trigger');
+        const sportsCard = document.getElementById('sports-career-card');
+        const modalClose = modal?.querySelector('.modal-close');
+        const modalBackdrop = modal?.querySelector('.modal-backdrop');
+
+        if (!modal) return;
+
+        // Open modal from trigger buttons
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.openModal(modal);
+            });
+        });
+
+        // Open modal from card click
+        if (sportsCard) {
+            sportsCard.addEventListener('click', (e) => {
+                // Don't open if clicking on a link or button
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+                    return;
+                }
+                this.openModal(modal);
+            });
+        }
+
+        // Close modal
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeModal);
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    openModal(modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Smooth Scroll
+    setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const targetId = anchor.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (!targetElement) return;
+
+                e.preventDefault();
+
+                const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
+
+    // Navigation Highlight
+    setupNavigationHighlight() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Add active link style
+        const style = document.createElement('style');
+        style.textContent = `
+            .nav-link.active {
+                color: var(--text-primary) !important;
+            }
+            .nav-link.active::after {
+                width: 100% !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Scroll Animations (Intersection Observer)
     setupScrollAnimations() {
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // Observe all sections and cards
-        const animatedElements = document.querySelectorAll('.education-item, .timeline-item, .project-card, .skill-category, .contact-item');
-        animatedElements.forEach(el => {
+        // Observe elements that should animate on scroll
+        const animateElements = document.querySelectorAll(
+            '.timeline-item, .project-card, .skill-card, .contact-card, .education-card'
+        );
+
+        animateElements.forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
             observer.observe(el);
         });
-    }
-}
 
-// Active Navigation Link Highlight
-class NavigationHighlight {
-    constructor() {
-        this.sections = document.querySelectorAll('section[id]');
-        this.navLinks = document.querySelectorAll('.nav-menu a');
-        this.init();
-    }
-
-    init() {
-        window.addEventListener('scroll', () => {
-            this.highlightActiveLink();
-        });
-    }
-
-    highlightActiveLink() {
-        const scrollPosition = window.pageYOffset + 100;
-
-        this.sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                this.navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-in {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
             }
-        });
-    }
-}
-
-// Typing Effect for Hero Title
-class TypingEffect {
-    constructor(element, texts, typeSpeed = 100, deleteSpeed = 50, delayBetween = 2000) {
-        this.element = element;
-        this.texts = texts;
-        this.typeSpeed = typeSpeed;
-        this.deleteSpeed = deleteSpeed;
-        this.delayBetween = delayBetween;
-        this.textIndex = 0;
-        this.charIndex = 0;
-        this.isDeleting = false;
-    }
-
-    type() {
-        const currentText = this.texts[this.textIndex];
-
-        if (this.isDeleting) {
-            this.element.textContent = currentText.substring(0, this.charIndex - 1);
-            this.charIndex--;
-        } else {
-            this.element.textContent = currentText.substring(0, this.charIndex + 1);
-            this.charIndex++;
-        }
-
-        let typeSpeed = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
-
-        if (!this.isDeleting && this.charIndex === currentText.length) {
-            typeSpeed = this.delayBetween;
-            this.isDeleting = true;
-        } else if (this.isDeleting && this.charIndex === 0) {
-            this.isDeleting = false;
-            this.textIndex = (this.textIndex + 1) % this.texts.length;
-        }
-
-        setTimeout(() => this.type(), typeSpeed);
-    }
-}
-
-// Particle Background (Optional Enhancement)
-class ParticleBackground {
-    constructor(canvasId) {
-        this.canvas = document.getElementById(canvasId);
-        if (!this.canvas) return;
-
-        this.ctx = this.canvas.getContext('2d');
-        this.particles = [];
-        this.particleCount = 50;
-        this.init();
-    }
-
-    init() {
-        this.resize();
-        this.createParticles();
-        this.animate();
-
-        window.addEventListener('resize', () => this.resize());
-    }
-
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
-
-    createParticles() {
-        for (let i = 0; i < this.particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                radius: Math.random() * 2 + 1,
-                vx: Math.random() * 0.5 - 0.25,
-                vy: Math.random() * 0.5 - 0.25
-            });
-        }
-    }
-
-    animate() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.particles.forEach(particle => {
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-
-            if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
-            if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
-
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-            this.ctx.fill();
-        });
-
-        requestAnimationFrame(() => this.animate());
-    }
-}
-
-// Modal Functionality for Work Experience
-class ExperienceModal {
-    constructor() {
-        this.modal = null;
-        this.init();
-    }
-
-    init() {
-        // Create modal HTML structure
-        this.createModal();
-
-        // Add click listeners to experience items
-        const experienceItems = document.querySelectorAll('.timeline-content');
-        experienceItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                this.openModal(index);
-            });
-        });
-
-        // Close modal when clicking outside
-        if (this.modal) {
-            this.modal.addEventListener('click', (e) => {
-                if (e.target === this.modal) {
-                    this.closeModal();
-                }
-            });
-        }
-
-        // Close modal with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.modal && this.modal.classList.contains('active')) {
-                this.closeModal();
-            }
-        });
-    }
-
-    createModal() {
-        const modalHTML = `
-            <div id="experienceModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button class="modal-close" id="modalCloseBtn">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <h2 class="modal-title" id="modalTitle"></h2>
-                        <p class="modal-subtitle" id="modalCompany"></p>
-                        <div class="modal-meta" id="modalMeta"></div>
-                    </div>
-                    <div class="modal-body" id="modalBody"></div>
-                </div>
-            </div>
         `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-        this.modal = document.getElementById('experienceModal');
-
-        // Add close button listener
-        const closeBtn = document.getElementById('modalCloseBtn');
-        closeBtn.addEventListener('click', () => this.closeModal());
-    }
-
-    openModal(index) {
-        const experienceItems = document.querySelectorAll('.timeline-content');
-        const item = experienceItems[index];
-
-        const title = item.querySelector('h3').textContent;
-        const company = item.querySelector('h4').textContent;
-        const date = item.querySelector('.date').textContent;
-        const location = item.querySelector('.location') ? item.querySelector('.location').textContent : '';
-        const responsibilities = item.querySelectorAll('li');
-
-        document.getElementById('modalTitle').textContent = title;
-        document.getElementById('modalCompany').textContent = company;
-
-        const metaHTML = `
-            <div class="modal-meta-item">
-                <i class="fas fa-calendar"></i>
-                <span>${date}</span>
-            </div>
-            ${location ? `<div class="modal-meta-item"><i class="fas fa-map-marker-alt"></i><span>${location}</span></div>` : ''}
-        `;
-        document.getElementById('modalMeta').innerHTML = metaHTML;
-
-        let responsibilitiesHTML = '<div class="modal-section"><h3>Key Responsibilities</h3><ul>';
-        responsibilities.forEach(resp => {
-            responsibilitiesHTML += `<li>${resp.textContent}</li>`;
-        });
-        responsibilitiesHTML += '</ul></div>';
-
-        document.getElementById('modalBody').innerHTML = responsibilitiesHTML;
-
-        // Calculate scrollbar width and set CSS variable
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
-
-        console.log('Opening modal - adding modal-open class to body');
-        console.log('Body classes before:', document.body.className);
-
-        this.modal.classList.add('active');
-        document.body.classList.add('modal-open');
-
-        console.log('Body classes after:', document.body.className);
-        console.log('Body overflow style:', window.getComputedStyle(document.body).overflow);
-    }
-
-    closeModal() {
-        console.log('Closing modal - removing modal-open class from body');
-        console.log('Body classes before close:', document.body.className);
-
-        this.modal.classList.remove('active');
-        document.body.classList.remove('modal-open');
-        document.documentElement.style.removeProperty('--scrollbar-width');
-
-        console.log('Body classes after close:', document.body.className);
-        console.log('Body overflow style after close:', window.getComputedStyle(document.body).overflow);
+        document.head.appendChild(style);
     }
 }
 
-// Education Modal Functionality
-class EducationModal {
-    constructor() {
-        this.modal = null;
-        this.currentLang = localStorage.getItem('language') || 'en';
-        this.init();
-    }
-
-    init() {
-        // Create modal HTML structure
-        this.createModal();
-
-        // Add click listeners to education items
-        const educationItems = document.querySelectorAll('.education-item.clickable');
-        educationItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                this.openModal(index);
-            });
-        });
-
-        // Close modal when clicking outside
-        if (this.modal) {
-            this.modal.addEventListener('click', (e) => {
-                if (e.target === this.modal) {
-                    this.closeModal();
-                }
-            });
-        }
-
-        // Close modal with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.modal && this.modal.classList.contains('active')) {
-                this.closeModal();
-            }
-        });
-    }
-
-    createModal() {
-        const modalHTML = `
-            <div id="educationModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button class="modal-close" id="eduModalCloseBtn">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <h2 class="modal-title" id="eduModalTitle"></h2>
-                        <p class="modal-subtitle" id="eduModalDegree"></p>
-                        <div class="modal-meta" id="eduModalMeta"></div>
-                    </div>
-                    <div class="modal-body" id="eduModalBody"></div>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-        this.modal = document.getElementById('educationModal');
-
-        // Add close button listener
-        const closeBtn = document.getElementById('eduModalCloseBtn');
-        closeBtn.addEventListener('click', () => this.closeModal());
-    }
-
-    openModal(index) {
-        const educationItems = document.querySelectorAll('.education-item.clickable');
-        const item = educationItems[index];
-
-        const school = item.querySelector('h4').textContent;
-        const date = item.querySelector('.date').textContent;
-        const degree = item.querySelector('.degree');
-        const location = item.querySelector('.location') ? item.querySelector('.location').textContent : '';
-
-        document.getElementById('eduModalTitle').textContent = school;
-
-        const degreeText = this.currentLang === 'en' ?
-            degree.getAttribute('data-en') :
-            degree.getAttribute('data-zh');
-        document.getElementById('eduModalDegree').textContent = degreeText;
-
-        const metaHTML = `
-            <div class="modal-meta-item">
-                <i class="fas fa-calendar"></i>
-                <span>${date}</span>
-            </div>
-            ${location ? `<div class="modal-meta-item"><i class="fas fa-map-marker-alt"></i><span>${location}</span></div>` : ''}
-        `;
-        document.getElementById('eduModalMeta').innerHTML = metaHTML;
-
-        // Add school logo to header
-        const modalHeader = this.modal.querySelector('.modal-header');
-        const existingLogo = modalHeader.querySelector('.modal-header-logo');
-        if (existingLogo) {
-            existingLogo.remove();
-        }
-
-        let logoHTML = '';
-        if (school.includes('University of Florida')) {
-            logoHTML = '<img src="photos/uf-university-of-florida.webp" alt="UF Logo" class="modal-header-logo">';
-        } else if (school.includes('Sun Yat-Sen')) {
-            logoHTML = '<img src="photos/NSYSU-Logo.png" alt="NSYSU Logo" class="modal-header-logo">';
-        }
-
-        if (logoHTML) {
-            modalHeader.insertAdjacentHTML('beforeend', logoHTML);
-        }
-
-        // Render modal content (courses and images)
-        this.renderModalContent(index);
-
-        // Calculate scrollbar width and set CSS variable
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
-
-        this.modal.classList.add('active');
-        document.body.classList.add('modal-open');
-    }
-
-    closeModal() {
-        this.modal.classList.remove('active');
-        document.body.classList.remove('modal-open');
-        document.documentElement.style.removeProperty('--scrollbar-width');
-    }
-
-    updateLanguage(lang) {
-        this.currentLang = lang;
-
-        // If modal is currently open, re-render it
-        if (this.modal && this.modal.classList.contains('active')) {
-            const modalTitle = document.getElementById('eduModalTitle').textContent;
-            const educationItems = document.querySelectorAll('.education-item.clickable');
-
-            // Find which school modal is open
-            let schoolIndex = -1;
-            educationItems.forEach((item, index) => {
-                const school = item.querySelector('h4').textContent;
-                if (school === modalTitle) {
-                    schoolIndex = index;
-                }
-            });
-
-            // Re-render the modal if we found it
-            if (schoolIndex !== -1) {
-                this.renderModalContent(schoolIndex);
-            }
-        }
-    }
-
-    renderModalContent(index) {
-        const educationItems = document.querySelectorAll('.education-item.clickable');
-        const item = educationItems[index];
-
-        const school = item.querySelector('h4').textContent;
-        const degree = item.querySelector('.degree');
-        const courses = item.querySelectorAll('.course-list li');
-
-        // Update degree text
-        const degreeText = this.currentLang === 'en' ?
-            degree.getAttribute('data-en') :
-            degree.getAttribute('data-zh');
-        document.getElementById('eduModalDegree').textContent = degreeText;
-
-        // Build courses HTML
-        let coursesHTML = '<div class="modal-section">';
-        coursesHTML += `<h3>${this.currentLang === 'en' ? 'Key Courses' : '重點課程'}</h3>`;
-        coursesHTML += '<ul>';
-        courses.forEach(course => {
-            const courseText = this.currentLang === 'en' ?
-                course.getAttribute('data-en') :
-                course.getAttribute('data-zh');
-            coursesHTML += `<li>${courseText}</li>`;
-        });
-        coursesHTML += '</ul></div>';
-
-        // Add graduation photo for NSYSU
-        let imagesHTML = '';
-        if (school.includes('Sun Yat-Sen')) {
-            imagesHTML = `
-                <div class="modal-section">
-                    <h3>${this.currentLang === 'en' ? 'Honors: Valedictorian of Department' : '榮譽：系畢業生代表'}</h3>
-                    <div class="modal-images">
-                        <img src="photos/畢業典禮.jpg" alt="Graduation Photo" class="modal-image graduation">
-                    </div>
-                </div>
-            `;
-        }
-
-        document.getElementById('eduModalBody').innerHTML = coursesHTML + imagesHTML;
-    }
-}
-
-// Project Card Click Handler
+// Project Card Navigation
 class ProjectNavigation {
     constructor() {
         this.init();
@@ -571,218 +293,35 @@ class ProjectNavigation {
     init() {
         const projectCards = document.querySelectorAll('.project-card');
 
-        // Define project links mapping
-        const projectLinks = {
-            0: 'projects/cauldron.html',
-            1: 'projects/speech-emotion.html',
-            2: 'projects/darts.html',
-            3: 'modal' // Sports Career - opens modal instead
-        };
+        projectCards.forEach(card => {
+            const projectLink = card.querySelector('.project-link');
+            if (!projectLink) return;
 
-        projectCards.forEach((card, index) => {
-            if (projectLinks[index]) {
-                card.style.cursor = 'pointer';
-                card.addEventListener('click', (e) => {
-                    // Don't navigate if clicking on a tag or button
-                    if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
-                        if (projectLinks[index] === 'modal') {
-                            // Open Sports Career modal
-                            const modal = document.getElementById('sports-career-modal');
-                            if (modal) {
-                                modal.classList.add('active');
-                                document.body.classList.add('modal-open');
-                            }
-                        } else {
-                            window.location.href = projectLinks[index];
-                        }
-                    }
-                });
-            }
-        });
+            // Skip modal triggers
+            if (projectLink.classList.contains('modal-trigger')) return;
 
-        // Sports Career Modal Close Functionality
-        this.initSportsCareerModal();
-    }
+            const href = projectLink.getAttribute('href');
+            if (!href) return;
 
-    initSportsCareerModal() {
-        const modal = document.getElementById('sports-career-modal');
-        const closeBtn = modal?.querySelector('.modal-close');
-
-        // Close modal when clicking X button
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                document.body.classList.remove('modal-open');
-            });
-        }
-
-        // Close modal when clicking outside
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.classList.remove('modal-open');
+            // Make entire card clickable
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                // Don't navigate if clicking on a tag or internal link
+                if (e.target.classList.contains('tag') || e.target.closest('.project-tags')) {
+                    return;
                 }
+                window.location.href = href;
             });
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal?.classList.contains('active')) {
-                modal.classList.remove('active');
-                document.body.classList.remove('modal-open');
-            }
         });
     }
 }
 
-// Typing Effect for Hero Subtitle
-class RotatingSubtitle {
-    constructor() {
-        this.subtitleElement = document.querySelector('.hero-subtitle');
-        this.currentLang = localStorage.getItem('language') || 'en';
-        this.titles = {
-            en: ['Machine Learning Engineer', 'Data Scientist'],
-            zh: ['機器學習工程師', '數據科學家']
-        };
-        this.currentIndex = 0;
-        this.charIndex = 0;
-        this.isDeleting = false;
-        this.typeSpeed = 100;
-        this.deleteSpeed = 50;
-        this.pauseAfterType = 6000;
-        this.pauseAfterDelete = 500;
-        this.isRunning = false;
-        this.timeoutId = null;
-        this.init();
-    }
+// Initialize Portfolio
+const portfolio = new Portfolio();
 
-    init() {
-        // Clear initial text
-        this.subtitleElement.textContent = '';
-
-        // Start typing after initial animation
-        setTimeout(() => {
-            this.startTyping();
-        }, 1000);
-
-        // Listen for language changes
-        window.addEventListener('languageChanged', (e) => {
-            // Stop current animation
-            this.stopTyping();
-
-            // Reset state
-            this.currentLang = e.detail.lang;
-            this.currentIndex = 0;
-            this.charIndex = 0;
-            this.isDeleting = false;
-            this.subtitleElement.textContent = '';
-
-            // Restart typing with new language
-            setTimeout(() => this.startTyping(), 100);
-        });
-    }
-
-    startTyping() {
-        this.isRunning = true;
-        this.type();
-    }
-
-    stopTyping() {
-        this.isRunning = false;
-        if (this.timeoutId) {
-            clearTimeout(this.timeoutId);
-            this.timeoutId = null;
-        }
-    }
-
-    type() {
-        if (!this.isRunning) return;
-
-        const currentText = this.titles[this.currentLang][this.currentIndex];
-
-        if (this.isDeleting) {
-            // Deleting characters
-            this.subtitleElement.textContent = currentText.substring(0, this.charIndex - 1);
-            this.charIndex--;
-        } else {
-            // Typing characters
-            this.subtitleElement.textContent = currentText.substring(0, this.charIndex + 1);
-            this.charIndex++;
-        }
-
-        let delay = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
-
-        // If finished typing
-        if (!this.isDeleting && this.charIndex === currentText.length) {
-            delay = this.pauseAfterType;
-            this.isDeleting = true;
-        }
-        // If finished deleting
-        else if (this.isDeleting && this.charIndex === 0) {
-            this.isDeleting = false;
-            this.currentIndex = (this.currentIndex + 1) % this.titles[this.currentLang].length;
-            delay = this.pauseAfterDelete;
-        }
-
-        this.timeoutId = setTimeout(() => this.type(), delay);
-    }
-}
-
-// Global reference for education modal
-let educationModal;
-
-// Initialize everything when DOM is loaded
+// Initialize Project Navigation after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize language toggle
-    new LanguageToggle();
-
-    // Initialize navigation highlight
-    new NavigationHighlight();
-
-    // Initialize experience modal
-    new ExperienceModal();
-
-    // Initialize education modal (store globally)
-    educationModal = new EducationModal();
-
-    // Initialize project navigation
     new ProjectNavigation();
 
-    // Initialize rotating subtitle
-    new RotatingSubtitle();
-
-    // Add active class style for navigation
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav-menu a.active {
-            color: var(--primary-color);
-        }
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Log to console
     console.log('Portfolio website loaded successfully!');
-    console.log('Language toggle, smooth scrolling, animations, modals, and project navigation are active.');
-});
-
-// Optional: Add easter egg
-let konamiCode = [];
-const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-
-document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.key);
-    konamiCode = konamiCode.slice(-10);
-
-    if (konamiCode.join('') === konamiSequence.join('')) {
-        document.body.style.transform = 'rotate(360deg)';
-        document.body.style.transition = 'transform 2s';
-        setTimeout(() => {
-            document.body.style.transform = 'rotate(0deg)';
-        }, 2000);
-        console.log('🎉 Konami Code activated! You found the easter egg!');
-    }
 });

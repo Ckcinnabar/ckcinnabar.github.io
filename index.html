@@ -3,122 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuan-Chen Chen | Data Scientist</title>
+    <title>Kuan-Chen Chen | Data Scientist & ML Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">KC</div>
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-text">KC</span>
+                <span class="logo-dot"></span>
+            </a>
             <ul class="nav-menu">
-                <li><a href="#home" data-en="Home" data-zh="首頁">Home</a></li>
-                <li><a href="#about" data-en="About" data-zh="關於">About</a></li>
-                <li><a href="#experience" data-en="Experience" data-zh="經歷">Experience</a></li>
-                <li><a href="#projects" data-en="Projects" data-zh="專案">Projects</a></li>
-                <li><a href="#skills" data-en="Skills" data-zh="技能">Skills</a></li>
-                <li><a href="#contact" data-en="Contact" data-zh="聯絡">Contact</a></li>
+                <li><a href="#home" class="nav-link" data-en="Home" data-zh="首頁">Home</a></li>
+                <li><a href="#about" class="nav-link" data-en="About" data-zh="關於">About</a></li>
+                <li><a href="#experience" class="nav-link" data-en="Experience" data-zh="經歷">Experience</a></li>
+                <li><a href="#projects" class="nav-link" data-en="Projects" data-zh="專案">Projects</a></li>
+                <li><a href="#skills" class="nav-link" data-en="Skills" data-zh="技能">Skills</a></li>
+                <li><a href="#contact" class="nav-link" data-en="Contact" data-zh="聯絡">Contact</a></li>
             </ul>
-            <button class="lang-toggle" id="langToggle">
-                <span class="lang-en">中文</span>
-                <span class="lang-zh" style="display:none;">EN</span>
-            </button>
+            <div class="nav-actions">
+                <button class="lang-toggle" id="langToggle">
+                    <span class="lang-en">中文</span>
+                    <span class="lang-zh" style="display:none;">EN</span>
+                </button>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
+        <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    <span data-en="Hi, I'm" data-zh="嗨，我是">Hi, I'm</span>
-                    <span class="highlight" data-en="Kuan-Chen Chen" data-zh="陳冠辰(Kuan-Chen,Chen)">Kuan-Chen Chen</span>
-                </h1>
-                <h2 class="hero-subtitle">
-                </h2>
-                <p class="hero-description" data-en="Master's student in Applied Data Science at University of Florida with a strong foundation in Applied Mathematics. Specializing in machine learning, deep learning, and computer vision, with hands-on experience in sports analytics, bioinformatics, and AI-driven solutions. Passionate about leveraging cutting-edge AI technologies and data-driven insights to solve complex real-world challenges and create meaningful impact." data-zh="佛羅里達大學應用數據科學碩士生，擁有應用數學的堅實基礎。專精於機器學習、深度學習和電腦視覺，具備運動分析、生物資訊學和AI驅動解決方案的實戰經驗。熱衷於運用尖端人工智慧技術和數據驅動洞察來解決複雜的實際問題，並創造有意義的影響。">
-                    Master's student in Applied Data Science at University of Florida with a strong foundation in Applied Mathematics. Specializing in machine learning, deep learning, and computer vision, with hands-on experience in sports analytics, bioinformatics, and AI-driven solutions. Passionate about leveraging cutting-edge AI technologies and data-driven insights to solve complex real-world challenges and create meaningful impact.
-                </p>
-                <div class="hero-buttons">
-                    <a href="kuan_chen_Chen_CV_2512.pdf" class="btn btn-primary" data-en="Download CV" data-zh="下載履歷" download>Download CV</a>
-                    <a href="#projects" class="btn btn-secondary" data-en="View Projects" data-zh="查看專案">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary" data-en="Get In Touch" data-zh="聯絡我">Get In Touch</a>
+                <div class="hero-badge" data-en="Available for opportunities" data-zh="開放機會中">
+                    <span class="badge-dot"></span>
+                    Available for opportunities
                 </div>
-                <div class="social-links">
-                    <a href="https://github.com/Ckcinnabar" target="_blank" aria-label="GitHub">
+                <h1 class="hero-title">
+                    <span class="title-line">
+                        <span class="title-word" data-en="Hi, I'm" data-zh="嗨，我是">Hi, I'm</span>
+                    </span>
+                    <span class="title-line title-name">
+                        <span class="title-word highlight" data-en="Kuan-Chen Chen" data-zh="陳冠辰">Kuan-Chen Chen</span>
+                    </span>
+                </h1>
+                <div class="hero-roles">
+                    <span class="role" data-en="Data Scientist" data-zh="數據科學家">Data Scientist</span>
+                    <span class="role-divider">/</span>
+                    <span class="role" data-en="ML Engineer" data-zh="機器學習工程師">ML Engineer</span>
+                    <span class="role-divider">/</span>
+                    <span class="role" data-en="AI Researcher" data-zh="AI 研究員">AI Researcher</span>
+                </div>
+                <p class="hero-description" data-en="Master's student in Applied Data Science at University of Florida. Specializing in machine learning, deep learning, and computer vision. Passionate about leveraging AI to solve complex real-world challenges." data-zh="佛羅里達大學應用數據科學碩士生。專精於機器學習、深度學習和電腦視覺。熱衷於運用 AI 解決複雜的實際問題。">
+                    Master's student in Applied Data Science at University of Florida. Specializing in machine learning, deep learning, and computer vision. Passionate about leveraging AI to solve complex real-world challenges.
+                </p>
+                <div class="hero-cta">
+                    <a href="kuan_chen_Chen_CV_2512.pdf" class="btn btn-primary" download>
+                        <span data-en="Download CV" data-zh="下載履歷">Download CV</span>
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                    <a href="#projects" class="btn btn-ghost">
+                        <span data-en="View Projects" data-zh="查看專案">View Projects</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/Ckcinnabar" target="_blank" class="social-link" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com/in/kuan-chen-chen" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://linkedin.com/in/kuan-chen-chen" target="_blank" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="mailto:champion3.chen@gmail.com" aria-label="Email">
+                    <a href="mailto:champion3.chen@gmail.com" class="social-link" aria-label="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
+            <div class="hero-visual">
+                <div class="visual-ring ring-1"></div>
+                <div class="visual-ring ring-2"></div>
+                <div class="visual-ring ring-3"></div>
+                <div class="visual-core"></div>
+                <div class="data-particle" style="--delay: 0s; --angle: 0deg;"></div>
+                <div class="data-particle" style="--delay: 0.5s; --angle: 72deg;"></div>
+                <div class="data-particle" style="--delay: 1s; --angle: 144deg;"></div>
+                <div class="data-particle" style="--delay: 1.5s; --angle: 216deg;"></div>
+                <div class="data-particle" style="--delay: 2s; --angle: 288deg;"></div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span data-en="Scroll to explore" data-zh="向下滾動探索">Scroll to explore</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title" data-en="About Me" data-zh="關於我">About Me</h2>
-            <div class="about-content">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag" data-en="Get to know me" data-zh="認識我">Get to know me</span>
+                <h2 class="section-title" data-en="About Me" data-zh="關於我">About Me</h2>
+            </div>
+            <div class="about-grid">
                 <div class="about-text">
-                    <p data-en="I'm currently pursuing a Master's degree in Applied Data Science at the University of Florida, with a strong foundation in Applied Mathematics from National Sun Yat-Sen University, where I graduated as the Valedictorian of my department." data-zh="我目前在佛羅里達大學攻讀應用數據科學碩士學位，擁有國立中山大學應用數學系的堅實基礎，並以系所代表畢業生的身份畢業。">
-                        I'm currently pursuing a Master's degree in Applied Data Science at the University of Florida, with a strong foundation in Applied Mathematics from National Sun Yat-Sen University, where I graduated as the Valedictorian of my department.
+                    <p class="lead" data-en="I'm currently pursuing a Master's degree in Applied Data Science at the University of Florida, with a strong foundation in Applied Mathematics from National Sun Yat-Sen University, where I graduated as Valedictorian." data-zh="我目前在佛羅里達大學攻讀應用數據科學碩士學位，擁有國立中山大學應用數學系的堅實基礎，並以系所代表畢業生的身份畢業。">
+                        I'm currently pursuing a Master's degree in Applied Data Science at the University of Florida, with a strong foundation in Applied Mathematics from National Sun Yat-Sen University, where I graduated as Valedictorian.
                     </p>
                     <p data-en="My expertise spans machine learning, deep learning, computer vision, and data analytics. I've worked on diverse projects ranging from sports analytics to bioinformatics, and from recipe generation AI to transportation optimization systems." data-zh="我的專長涵蓋機器學習、深度學習、電腦視覺和數據分析。我參與過多樣化的專案，從運動分析到生物資訊學，從食譜生成AI到交通優化系統。">
                         My expertise spans machine learning, deep learning, computer vision, and data analytics. I've worked on diverse projects ranging from sports analytics to bioinformatics, and from recipe generation AI to transportation optimization systems.
                     </p>
                 </div>
-                <div class="education">
-                    <h3 data-en="Education" data-zh="學歷">Education</h3>
-                    <div class="education-item clickable">
-                        <div class="education-header">
-                            <h4>University of Florida</h4>
-                            <span class="date">2024 - Present</span>
+                <div class="about-education">
+                    <h3 class="subsection-title" data-en="Education" data-zh="學歷">Education</h3>
+                    <div class="education-cards">
+                        <div class="education-card clickable">
+                            <div class="edu-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="edu-content">
+                                <div class="edu-header">
+                                    <h4>University of Florida</h4>
+                                    <span class="edu-date">2024 - Present</span>
+                                </div>
+                                <p class="edu-degree" data-en="M.S. in Applied Data Science" data-zh="應用數據科學碩士">M.S. in Applied Data Science</p>
+                                <p class="edu-location">Gainesville, FL</p>
+                                <ul class="course-list" style="display:none;">
+                                    <li data-en="Programming for Applied Data Science" data-zh="應用數據科學程式設計">Programming for Applied Data Science</li>
+                                    <li data-en="A.I. Ethics for Tech Leaders" data-zh="科技領導者的人工智慧倫理">A.I. Ethics for Tech Leaders</li>
+                                    <li data-en="Math Foundations for DS for Engineer I" data-zh="工程師數據科學數學基礎 I">Math Foundations for DS for Engineer I</li>
+                                    <li data-en="Intro to Data Science" data-zh="數據科學入門">Intro to Data Science</li>
+                                    <li data-en="Applied Machine Learning" data-zh="應用機器學習">Applied Machine Learning</li>
+                                    <li data-en="Math Foundations for DS for Engineer II" data-zh="工程師數據科學數學基礎 II">Math Foundations for DS for Engineer II</li>
+                                    <li data-en="Applied Machine Learning II" data-zh="應用機器學習 II">Applied Machine Learning II</li>
+                                    <li data-en="Fundamentals of Machine Learning" data-zh="機器學習基礎">Fundamentals of Machine Learning</li>
+                                    <li data-en="Artificial Intelligence and Machine Learning for Engineering Applications" data-zh="工程應用的人工智慧與機器學習">Artificial Intelligence and Machine Learning for Engineering Applications</li>
+                                </ul>
+                            </div>
+                            <div class="edu-expand">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                         </div>
-                        <p class="degree" data-en="Master of Science in Applied Data Science" data-zh="應用數據科學碩士">Master of Science in Applied Data Science</p>
-                        <p class="location">Gainesville, FL</p>
-                        <ul class="course-list" style="display:none;">
-                            <li data-en="Programming for Applied Data Science" data-zh="應用數據科學程式設計">Programming for Applied Data Science</li>
-                            <li data-en="A.I. Ethics for Tech Leaders" data-zh="科技領導者的人工智慧倫理">A.I. Ethics for Tech Leaders</li>
-                            <li data-en="Math Foundations for DS for Engineer I" data-zh="工程師數據科學數學基礎 I">Math Foundations for DS for Engineer I</li>
-                            <li data-en="Intro to Data Science" data-zh="數據科學入門">Intro to Data Science</li>
-                            <li data-en="Applied Machine Learning" data-zh="應用機器學習">Applied Machine Learning</li>
-                            <li data-en="Math Foundations for DS for Engineer II" data-zh="工程師數據科學數學基礎 II">Math Foundations for DS for Engineer II</li>
-                            <li data-en="Applied Machine Learning II" data-zh="應用機器學習 II">Applied Machine Learning II</li>
-                            <li data-en="Fundamentals of Machine Learning" data-zh="機器學習基礎">Fundamentals of Machine Learning</li>
-                            <li data-en="Artificial Intelligence and Machine Learning for Engineering Applications" data-zh="工程應用的人工智慧與機器學習">Artificial Intelligence and Machine Learning for Engineering Applications</li>
-                        </ul>
-                    </div>
-                    <div class="education-item clickable">
-                        <div class="education-header">
-                            <h4>National Sun Yat-Sen University</h4>
-                            <span class="date">2019 - 2023</span>
+                        <div class="education-card clickable">
+                            <div class="edu-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="edu-content">
+                                <div class="edu-header">
+                                    <h4>National Sun Yat-Sen University</h4>
+                                    <span class="edu-date">2019 - 2023</span>
+                                </div>
+                                <p class="edu-degree" data-en="B.S. in Applied Mathematics" data-zh="應用數學學士">B.S. in Applied Mathematics</p>
+                                <p class="edu-location" data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</p>
+                                <div class="edu-badge">
+                                    <i class="fas fa-star"></i>
+                                    <span data-en="Valedictorian" data-zh="系所代表畢業生">Valedictorian</span>
+                                </div>
+                                <ul class="course-list" style="display:none;">
+                                    <li data-en="Python and Machine Learning: Theory and Implementation (Graduate)" data-zh="Python與機器學習之理論實現(研)">Python與機器學習之理論實現(研)</li>
+                                    <li data-en="Matrix Theory (Graduate)" data-zh="矩陣理論(研)">矩陣理論(研)</li>
+                                    <li data-en="Intelligent Finance" data-zh="智慧金融">智慧金融</li>
+                                    <li data-en="Smart Cities and Intelligent Transportation: Trends, Development, and Issues" data-zh="智慧城市與智慧運輸趨勢、發展及課題研析">智慧城市與智慧運輸趨勢、發展及課題研析</li>
+                                    <li data-en="Digital Transformation of Smart Cities" data-zh="智慧城市數位轉型">智慧城市數位轉型</li>
+                                    <li data-en="Intelligent Transportation Systems" data-zh="智慧型運輸系統">智慧型運輸系統</li>
+                                    <li data-en="Digital Marketing Communication" data-zh="數位行銷傳播">數位行銷傳播</li>
+                                    <li data-en="Analyzing Cities: Data Analysis Methods and Applications" data-zh="剖析都市：數據分析方法與應用">剖析都市：數據分析方法與應用</li>
+                                    <li data-en="Statistics and Data Visualization" data-zh="統計學與資料視覺化">統計學與資料視覺化</li>
+                                    <li data-en="Data Analysis and Applications: Using R" data-zh="資料分析與應用-R語言之應用">資料分析與應用-R語言之應用</li>
+                                    <li data-en="Data Science Practice and Innovation" data-zh="數據科學實務與創新">數據科學實務與創新</li>
+                                    <li data-en="Data Structures" data-zh="資料結構">資料結構</li>
+                                    <li data-en="Statistics (I)" data-zh="統計學（一）">統計學（一）</li>
+                                    <li data-en="Probability Theory (I)" data-zh="機率論（一）">機率論（一）</li>
+                                    <li data-en="Probability Theory (II)" data-zh="機率論（二）">機率論（二）</li>
+                                </ul>
+                            </div>
+                            <div class="edu-expand">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                         </div>
-                        <p class="degree" data-en="Bachelor of Science in Applied Mathematics" data-zh="應用數學學士">Bachelor of Science in Applied Mathematics</p>
-                        <p class="location" data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</p>
-                        <p class="honors" data-en="Honors: Valedictorian of Department" data-zh="榮譽：系所代表畢業生">Honors: Valedictorian of Department</p>
-                        <ul class="course-list" style="display:none;">
-                            <li data-en="Python and Machine Learning: Theory and Implementation (Graduate)" data-zh="Python與機器學習之理論實現(研)">Python與機器學習之理論實現(研)</li>
-                            <li data-en="Matrix Theory (Graduate)" data-zh="矩陣理論(研)">矩陣理論(研)</li>
-                            <li data-en="Intelligent Finance" data-zh="智慧金融">智慧金融</li>
-                            <li data-en="Smart Cities and Intelligent Transportation: Trends, Development, and Issues" data-zh="智慧城市與智慧運輸趨勢、發展及課題研析">智慧城市與智慧運輸趨勢、發展及課題研析</li>
-                            <li data-en="Digital Transformation of Smart Cities" data-zh="智慧城市數位轉型">智慧城市數位轉型</li>
-                            <li data-en="Intelligent Transportation Systems" data-zh="智慧型運輸系統">智慧型運輸系統</li>
-                            <li data-en="Digital Marketing Communication" data-zh="數位行銷傳播">數位行銷傳播</li>
-                            <li data-en="Analyzing Cities: Data Analysis Methods and Applications" data-zh="剖析都市：數據分析方法與應用">剖析都市：數據分析方法與應用</li>
-                            <li data-en="Statistics and Data Visualization" data-zh="統計學與資料視覺化">統計學與資料視覺化</li>
-                            <li data-en="Data Analysis and Applications: Using R" data-zh="資料分析與應用-R語言之應用">資料分析與應用-R語言之應用</li>
-                            <li data-en="Data Science Practice and Innovation" data-zh="數據科學實務與創新">數據科學實務與創新</li>
-                            <li data-en="Data Structures" data-zh="資料結構">資料結構</li>
-                            <li data-en="Statistics (I)" data-zh="統計學（一）">統計學（一）</li>
-                            <li data-en="Probability Theory (I)" data-zh="機率論（一）">機率論（一）</li>
-                            <li data-en="Probability Theory (II)" data-zh="機率論（二）">機率論（二）</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -127,160 +205,167 @@
 
     <!-- Experience Section -->
     <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title" data-en="Work Experience & Research" data-zh="工作經歷與研究">Work Experience & Research</h2>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag" data-en="My journey" data-zh="我的歷程">My journey</span>
+                <h2 class="section-title" data-en="Experience" data-zh="經歷">Experience</h2>
+            </div>
             <div class="timeline">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Data Scientist Intern</h3>
-                            <span class="date">Aug 2025 - Present</span>
-                        </div>
-                        <h4>Florida Gators Women's Basketball</h4>
-                        <p class="location">Gainesville, FL</p>
-                        <p class="timeline-summary" data-en="Built analytical models and interactive dashboards to improve team's defensive strategies" data-zh="建立分析模型和互動式儀表板以提升球隊防守策略">Built analytical models and interactive dashboards to improve team's defensive strategies</p>
-                        <ul class="timeline-details">
-                            <li data-en="Built analytical models to evaluate opponents' historical offensive data, providing the coaching staff with insights for lineup adjustments and defensive strategies to improve the team's defensive efficiency, with the season goal of qualifying for March Madness" data-zh="建立分析模型評估對手的歷史進攻數據，為教練團提供陣容調整和防守策略的見解，以提高球隊的防守效率，目標是晉級三月瘋">
-                                Built analytical models to evaluate opponents' historical offensive data, providing the coaching staff with insights for lineup adjustments and defensive strategies to improve the team's defensive efficiency, with the season goal of qualifying for March Madness
-                            </li>
-                            <li data-en="Developed interactive dashboards by Shiny app to visualize player statistics from both teams, including historical performance trend lines, with functionality to compare selected players' performance over time" data-zh="使用 Shiny 應用開發互動式儀表板，可視化兩隊球員統計數據，包括歷史表現趨勢線，並具有比較所選球員隨時間表現的功能">
-                                Developed interactive dashboards by Shiny app to visualize player statistics from both teams, including historical performance trend lines, with functionality to compare selected players' performance over time
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="timeline-track"></div>
 
-                <div class="timeline-year">2024</div>
+                <div class="timeline-year-marker">2025</div>
+
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Student Research Assistant</h3>
-                            <span class="date">Dec 2024 - Present</span>
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">Aug 2025 - Present</span>
+                                <span class="card-type" data-en="Internship" data-zh="實習">Internship</span>
+                            </div>
+                            <h3 class="card-title">Data Scientist Intern</h3>
+                            <h4 class="card-company">Florida Gators Women's Basketball</h4>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Gainesville, FL</p>
                         </div>
-                        <h4>Bioinformatics Lab, University of Florida</h4>
-                        <p class="location">Gainesville, FL</p>
-                        <p class="timeline-summary" data-en="Analyzed blood protein data to identify key disease indicators" data-zh="分析血液蛋白質數據以識別關鍵疾病指標">Analyzed blood protein data to identify key disease indicators</p>
-                        <ul class="timeline-details">
-                            <li data-en="Analyzed blood protein data from AZ patients and identified key disease indicators through pattern analysis, enabling medical teams to better predict severity levels and develop targeted treatment plans based on validated biomarkers" data-zh="分析AZ患者的血液蛋白質數據，通過模式分析識別關鍵疾病指標，使醫療團隊能夠更好地預測嚴重程度並基於驗證的生物標誌物制定針對性治療方案">
-                                Analyzed blood protein data from AZ patients and identified key disease indicators through pattern analysis, enabling medical teams to better predict severity levels and develop targeted treatment plans based on validated biomarkers
+                        <p class="card-summary" data-en="Built analytical models and interactive dashboards to improve team's defensive strategies" data-zh="建立分析模型和互動式儀表板以提升球隊防守策略">
+                            Built analytical models and interactive dashboards to improve team's defensive strategies
+                        </p>
+                        <ul class="card-details">
+                            <li data-en="Built analytical models to evaluate opponents' historical offensive data, providing insights for lineup adjustments and defensive strategies" data-zh="建立分析模型評估對手的歷史進攻數據，提供陣容調整和防守策略的見解">
+                                Built analytical models to evaluate opponents' historical offensive data, providing insights for lineup adjustments and defensive strategies
+                            </li>
+                            <li data-en="Developed interactive Shiny dashboards to visualize player statistics with historical performance trends" data-zh="開發互動式 Shiny 儀表板，可視化球員統計數據和歷史表現趨勢">
+                                Developed interactive Shiny dashboards to visualize player statistics with historical performance trends
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Volunteer Staff</h3>
-                            <span class="date">Apr 2025</span>
-                        </div>
-                        <h4>Optimized AI Conference</h4>
-                        <p class="location">Atlanta, GA</p>
-                        <p class="timeline-summary" data-en="Supported AI/ML conference operations and facilitated professional networking" data-zh="支持 AI/ML 會議運營並促進專業交流">Supported AI/ML conference operations and facilitated professional networking</p>
-                        <ul class="timeline-details">
-                            <li data-en="Supported conference operations for AI optimization and machine learning event, facilitating networking among industry professionals and researchers" data-zh="支持 AI 優化和機器學習會議的運營，促進業界專業人士和研究人員之間的交流">
-                                Supported conference operations for AI optimization and machine learning event, facilitating networking among industry professionals and researchers
-                            </li>
-                        </ul>
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
                     </div>
-                </div>
-
-                <div class="timeline-year">2023</div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Data Analyst Intern</h3>
-                            <span class="date">Aug 2023 - Dec 2023</span>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">Dec 2024 - Present</span>
+                                <span class="card-type" data-en="Research" data-zh="研究">Research</span>
+                            </div>
+                            <h3 class="card-title">Student Research Assistant</h3>
+                            <h4 class="card-company">Bioinformatics Lab, University of Florida</h4>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Gainesville, FL</p>
                         </div>
-                        <h4>Glory Integrated Marketing Co. Ltd</h4>
-                        <p class="location" data-en="Taipei, Taiwan" data-zh="台北，台灣">Taipei, Taiwan</p>
-                        <p class="timeline-summary" data-en="Applied NLP and regression models to optimize SEO performance" data-zh="應用 NLP 和回歸模型優化 SEO 性能">Applied NLP and regression models to optimize SEO performance</p>
-                        <ul class="timeline-details">
-                            <li data-en="Analyzed social media content performance across Facebook, Instagram and Blog, studying how different keywords impacted page views to improve Google search rankings" data-zh="分析 Facebook、Instagram 和博客的社交媒體內容表現，研究不同關鍵字如何影響頁面瀏覽量以提高 Google 搜索排名">
-                                Analyzed social media content performance across Facebook, Instagram and Blog, studying how different keywords impacted page views to improve Google search rankings
-                            </li>
-                            <li data-en="Applied NLP (TF-IDF) and regression models using Python, SQL, and Tableau to identify high-impact keywords and optimize SEO performance" data-zh="使用 Python、SQL 和 Tableau 應用自然語言處理（TF-IDF）和回歸模型識別高影響力關鍵字並優化 SEO 性能">
-                                Applied NLP (TF-IDF) and regression models using Python, SQL, and Tableau to identify high-impact keywords and optimize SEO performance
-                            </li>
-                            <li data-en="Extracted and analyzed page view data from client's social media platforms to provide data-driven content strategy recommendations" data-zh="從客戶的社交媒體平台提取和分析頁面瀏覽數據，提供基於數據驅動的內容策略建議">
-                                Extracted and analyzed page view data from client's social media platforms to provide data-driven content strategy recommendations
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-year">2022</div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Student Researcher</h3>
-                            <span class="date">Sep 2022 - June 2023</span>
-                        </div>
-                        <h4>Planning Science Lab, NSYSU</h4>
-                        <p class="location" data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</p>
-                        <p class="timeline-summary" data-en="Developed ARIMA-LSTM model for campus bus passenger forecasting" data-zh="開發 ARIMA-LSTM 模型進行校園巴士乘客預測">Developed ARIMA-LSTM model for campus bus passenger forecasting</p>
-                        <ul class="timeline-details">
-                            <li data-en="Developed a Python script to automatically fetch data from online APIs, populating a database and ensuring 24/7 operation for real-time campus transportation data collection" data-zh="開發 Python 腳本自動從在線 API 獲取數據，填充數據庫並確保 24/7 運行以實時收集校園交通數據">
-                                Developed a Python script to automatically fetch data from online APIs, populating a database and ensuring 24/7 operation for real-time campus transportation data collection
-                            </li>
-                            <li data-en="Developed a combined ARIMA-LSTM model to forecast passenger counts on campus buses, incorporating data preprocessing for enhanced accuracy" data-zh="開發 ARIMA-LSTM 組合模型預測校園巴士的乘客數量，結合數據預處理以提高準確性">
-                                Developed a combined ARIMA-LSTM model to forecast passenger counts on campus buses, incorporating data preprocessing for enhanced accuracy
-                            </li>
-                            <li data-en="Engaged in effective communication with the university regarding our findings, leading to the adoption of our adjusted bus schedule, which addressed issues of resource wastage" data-zh="與大學就我們的研究結果進行有效溝通，促使採用我們調整的巴士時間表，解決資源浪費問題">
-                                Engaged in effective communication with the university regarding our findings, leading to the adoption of our adjusted bus schedule, which addressed issues of resource wastage
+                        <p class="card-summary" data-en="Analyzed blood protein data to identify key disease indicators" data-zh="分析血液蛋白質數據以識別關鍵疾病指標">
+                            Analyzed blood protein data to identify key disease indicators
+                        </p>
+                        <ul class="card-details">
+                            <li data-en="Analyzed blood protein data from AZ patients and identified key disease indicators through pattern analysis" data-zh="分析AZ患者的血液蛋白質數據，通過模式分析識別關鍵疾病指標">
+                                Analyzed blood protein data from AZ patients and identified key disease indicators through pattern analysis
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Student Research Assistant</h3>
-                            <span class="date">Sep 2022 - June 2023</span>
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">Apr 2025</span>
+                                <span class="card-type" data-en="Volunteer" data-zh="志工">Volunteer</span>
+                            </div>
+                            <h3 class="card-title">Volunteer Staff</h3>
+                            <h4 class="card-company">Optimized AI Conference</h4>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> Atlanta, GA</p>
                         </div>
-                        <h4>Research Center for Kaohsiung-Pingtung-Penghu Regional Transport Development</h4>
-                        <p class="location" data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</p>
-                        <p class="timeline-summary" data-en="Analyzed regional transportation data and visualized traffic flow patterns" data-zh="分析區域交通數據並可視化交通流量模式">Analyzed regional transportation data and visualized traffic flow patterns</p>
-                        <ul class="timeline-details">
-                            <li data-en="Conducted preprocessing tasks ensuring dataset quality for regional transportation analysis" data-zh="執行數據預處理任務，確保區域交通分析的數據集質量">
-                                Conducted preprocessing tasks ensuring dataset quality for regional transportation analysis
+                        <p class="card-summary" data-en="Supported AI/ML conference operations and facilitated professional networking" data-zh="支持 AI/ML 會議運營並促進專業交流">
+                            Supported AI/ML conference operations and facilitated professional networking
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-year-marker">2023</div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">Aug 2023 - Dec 2023</span>
+                                <span class="card-type" data-en="Internship" data-zh="實習">Internship</span>
+                            </div>
+                            <h3 class="card-title">Data Analyst Intern</h3>
+                            <h4 class="card-company">Glory Integrated Marketing Co. Ltd</h4>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> <span data-en="Taipei, Taiwan" data-zh="台北，台灣">Taipei, Taiwan</span></p>
+                        </div>
+                        <p class="card-summary" data-en="Applied NLP and regression models to optimize SEO performance" data-zh="應用 NLP 和回歸模型優化 SEO 性能">
+                            Applied NLP and regression models to optimize SEO performance
+                        </p>
+                        <ul class="card-details">
+                            <li data-en="Analyzed social media content performance across Facebook, Instagram and Blog" data-zh="分析 Facebook、Instagram 和博客的社交媒體內容表現">
+                                Analyzed social media content performance across Facebook, Instagram and Blog
                             </li>
-                            <li data-en="Analyzed the frequency, type, and volume of vehicles on specified road sections, categorizing different modes of transportation such as buses, cars, motorcycles, MRT, and bicycles" data-zh="分析指定路段的車輛頻率、類型和數量，對公車、汽車、摩托車、捷運和自行車等不同交通方式進行分類">
-                                Analyzed the frequency, type, and volume of vehicles on specified road sections, categorizing different modes of transportation such as buses, cars, motorcycles, MRT, and bicycles
+                            <li data-en="Applied NLP (TF-IDF) and regression models using Python, SQL, and Tableau" data-zh="使用 Python、SQL 和 Tableau 應用自然語言處理（TF-IDF）和回歸模型">
+                                Applied NLP (TF-IDF) and regression models using Python, SQL, and Tableau
                             </li>
-                            <li data-en="Utilized data visualization by Python's Matplotlib and Seaborn to graphically represent the traffic flow of different transportation modes across various time slots" data-zh="使用 Python 的 Matplotlib 和 Seaborn 進行數據可視化，圖形化表示不同時段各種交通方式的交通流量">
-                                Utilized data visualization by Python's Matplotlib and Seaborn to graphically represent the traffic flow of different transportation modes across various time slots
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-year-marker">2022</div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">Sep 2022 - June 2023</span>
+                                <span class="card-type" data-en="Research" data-zh="研究">Research</span>
+                            </div>
+                            <h3 class="card-title">Student Researcher</h3>
+                            <h4 class="card-company">Planning Science Lab, NSYSU</h4>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> <span data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</span></p>
+                        </div>
+                        <p class="card-summary" data-en="Developed ARIMA-LSTM model for campus bus passenger forecasting" data-zh="開發 ARIMA-LSTM 模型進行校園巴士乘客預測">
+                            Developed ARIMA-LSTM model for campus bus passenger forecasting
+                        </p>
+                        <ul class="card-details">
+                            <li data-en="Developed Python script for automated API data collection with 24/7 operation" data-zh="開發 Python 腳本自動從 API 獲取數據，24/7 運行">
+                                Developed Python script for automated API data collection with 24/7 operation
                             </li>
-                            <li data-en="Actively contributed to the writing and revision of research reports, emphasizing the implications of data findings on regional transportation strategies" data-zh="積極參與研究報告的撰寫和修訂，強調數據發現對區域交通策略的影響">
-                                Actively contributed to the writing and revision of research reports, emphasizing the implications of data findings on regional transportation strategies
+                            <li data-en="Built combined ARIMA-LSTM model to forecast passenger counts on campus buses" data-zh="建立 ARIMA-LSTM 組合模型預測校園巴士乘客數量">
+                                Built combined ARIMA-LSTM model to forecast passenger counts on campus buses
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Office Assistant</h3>
-                            <span class="date">Feb 2022 - June 2023</span>
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">Sep 2022 - June 2023</span>
+                                <span class="card-type" data-en="Research" data-zh="研究">Research</span>
+                            </div>
+                            <h3 class="card-title">Student Research Assistant</h3>
+                            <h4 class="card-company">Regional Transport Development Research Center</h4>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> <span data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</span></p>
                         </div>
-                        <h4>Office of Student Affairs, NSYSU</h4>
-                        <p class="location" data-en="Kaohsiung, Taiwan" data-zh="高雄，台灣">Kaohsiung, Taiwan</p>
-                        <p class="timeline-summary" data-en="Provided administrative support and coordinated student activities" data-zh="提供行政支援並協調學生活動">Provided administrative support and coordinated student activities</p>
-                        <ul class="timeline-details">
-                            <li data-en="Provided administrative support for student affairs office, managing documentation and coordinating student activities" data-zh="為學生事務處提供行政支援，管理文檔並協調學生活動">
-                                Provided administrative support for student affairs office, managing documentation and coordinating student activities
-                            </li>
-                        </ul>
+                        <p class="card-summary" data-en="Analyzed regional transportation data and visualized traffic flow patterns" data-zh="分析區域交通數據並可視化交通流量模式">
+                            Analyzed regional transportation data and visualized traffic flow patterns
+                        </p>
                     </div>
                 </div>
             </div>
@@ -289,164 +374,226 @@
 
     <!-- Projects Section -->
     <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-en="Featured Projects" data-zh="精選專案">Featured Projects</h2>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag" data-en="What I've built" data-zh="我的作品">What I've built</span>
+                <h2 class="section-title" data-en="Featured Projects" data-zh="精選專案">Featured Projects</h2>
+            </div>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>cAIuldron</h3>
-                        <span class="project-date">Aug 2025 - Dec 2025</span>
+                <article class="project-card featured">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="project-overlay"></div>
                     </div>
-                    <p class="project-description" data-en="An end-to-end ML pipeline for multi-ingredient detection and recipe generation using computer vision and LLM" data-zh="使用電腦視覺和大型語言模型進行多成分檢測和食譜生成的端到端機器學習管道">
-                        An end-to-end ML pipeline for multi-ingredient detection and recipe generation using computer vision and LLM
-                    </p>
-                    <ul class="project-highlights">
-                        <li data-en="Developed multi-ingredient detection system using CLIP and DETR with 88% F1 score across 525+ ingredient classes, integrated with USDA nutrition database" data-zh="使用 CLIP 和 DETR 開發多成分檢測系統，在 525+ 種成分類別中達到 88% F1 分數，並與 USDA 營養數據庫整合">
-                            Developed multi-ingredient detection system using CLIP and DETR with 88% F1 score across 525+ ingredient classes, integrated with USDA nutrition database
-                        </li>
-                        <li data-en="Fine-tuned Llama 3.2 1B with QLoRA on consumer GPU (6GB VRAM), achieving 92/100 quality score with parameter-efficient training" data-zh="在消費級 GPU（6GB VRAM）上使用 QLoRA 微調 Llama 3.2 1B，通過參數高效訓練達到 92/100 品質分數">
-                            Fine-tuned Llama 3.2 1B with QLoRA on consumer GPU (6GB VRAM), achieving 92/100 quality score with parameter-efficient training
-                        </li>
-                        <li data-en="Built production-ready system with Gradio web interface, processing complete pipeline in 15-25 seconds with 98%+ recipe completeness" data-zh="構建生產就緒系統並配備 Gradio 網頁介面，在 15-25 秒內處理完整管道，食譜完整度達 98%+">
-                            Built production-ready system with Gradio web interface, processing complete pipeline in 15-25 seconds with 98%+ recipe completeness
-                        </li>
-                    </ul>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Computer Vision</span>
-                        <span class="tag">LLM Fine-tuning</span>
-                        <span class="tag">CLIP</span>
-                        <span class="tag">DETR</span>
-                        <span class="tag">Gradio</span>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">Aug - Dec 2025</span>
+                            <span class="project-category">Computer Vision + LLM</span>
+                        </div>
+                        <h3 class="project-title">cAIuldron</h3>
+                        <p class="project-description" data-en="End-to-end ML pipeline for multi-ingredient detection and recipe generation using CLIP, DETR, and fine-tuned Llama 3.2" data-zh="使用 CLIP、DETR 和微調 Llama 3.2 的端到端 ML 食譜生成管道">
+                            End-to-end ML pipeline for multi-ingredient detection and recipe generation using CLIP, DETR, and fine-tuned Llama 3.2
+                        </p>
+                        <ul class="project-highlights">
+                            <li data-en="88% F1 score across 525+ ingredient classes" data-zh="525+ 種成分類別達 88% F1 分數">88% F1 score across 525+ ingredient classes</li>
+                            <li data-en="92/100 quality score with QLoRA fine-tuning" data-zh="QLoRA 微調達 92/100 品質分數">92/100 quality score with QLoRA fine-tuning</li>
+                            <li data-en="15-25s pipeline with Gradio interface" data-zh="15-25 秒管道配 Gradio 介面">15-25s pipeline with Gradio interface</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">CLIP</span>
+                            <span class="tag">DETR</span>
+                            <span class="tag">LLM</span>
+                            <span class="tag">Gradio</span>
+                        </div>
+                        <a href="projects/cauldron.html" class="project-link">
+                            <span data-en="View Project" data-zh="查看專案">View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 data-en="Speech Emotion Recognition System" data-zh="語音情緒識別系統">Speech Emotion Recognition System</h3>
-                        <span class="project-date">Aug 2025 - Dec 2025</span>
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div class="project-overlay"></div>
                     </div>
-                    <p class="project-description" data-en="Deep learning system classifying emotional content from speech using CNN-LSTM hybrid architecture with 87.41% accuracy" data-zh="使用 CNN-LSTM 混合架構對語音情緒內容進行分類的深度學習系統，準確率達 87.41%">
-                        Deep learning system classifying emotional content from speech using CNN-LSTM hybrid architecture with 87.41% accuracy
-                    </p>
-                    <ul class="project-highlights">
-                        <li data-en="Designed CNN-LSTM hybrid architecture with 2.75M parameters combining spatial feature extraction and temporal dependency modeling for 5-class emotion classification" data-zh="設計 CNN-LSTM 混合架構，具有 275 萬參數，結合空間特徵提取和時序依賴建模進行 5 類情緒分類">
-                            Designed CNN-LSTM hybrid architecture with 2.75M parameters combining spatial feature extraction and temporal dependency modeling for 5-class emotion classification
-                        </li>
-                        <li data-en="Achieved 87.41% test accuracy through mel-spectrogram feature processing, 5x data augmentation, and multi-layer regularization, outperforming Random Forest by 9.6%" data-zh="透過 mel-spectrogram 特徵處理、5 倍數據增強和多層正則化達到 87.41% 測試準確率，超越隨機森林 9.6%">
-                            Achieved 87.41% test accuracy through mel-spectrogram feature processing, 5x data augmentation, and multi-layer regularization, outperforming Random Forest by 9.6%
-                        </li>
-                        <li data-en="Implemented audio signal processing pipeline with librosa for mel-spectrogram extraction (128 mel bands × 282 time frames) and trained on NVIDIA RTX 3060 GPU" data-zh="使用 librosa 實作音訊信號處理流程進行 mel-spectrogram 提取（128 個 mel 帶 × 282 個時間幀），並在 NVIDIA RTX 3060 GPU 上訓練">
-                            Implemented audio signal processing pipeline with librosa for mel-spectrogram extraction (128 mel bands × 282 time frames) and trained on NVIDIA RTX 3060 GPU
-                        </li>
-                    </ul>
-                    <div class="project-tags">
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">CNN-LSTM</span>
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag">Audio Processing</span>
-                        <span class="tag">Librosa</span>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">Aug - Dec 2025</span>
+                            <span class="project-category">Deep Learning</span>
+                        </div>
+                        <h3 class="project-title" data-en="Speech Emotion Recognition" data-zh="語音情緒識別">Speech Emotion Recognition</h3>
+                        <p class="project-description" data-en="CNN-LSTM hybrid architecture for 5-class emotion classification achieving 87.41% accuracy" data-zh="CNN-LSTM 混合架構進行 5 類情緒分類，準確率 87.41%">
+                            CNN-LSTM hybrid architecture for 5-class emotion classification achieving 87.41% accuracy
+                        </p>
+                        <ul class="project-highlights">
+                            <li data-en="2.75M parameter hybrid model" data-zh="275 萬參數混合模型">2.75M parameter hybrid model</li>
+                            <li data-en="+9.6% vs Random Forest baseline" data-zh="超越隨機森林基準 9.6%">+9.6% vs Random Forest baseline</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">CNN-LSTM</span>
+                            <span class="tag">Librosa</span>
+                        </div>
+                        <a href="projects/speech-emotion.html" class="project-link">
+                            <span data-en="View Project" data-zh="查看專案">View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 data-en="DARTS - Campus Mobility System" data-zh="DARTS - 校園移動系統">DARTS - Campus Mobility System</h3>
-                        <span class="project-date">Oct 2022 - May 2023</span>
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-bicycle"></i>
+                        </div>
+                        <div class="project-overlay"></div>
                     </div>
-                    <p class="project-description" data-en="Climate Change Innovation Competition finalist - Integrated system for Net Zero emissions and Vision Zero traffic fatalities on campus" data-zh="氣候變遷創新競賽決賽項目 - 用於淨零排放和校園零交通事故的整合系統">
-                        Climate Change Innovation Competition finalist - Integrated system for Net Zero emissions and Vision Zero traffic fatalities on campus
-                    </p>
-                    <ul class="project-highlights">
-                        <li data-en="Developed ARIMA-based prediction system for 12 YouBike stations with 86.1% accuracy, integrating campus traffic flow and parking guidance" data-zh="為 12 個 YouBike 站點開發基於 ARIMA 的預測系統，準確率達 86.1%，整合校園交通流量和停車導引">
-                            Developed ARIMA-based prediction system for 12 YouBike stations with 86.1% accuracy, integrating campus traffic flow and parking guidance
-                        </li>
-                        <li data-en="Created Equivalent Route Formula converting physical distances to perceived effort, factoring slopes and weather for human-centric route optimization" data-zh="創建等效路徑公式將物理距離轉換為感知努力，考量坡度和天氣以進行以人為本的路線優化">
-                            Created Equivalent Route Formula converting physical distances to perceived effort, factoring slopes and weather for human-centric route optimization
-                        </li>
-                        <li data-en="National finalist (Top 10/121 teams) in Taiwan Ministry of Education Climate Change Innovation Competition, targeting Net Zero 2050" data-zh="台灣教育部氣候變遷創新競賽全國決賽（前 10/121 隊），目標淨零 2050">
-                            National finalist (Top 10/121 teams) in Taiwan Ministry of Education Climate Change Innovation Competition, targeting Net Zero 2050
-                        </li>
-                    </ul>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Time Series</span>
-                        <span class="tag">ARIMA-LSTM</span>
-                        <span class="tag">Prediction Model</span>
-                        <span class="tag">IoT</span>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">Oct 2022 - May 2023</span>
+                            <span class="project-category">Time Series</span>
+                        </div>
+                        <h3 class="project-title">DARTS</h3>
+                        <p class="project-description" data-en="Campus mobility system for Net Zero emissions - National finalist in Climate Change Innovation Competition" data-zh="校園移動系統實現淨零排放 - 氣候變遷創新競賽全國決賽">
+                            Campus mobility system for Net Zero emissions - National finalist in Climate Change Innovation Competition
+                        </p>
+                        <ul class="project-highlights">
+                            <li data-en="86.1% YouBike prediction accuracy" data-zh="YouBike 預測準確率 86.1%">86.1% YouBike prediction accuracy</li>
+                            <li data-en="Top 10/121 teams nationally" data-zh="全國前 10/121 隊">Top 10/121 teams nationally</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">ARIMA</span>
+                            <span class="tag">LSTM</span>
+                            <span class="tag">IoT</span>
+                        </div>
+                        <a href="projects/darts.html" class="project-link">
+                            <span data-en="View Project" data-zh="查看專案">View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card" id="sports-career-card">
-                    <div class="project-header">
-                        <h3 data-en="Cross-League Sports Career Modeling System" data-zh="跨聯盟運動職業建模系統">Cross-League Sports Career Modeling System</h3>
-                        <span class="project-date">Jan 2025 - May 2025</span>
+                <article class="project-card" id="sports-career-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="project-overlay"></div>
                     </div>
-                    <p class="project-description" data-en="ML-based prediction system for athlete career trajectories across NFL, NBA, and FIFA" data-zh="基於機器學習的運動員職業軌跡預測系統，涵蓋 NFL、NBA 和 FIFA">
-                        ML-based prediction system for athlete career trajectories across NFL, NBA, and FIFA
-                    </p>
-                    <ul class="project-highlights">
-                        <li data-en="Multi-sport analysis of 1,800+ athletes with hierarchical encoding and BMI features" data-zh="分析 1,800+ 名運動員，採用分層編碼和 BMI 特徵">
-                            Multi-sport analysis of 1,800+ athletes with hierarchical encoding and BMI features
-                        </li>
-                        <li data-en="GridSearchCV optimization for 10-year predictions with Random Forest and Gradient Boosting" data-zh="GridSearchCV 優化 10 年預測，使用隨機森林和梯度提升">
-                            GridSearchCV optimization for 10-year predictions with Random Forest and Gradient Boosting
-                        </li>
-                        <li data-en="Interactive Dash dashboard with career trajectory visualization" data-zh="互動式 Dash 儀表板，具有職業軌跡可視化">
-                            Interactive Dash dashboard with career trajectory visualization
-                        </li>
-                    </ul>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag">Dash</span>
-                        <span class="tag">Feature Engineering</span>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">Jan - May 2025</span>
+                            <span class="project-category">ML Prediction</span>
+                        </div>
+                        <h3 class="project-title" data-en="Sports Career Modeling" data-zh="運動職業建模">Sports Career Modeling</h3>
+                        <p class="project-description" data-en="Cross-league ML prediction system for athlete career trajectories across NFL, NBA, and FIFA" data-zh="跨聯盟 ML 預測系統，預測 NFL、NBA、FIFA 運動員職業軌跡">
+                            Cross-league ML prediction system for athlete career trajectories across NFL, NBA, and FIFA
+                        </p>
+                        <ul class="project-highlights">
+                            <li data-en="1,800+ athletes analyzed" data-zh="分析 1,800+ 名運動員">1,800+ athletes analyzed</li>
+                            <li data-en="Interactive Dash dashboard" data-zh="互動式 Dash 儀表板">Interactive Dash dashboard</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Dash</span>
+                            <span class="tag">Plotly</span>
+                        </div>
+                        <button class="project-link modal-trigger">
+                            <span data-en="View Details" data-zh="查看詳情">View Details</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title" data-en="Technical Skills" data-zh="技術技能">Technical Skills</h2>
-            <div class="skills-list">
-                <div class="skill-category">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag" data-en="My toolkit" data-zh="我的工具">My toolkit</span>
+                <h2 class="section-title" data-en="Technical Skills" data-zh="技術技能">Technical Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 data-en="Languages" data-zh="程式語言">Languages</h3>
+                    <div class="skill-items">
+                        <span>Python</span>
+                        <span>Java</span>
+                        <span>C++</span>
+                        <span>SQL</span>
+                        <span>R</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-en="ML & AI" data-zh="機器學習 & AI">ML & AI</h3>
+                    <div class="skill-items">
+                        <span>PyTorch</span>
+                        <span>TensorFlow</span>
+                        <span>Scikit-learn</span>
+                        <span>Hugging Face</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
                     <h3 data-en="Database" data-zh="資料庫">Database</h3>
-                    <ul>
-                        <li>MySQL / MongoDB / Oracle</li>
-                    </ul>
+                    <div class="skill-items">
+                        <span>MySQL</span>
+                        <span>MongoDB</span>
+                        <span>Oracle</span>
+                        <span>PostgreSQL</span>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3 data-en="Programming Language" data-zh="程式語言">Programming Language</h3>
-                    <ul>
-                        <li>Python / Java / C++ / SQL / R</li>
-                    </ul>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 data-en="Cloud & Big Data" data-zh="雲端 & 大數據">Cloud & Big Data</h3>
+                    <div class="skill-items">
+                        <span>AWS</span>
+                        <span>GCP</span>
+                        <span>Spark</span>
+                        <span>Hadoop</span>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3 data-en="Data Warehouse" data-zh="數據倉儲">Data Warehouse</h3>
-                    <ul>
-                        <li>AWS Redshift / GCP Big Query</li>
-                    </ul>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 data-en="Data Pipeline" data-zh="數據管道">Data Pipeline</h3>
+                    <div class="skill-items">
+                        <span>Airflow</span>
+                        <span>dbt</span>
+                        <span>Kafka</span>
+                        <span>Jenkins</span>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3 data-en="Big Data Technology" data-zh="大數據技術">Big Data Technology</h3>
-                    <ul>
-                        <li>Hadoop / Hive / Spark / Kafka</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3 data-en="ELT / ETL Workflow" data-zh="ELT / ETL 工作流程">ELT / ETL Workflow</h3>
-                    <ul>
-                        <li>Airflow / dbt / Jenkins</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3 data-en="Web Technology" data-zh="網頁技術">Web Technology</h3>
-                    <ul>
-                        <li>HTML / CSS / Javascript / Flask / React.js</li>
-                    </ul>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 data-en="Web & Viz" data-zh="網頁 & 視覺化">Web & Viz</h3>
+                    <div class="skill-items">
+                        <span>React</span>
+                        <span>Flask</span>
+                        <span>Dash</span>
+                        <span>Tableau</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -454,31 +601,56 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" data-en="Get In Touch" data-zh="聯絡我">Get In Touch</h2>
-            <p class="contact-description" data-en="I'm always open to new opportunities and collaborations. Feel free to reach out!" data-zh="我隨時歡迎新的機會和合作。歡迎聯絡我！">
-                I'm always open to new opportunities and collaborations. Feel free to reach out!
-            </p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:champion3.chen@gmail.com">champion3.chen@gmail.com</a>
+        <div class="section-container">
+            <div class="contact-content">
+                <div class="contact-header">
+                    <span class="section-tag" data-en="Get in touch" data-zh="聯絡我">Get in touch</span>
+                    <h2 class="section-title" data-en="Let's Connect" data-zh="與我聯繫">Let's Connect</h2>
+                    <p class="contact-description" data-en="I'm always open to new opportunities, collaborations, and interesting conversations. Feel free to reach out!" data-zh="我隨時歡迎新的機會、合作和有趣的對話。歡迎聯絡我！">
+                        I'm always open to new opportunities, collaborations, and interesting conversations. Feel free to reach out!
+                    </p>
                 </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/Ckcinnabar" target="_blank">github.com/Ckcinnabar</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://linkedin.com/in/kuan-chen-chen" target="_blank">linkedin.com/in/kuan-chen-chen</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+13522643469">+1 (352) 264-3469</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+886986217050">+886-986-217-050</a>
+                <div class="contact-links">
+                    <a href="mailto:champion3.chen@gmail.com" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">champion3.chen@gmail.com</span>
+                        </div>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                    <a href="https://github.com/Ckcinnabar" target="_blank" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">Ckcinnabar</span>
+                        </div>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/kuan-chen-chen" target="_blank" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">kuan-chen-chen</span>
+                        </div>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                    <a href="tel:+13522643469" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-label" data-en="Phone (US)" data-zh="電話 (美國)">Phone (US)</span>
+                            <span class="contact-value">+1 (352) 264-3469</span>
+                        </div>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -486,70 +658,59 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo">KC</span>
+                <p data-en="Data Scientist & ML Engineer" data-zh="數據科學家 & 機器學習工程師">Data Scientist & ML Engineer</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home" data-en="Home" data-zh="首頁">Home</a>
+                <a href="#about" data-en="About" data-zh="關於">About</a>
+                <a href="#projects" data-en="Projects" data-zh="專案">Projects</a>
+                <a href="#contact" data-en="Contact" data-zh="聯絡">Contact</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
+            </div>
         </div>
     </footer>
 
     <!-- Sports Career Modal -->
     <div id="sports-career-modal" class="modal">
+        <div class="modal-backdrop"></div>
         <div class="modal-content">
-            <span class="modal-close">&times;</span>
+            <button class="modal-close" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
             <div class="modal-header">
-                <h2 data-en="Cross-League Sports Career Modeling System" data-zh="跨聯盟運動職業建模系統">Cross-League Sports Career Modeling System</h2>
-                <p class="modal-subtitle" data-en="Machine Learning for Athletic Career Prediction" data-zh="機器學習運動職業預測">Machine Learning for Athletic Career Prediction</p>
+                <span class="modal-tag">ML Prediction System</span>
+                <h2 data-en="Cross-League Sports Career Modeling" data-zh="跨聯盟運動職業建模">Cross-League Sports Career Modeling</h2>
             </div>
             <div class="modal-body">
                 <section class="modal-section">
-                    <h3 data-en="Project Overview" data-zh="專案概述">Project Overview</h3>
-                    <p data-en="Developed a comprehensive machine learning system that predicts athletic career longevity across three major professional sports leagues: NFL (American Football), NBA (Basketball), and FIFA (Soccer). The system analyzes physical attributes, performance metrics, and positional data to forecast career trajectories over a 10-year span." data-zh="開發全面的機器學習系統，預測三大職業運動聯盟的運動員職業生涯長度：NFL（美式足球）、NBA（籃球）和 FIFA（足球）。系統分析身體屬性、表現指標和位置數據，預測 10 年職業軌跡。">
-                        Developed a comprehensive machine learning system that predicts athletic career longevity across three major professional sports leagues: NFL (American Football), NBA (Basketball), and FIFA (Soccer). The system analyzes physical attributes, performance metrics, and positional data to forecast career trajectories over a 10-year span.
+                    <h3 data-en="Overview" data-zh="概述">Overview</h3>
+                    <p data-en="Developed a comprehensive machine learning system that predicts athletic career longevity across three major professional sports leagues: NFL, NBA, and FIFA. The system analyzes physical attributes, performance metrics, and positional data to forecast career trajectories over a 10-year span." data-zh="開發全面的機器學習系統，預測三大職業運動聯盟（NFL、NBA、FIFA）的運動員職業生涯長度。系統分析身體屬性、表現指標和位置數據，預測 10 年職業軌跡。">
+                        Developed a comprehensive machine learning system that predicts athletic career longevity across three major professional sports leagues: NFL, NBA, and FIFA. The system analyzes physical attributes, performance metrics, and positional data to forecast career trajectories over a 10-year span.
                     </p>
                 </section>
-
                 <section class="modal-section">
-                    <h3 data-en="Key Technical Features" data-zh="主要技術特色">Key Technical Features</h3>
+                    <h3 data-en="Key Features" data-zh="主要特色">Key Features</h3>
                     <ul class="modal-list">
-                        <li>
-                            <strong data-en="Multi-Sport Dataset Integration:" data-zh="多運動數據集整合：">Multi-Sport Dataset Integration:</strong> <span data-en="Analyzed 1,800+ professional athletes across NFL, NBA, and FIFA, creating unified feature engineering pipeline handling sport-specific attributes" data-zh="分析 1,800+ 名職業運動員（NFL、NBA、FIFA），創建統一特徵工程流程處理運動特定屬性">Analyzed 1,800+ professional athletes across NFL, NBA, and FIFA, creating unified feature engineering pipeline handling sport-specific attributes</span>
-                        </li>
-                        <li>
-                            <strong data-en="Hierarchical Position Encoding:" data-zh="分層位置編碼：">Hierarchical Position Encoding:</strong> <span data-en="Designed custom encoding system capturing positional similarities within and across sports (e.g., NFL Quarterback vs NBA Point Guard leadership roles)" data-zh="設計自定義編碼系統，捕捉運動內部和跨運動的位置相似性（例如，NFL 四分衛與 NBA 控球後衛的領導角色）">Designed custom encoding system capturing positional similarities within and across sports (e.g., NFL Quarterback vs NBA Point Guard leadership roles)</span>
-                        </li>
-                        <li>
-                            <strong data-en="BMI-Based Feature Engineering:" data-zh="基於 BMI 的特徵工程：">BMI-Based Feature Engineering:</strong> <span data-en="Calculated Body Mass Index and derived metabolic efficiency features, accounting for sport-specific physical demands and injury risk patterns" data-zh="計算身體質量指數並衍生代謝效率特徵，考量運動特定身體需求和受傷風險模式">Calculated Body Mass Index and derived metabolic efficiency features, accounting for sport-specific physical demands and injury risk patterns</span>
-                        </li>
-                        <li>
-                            <strong data-en="GridSearchCV Hyperparameter Optimization:" data-zh="GridSearchCV 超參數優化：">GridSearchCV Hyperparameter Optimization:</strong> <span data-en="Systematically tuned 5 regression models (Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting) with cross-validation" data-zh="系統性調校 5 個回歸模型（線性回歸、Ridge、Lasso、隨機森林、梯度提升）配合交叉驗證">Systematically tuned 5 regression models (Linear Regression, Ridge, Lasso, Random Forest, Gradient Boosting) with cross-validation</span>
-                        </li>
-                        <li>
-                            <strong data-en="Sport-Specific Model Selection:" data-zh="運動特定模型選擇：">Sport-Specific Model Selection:</strong> <span data-en="Selected Random Forest for NFL (complex positional interactions) and Gradient Boosting for NBA/FIFA (sequential performance dependencies)" data-zh="為 NFL 選擇隨機森林（複雜位置互動），為 NBA/FIFA 選擇梯度提升（序列性能依賴）">Selected Random Forest for NFL (complex positional interactions) and Gradient Boosting for NBA/FIFA (sequential performance dependencies)</span>
-                        </li>
-                        <li>
-                            <strong data-en="Interactive Dash Dashboard:" data-zh="互動式 Dash 儀表板：">Interactive Dash Dashboard:</strong> <span data-en="Built production-ready web application with real-time career trajectory predictions, peak performance identification, and comparative analytics across sports" data-zh="構建生產就緒的網頁應用程式，具有即時職業軌跡預測、峰值表現識別和跨運動比較分析">Built production-ready web application with real-time career trajectory predictions, peak performance identification, and comparative analytics across sports</span>
-                        </li>
+                        <li><strong data-en="Multi-Sport Dataset:" data-zh="多運動數據集：">Multi-Sport Dataset:</strong> <span data-en="1,800+ athletes analyzed across NFL, NBA, and FIFA" data-zh="分析 1,800+ 名 NFL、NBA、FIFA 運動員">1,800+ athletes analyzed across NFL, NBA, and FIFA</span></li>
+                        <li><strong data-en="Hierarchical Encoding:" data-zh="分層編碼：">Hierarchical Encoding:</strong> <span data-en="Custom position encoding capturing cross-sport similarities" data-zh="自定義位置編碼捕捉跨運動相似性">Custom position encoding capturing cross-sport similarities</span></li>
+                        <li><strong data-en="Model Optimization:" data-zh="模型優化：">Model Optimization:</strong> <span data-en="GridSearchCV tuning for Random Forest & Gradient Boosting" data-zh="GridSearchCV 調優隨機森林和梯度提升">GridSearchCV tuning for Random Forest & Gradient Boosting</span></li>
+                        <li><strong data-en="Interactive Dashboard:" data-zh="互動儀表板：">Interactive Dashboard:</strong> <span data-en="Dash application with real-time career trajectory visualization" data-zh="Dash 應用程式即時職業軌跡可視化">Dash application with real-time career trajectory visualization</span></li>
                     </ul>
                 </section>
-
                 <section class="modal-section">
-                    <h3 data-en="Technology Stack" data-zh="技術棧">Technology Stack</h3>
+                    <h3 data-en="Tech Stack" data-zh="技術棧">Tech Stack</h3>
                     <div class="modal-tags">
-                        <span class="modal-tag">Python</span>
-                        <span class="modal-tag">Scikit-learn</span>
-                        <span class="modal-tag">Pandas</span>
-                        <span class="modal-tag">NumPy</span>
-                        <span class="modal-tag">Dash</span>
-                        <span class="modal-tag">Plotly</span>
-                        <span class="modal-tag">Random Forest</span>
-                        <span class="modal-tag">Gradient Boosting</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">Dash</span>
+                        <span class="tag">Plotly</span>
                     </div>
-                </section>
-
-                <section class="modal-section">
-                    <h3 data-en="Applications & Impact" data-zh="應用與影響">Applications & Impact</h3>
-                    <p data-en="This system provides actionable insights for team management, player contract negotiations, and scouting decisions. By predicting career longevity, organizations can make data-driven decisions on long-term investments in athletes, optimizing roster composition and salary cap allocation." data-zh="此系統為球隊管理、球員合約談判和球探決策提供可行的洞察。透過預測職業生涯長度，組織可以對運動員的長期投資做出數據驅動的決策，優化陣容組成和薪資上限配置。">
-                        This system provides actionable insights for team management, player contract negotiations, and scouting decisions. By predicting career longevity, organizations can make data-driven decisions on long-term investments in athletes, optimizing roster composition and salary cap allocation.
-                    </p>
                 </section>
             </div>
         </div>
