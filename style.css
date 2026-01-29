@@ -767,6 +767,37 @@ section {
     display: none;
 }
 
+.edu-logo {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border-radius: 14px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-subtle);
+    transition: var(--transition-fast);
+}
+
+.edu-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.education-card:hover .edu-logo {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+.education-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
 .edu-content {
     width: 100%;
 }
@@ -1671,6 +1702,117 @@ section {
     font-size: 1.1rem;
     color: var(--text-secondary);
     margin-top: 0.5rem;
+}
+
+/* Valedictorian Photo in Modal */
+.modal-photo {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.modal-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* School Logo in Modal Header */
+.modal-header-with-logo {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.modal-school-logo {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border-radius: 16px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-subtle);
+}
+
+.modal-school-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-header-text {
+    flex: 1;
+}
+
+/* Experience Modal Details */
+.modal-details-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.modal-details-list li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 0.75rem 1rem;
+    padding-left: 2rem;
+    position: relative;
+    background: var(--border-subtle);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.modal-details-list li:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--primary-light);
+}
+
+.modal-details-list li::before {
+    content: '→';
+    position: absolute;
+    left: 1rem;
+    color: var(--primary);
+}
+
+/* Clickable Timeline Items */
+.timeline-item.clickable {
+    cursor: pointer;
+}
+
+.timeline-item.clickable .timeline-card::after {
+    content: '\f065';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--border-subtle);
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    transition: var(--transition-fast);
+    opacity: 0;
+}
+
+.timeline-item.clickable:hover .timeline-card::after {
+    opacity: 1;
+    background: var(--primary);
+    color: var(--bg-primary);
+}
+
+.timeline-item.clickable .timeline-card {
+    position: relative;
 }
 
 /* ===== Responsive ===== */

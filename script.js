@@ -27,6 +27,9 @@ class Portfolio {
 
             // Initialize education modal
             new EducationModal(this);
+
+            // Initialize experience modal
+            new ExperienceModal(this);
         });
     }
 
@@ -377,10 +380,15 @@ class EducationModal {
                         <i class="fas fa-times"></i>
                     </button>
                     <div class="modal-header">
-                        <span class="modal-tag" id="edu-modal-tag">Education</span>
-                        <h2 id="edu-modal-title"></h2>
-                        <p id="edu-modal-degree" class="modal-subtitle"></p>
-                        <div id="edu-modal-meta" class="modal-meta-info"></div>
+                        <div class="modal-header-with-logo">
+                            <div class="modal-school-logo" id="edu-modal-logo"></div>
+                            <div class="modal-header-text">
+                                <span class="modal-tag" id="edu-modal-tag">Education</span>
+                                <h2 id="edu-modal-title"></h2>
+                                <p id="edu-modal-degree" class="modal-subtitle"></p>
+                                <div id="edu-modal-meta" class="modal-meta-info"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-body" id="edu-modal-body"></div>
                 </div>
@@ -418,11 +426,18 @@ class EducationModal {
         const location = card.querySelector('.edu-location')?.textContent || '';
         const courses = card.querySelectorAll('.course-list li');
         const badge = card.querySelector('.edu-badge span');
+        const logoImg = card.querySelector('.edu-logo img');
+        const valPhoto = card.getAttribute('data-valedictorian-photo');
 
         // Set modal content
         document.getElementById('edu-modal-tag').textContent = this.currentLang === 'en' ? 'Education' : '學歷';
         document.getElementById('edu-modal-title').textContent = school;
         document.getElementById('edu-modal-degree').textContent = degree.getAttribute(`data-${this.currentLang}`) || degree.textContent;
+
+        // Set logo
+        if (logoImg) {
+            document.getElementById('edu-modal-logo').innerHTML = `<img src="${logoImg.src}" alt="${school}">`;
+        }
 
         // Meta info
         let metaHTML = `
@@ -443,6 +458,15 @@ class EducationModal {
 
         // Body content
         let bodyHTML = '';
+
+        // Valedictorian photo
+        if (valPhoto) {
+            bodyHTML += `
+                <div class="modal-photo">
+                    <img src="${valPhoto}" alt="${this.currentLang === 'en' ? 'Graduation Ceremony' : '畢業典禮'}">
+                </div>
+            `;
+        }
 
         // Badge (Valedictorian)
         if (badge) {
@@ -470,6 +494,147 @@ class EducationModal {
         }
 
         document.getElementById('edu-modal-body').innerHTML = bodyHTML;
+
+        // Show modal
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Experience Modal
+class ExperienceModal {
+    constructor(portfolio) {
+        this.portfolio = portfolio;
+        this.currentLang = localStorage.getItem('language') || 'en';
+        this.modal = null;
+        this.init();
+    }
+
+    init() {
+        this.createModal();
+        this.setupClickHandlers();
+
+        window.addEventListener('languageChanged', (e) => {
+            this.currentLang = e.detail.lang;
+        });
+    }
+
+    createModal() {
+        const modalHTML = `
+            <div id="experience-modal" class="modal">
+                <div class="modal-backdrop"></div>
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="modal-header">
+                        <span class="modal-tag" id="exp-modal-tag">Experience</span>
+                        <h2 id="exp-modal-title"></h2>
+                        <p id="exp-modal-company" class="modal-subtitle"></p>
+                        <div id="exp-modal-meta" class="modal-meta-info"></div>
+                    </div>
+                    <div class="modal-body" id="exp-modal-body"></div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        this.modal = document.getElementById('experience-modal');
+
+        // Close handlers
+        const closeBtn = this.modal.querySelector('.modal-close');
+        const backdrop = this.modal.querySelector('.modal-backdrop');
+
+        closeBtn.addEventListener('click', () => this.closeModal());
+        backdrop.addEventListener('click', () => this.closeModal());
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                this.closeModal();
+            }
+        });
+    }
+
+    setupClickHandlers() {
+        document.querySelectorAll('.timeline-item.clickable').forEach((item) => {
+            item.addEventListener('click', () => {
+                this.openModal(item);
+            });
+        });
+    }
+
+    openModal(item) {
+        const card = item.querySelector('.timeline-card');
+        const title = card.querySelector('.card-title').textContent;
+        const company = card.querySelector('.card-company').textContent;
+        const date = card.querySelector('.card-date').textContent;
+        const type = card.querySelector('.card-type');
+        const locationEl = card.querySelector('.card-location');
+        const summary = card.querySelector('.card-summary');
+        const details = card.querySelectorAll('.card-details li');
+
+        // Set type tag
+        const typeText = type.getAttribute(`data-${this.currentLang}`) || type.textContent;
+        document.getElementById('exp-modal-tag').textContent = typeText;
+
+        // Set title and company
+        document.getElementById('exp-modal-title').textContent = title;
+        document.getElementById('exp-modal-company').textContent = company;
+
+        // Meta info
+        let metaHTML = `
+            <div class="modal-meta-item">
+                <i class="fas fa-calendar"></i>
+                <span>${date}</span>
+            </div>
+        `;
+        if (locationEl) {
+            const locationSpan = locationEl.querySelector('span[data-en]');
+            const locationText = locationSpan
+                ? (locationSpan.getAttribute(`data-${this.currentLang}`) || locationSpan.textContent)
+                : locationEl.textContent.trim();
+            metaHTML += `
+                <div class="modal-meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${locationText}</span>
+                </div>
+            `;
+        }
+        document.getElementById('exp-modal-meta').innerHTML = metaHTML;
+
+        // Body content
+        let bodyHTML = '';
+
+        // Summary
+        if (summary) {
+            const summaryText = summary.getAttribute(`data-${this.currentLang}`) || summary.textContent;
+            bodyHTML += `
+                <div class="modal-section">
+                    <h3>${this.currentLang === 'en' ? 'Overview' : '概述'}</h3>
+                    <p>${summaryText}</p>
+                </div>
+            `;
+        }
+
+        // Details
+        if (details.length > 0) {
+            bodyHTML += `
+                <div class="modal-section">
+                    <h3>${this.currentLang === 'en' ? 'Key Responsibilities' : '主要職責'}</h3>
+                    <ul class="modal-details-list">
+            `;
+            details.forEach(detail => {
+                const detailText = detail.getAttribute(`data-${this.currentLang}`) || detail.textContent;
+                bodyHTML += `<li>${detailText}</li>`;
+            });
+            bodyHTML += `</ul></div>`;
+        }
+
+        document.getElementById('exp-modal-body').innerHTML = bodyHTML;
 
         // Show modal
         this.modal.classList.add('active');
