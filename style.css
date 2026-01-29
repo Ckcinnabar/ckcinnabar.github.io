@@ -1082,25 +1082,7 @@ section {
 }
 
 .card-details {
-    list-style: none;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-subtle);
-}
-
-.card-details li {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    padding-left: 1rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-}
-
-.card-details li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
+    display: none;
 }
 
 /* ===== Projects Section ===== */
