@@ -354,8 +354,8 @@ p {
     color: var(--primary);
     background: rgba(56, 189, 248, 0.1);
     border: 1px solid rgba(56, 189, 248, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
     margin-bottom: 1.5rem;
     animation: fadeInUp 1s var(--ease-out-expo) 0.1s forwards;
     opacity: 0;
@@ -453,7 +453,7 @@ p {
     font-size: 0.9rem;
     font-weight: 600;
     padding: 1rem 1.75rem;
-    border-radius: 100px;
+    border-radius: 14px;
     cursor: pointer;
     transition: var(--transition-fast);
     border: none;
@@ -724,69 +724,95 @@ section {
 .education-cards {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .education-card {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem;
+    position: relative;
+    padding: 1.75rem;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 16px;
+    border-radius: 20px;
     transition: var(--transition-fast);
     cursor: pointer;
+    overflow: hidden;
+}
+
+.education-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    opacity: 0;
+    transition: var(--transition-fast);
 }
 
 .education-card:hover {
-    border-color: var(--border-default);
+    border-color: var(--primary);
     background: var(--bg-card-hover);
+    transform: translateX(4px);
+}
+
+.education-card:hover::before {
+    opacity: 1;
 }
 
 .edu-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(56, 189, 248, 0.1);
-    border-radius: 12px;
-    color: var(--primary);
-    font-size: 1.25rem;
-    flex-shrink: 0;
+    display: none;
 }
 
 .edu-content {
-    flex: 1;
+    width: 100%;
 }
 
 .edu-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.25rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
 }
 
 .edu-header h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-primary);
+    font-weight: 600;
 }
 
 .edu-date {
     font-family: var(--font-heading);
     font-size: 0.8rem;
-    color: var(--text-muted);
+    font-weight: 500;
+    color: var(--primary);
+    background: rgba(56, 189, 248, 0.1);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    white-space: nowrap;
 }
 
 .edu-degree {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
 }
 
 .edu-location {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.edu-location::before {
+    content: '\f3c5';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.75rem;
+    color: var(--primary);
 }
 
 .edu-badge {
@@ -794,54 +820,81 @@ section {
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-heading);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--primary);
-    background: rgba(56, 189, 248, 0.1);
-    padding: 0.35rem 0.75rem;
-    border-radius: 100px;
-    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+    border: 1px solid rgba(251, 191, 36, 0.2);
 }
 
 .edu-badge i {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 .edu-expand {
+    position: absolute;
+    top: 1.75rem;
+    right: 1.75rem;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background: var(--border-subtle);
+    border-radius: 50%;
     color: var(--text-muted);
     transition: var(--transition-fast);
+    z-index: 10;
+}
+
+.education-card:hover .edu-expand {
+    background: var(--primary);
+    color: var(--bg-primary);
 }
 
 .education-card.expanded .edu-expand {
     transform: rotate(180deg);
+    background: var(--primary);
+    color: var(--bg-primary);
 }
 
 .course-list {
-    margin-top: 1rem;
-    padding-top: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
     border-top: 1px solid var(--border-subtle);
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
 }
 
 .course-list li {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    padding-left: 1rem;
+    padding: 0.5rem 0.75rem;
+    padding-left: 1.5rem;
     position: relative;
+    background: var(--border-subtle);
+    border-radius: 8px;
+    transition: var(--transition-fast);
+}
+
+.course-list li:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--primary-light);
 }
 
 .course-list li::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0.6em;
-    width: 4px;
-    height: 4px;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
     background: var(--primary);
     border-radius: 50%;
 }
@@ -931,14 +984,15 @@ section {
 .timeline-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 1.5rem;
+    border-radius: 20px;
+    padding: 1.75rem;
     transition: var(--transition-fast);
 }
 
 .timeline-card:hover {
-    border-color: var(--border-default);
+    border-color: var(--primary);
     transform: translateX(8px);
+    box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15);
 }
 
 .card-meta {
@@ -1029,15 +1083,15 @@ section {
 .project-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     transition: var(--transition-medium);
 }
 
 .project-card:hover {
-    border-color: var(--border-default);
+    border-color: var(--primary);
     transform: translateY(-8px);
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 30px 60px -20px rgba(56, 189, 248, 0.2);
 }
 
 .project-card.featured {
@@ -1151,8 +1205,8 @@ section {
     font-weight: 500;
     color: var(--text-secondary);
     background: var(--border-subtle);
-    padding: 0.35rem 0.75rem;
-    border-radius: 100px;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
     transition: var(--transition-fast);
 }
 
@@ -1200,7 +1254,7 @@ section {
 .skill-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2rem;
     transition: var(--transition-fast);
 }
@@ -1208,6 +1262,7 @@ section {
 .skill-card:hover {
     border-color: var(--primary);
     transform: translateY(-4px);
+    box-shadow: 0 15px 40px -10px rgba(56, 189, 248, 0.15);
 }
 
 .skill-icon {
@@ -1217,7 +1272,7 @@ section {
     align-items: center;
     justify-content: center;
     background: rgba(56, 189, 248, 0.1);
-    border-radius: 14px;
+    border-radius: 16px;
     color: var(--primary);
     font-size: 1.5rem;
     margin-bottom: 1.25rem;
@@ -1289,7 +1344,7 @@ section {
     padding: 1.5rem;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 16px;
+    border-radius: 20px;
     text-align: left;
     transition: var(--transition-fast);
 }
@@ -1297,6 +1352,8 @@ section {
 .contact-card:hover {
     border-color: var(--primary);
     background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15);
 }
 
 .contact-icon {
@@ -1306,7 +1363,7 @@ section {
     align-items: center;
     justify-content: center;
     background: rgba(56, 189, 248, 0.1);
-    border-radius: 12px;
+    border-radius: 14px;
     color: var(--primary);
     font-size: 1.25rem;
     flex-shrink: 0;
@@ -1438,10 +1495,11 @@ section {
     max-height: 90vh;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 24px;
+    border-radius: 28px;
     overflow-y: auto;
     transform: translateY(20px) scale(0.98);
     transition: var(--transition-medium);
+    box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.5);
 }
 
 .modal.active .modal-content {
@@ -1665,5 +1723,25 @@ section {
 
     .skill-card {
         padding: 1.5rem;
+    }
+
+    .course-list {
+        grid-template-columns: 1fr;
+    }
+
+    .edu-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .edu-expand {
+        top: 1.25rem;
+        right: 1.25rem;
+    }
+
+    .education-card {
+        padding: 1.25rem;
+        padding-right: 3.5rem;
     }
 }
