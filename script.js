@@ -15,11 +15,18 @@ class Portfolio {
             this.setupLanguageToggle();
             this.setupNavbarScroll();
             this.setupMobileMenu();
-            this.setupEducationCards();
             this.setupModal();
             this.setupSmoothScroll();
             this.setupScrollAnimations();
             this.setupNavigationHighlight();
+
+            // Initialize typewriter after a short delay
+            setTimeout(() => {
+                new TypewriterEffect();
+            }, 1000);
+
+            // Initialize education modal
+            new EducationModal(this);
         });
     }
 
@@ -32,6 +39,11 @@ class Portfolio {
             this.currentLang = this.currentLang === 'en' ? 'zh' : 'en';
             this.setLanguage(this.currentLang);
             localStorage.setItem('language', this.currentLang);
+
+            // Dispatch event for typewriter
+            window.dispatchEvent(new CustomEvent('languageChanged', {
+                detail: { lang: this.currentLang }
+            }));
         });
     }
 
@@ -101,31 +113,6 @@ class Portfolio {
         });
     }
 
-    // Education Cards Expansion
-    setupEducationCards() {
-        document.querySelectorAll('.education-card.clickable').forEach(card => {
-            card.addEventListener('click', () => {
-                const courseList = card.querySelector('.course-list');
-                if (!courseList) return;
-
-                const isExpanded = card.classList.contains('expanded');
-
-                // Close all other cards
-                document.querySelectorAll('.education-card.expanded').forEach(openCard => {
-                    if (openCard !== card) {
-                        openCard.classList.remove('expanded');
-                        const openList = openCard.querySelector('.course-list');
-                        if (openList) openList.style.display = 'none';
-                    }
-                });
-
-                // Toggle current card
-                card.classList.toggle('expanded');
-                courseList.style.display = isExpanded ? 'none' : 'grid';
-            });
-        });
-    }
-
     // Modal
     setupModal() {
         const modal = document.getElementById('sports-career-modal');
@@ -148,7 +135,6 @@ class Portfolio {
         // Open modal from card click
         if (sportsCard) {
             sportsCard.addEventListener('click', (e) => {
-                // Don't open if clicking on a link or button
                 if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
                     return;
                 }
@@ -170,7 +156,6 @@ class Portfolio {
             modalBackdrop.addEventListener('click', closeModal);
         }
 
-        // Close on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
@@ -181,6 +166,11 @@ class Portfolio {
     openModal(modal) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+    }
+
+    closeModal(modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
     // Smooth Scroll
@@ -230,7 +220,6 @@ class Portfolio {
             });
         });
 
-        // Add active link style
         const style = document.createElement('style');
         style.textContent = `
             .nav-link.active {
@@ -243,7 +232,7 @@ class Portfolio {
         document.head.appendChild(style);
     }
 
-    // Scroll Animations (Intersection Observer)
+    // Scroll Animations
     setupScrollAnimations() {
         const observerOptions = {
             root: null,
@@ -260,7 +249,6 @@ class Portfolio {
             });
         }, observerOptions);
 
-        // Observe elements that should animate on scroll
         const animateElements = document.querySelectorAll(
             '.timeline-item, .project-card, .skill-card, .contact-card, .education-card'
         );
@@ -272,7 +260,6 @@ class Portfolio {
             observer.observe(el);
         });
 
-        // Add animation styles
         const style = document.createElement('style');
         style.textContent = `
             .animate-in {
@@ -281,6 +268,217 @@ class Portfolio {
             }
         `;
         document.head.appendChild(style);
+    }
+}
+
+// Typewriter Effect
+class TypewriterEffect {
+    constructor() {
+        this.element = document.querySelector('.typing-text');
+        this.currentLang = localStorage.getItem('language') || 'en';
+        this.titles = {
+            en: ['Data Scientist', 'ML Engineer', 'AI Researcher'],
+            zh: ['數據科學家', '機器學習工程師', 'AI 研究員']
+        };
+        this.currentIndex = 0;
+        this.charIndex = 0;
+        this.isDeleting = false;
+        this.typeSpeed = 100;
+        this.deleteSpeed = 50;
+        this.pauseAfterType = 2000;
+        this.pauseAfterDelete = 500;
+        this.isRunning = false;
+        this.timeoutId = null;
+
+        if (this.element) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.startTyping();
+
+        window.addEventListener('languageChanged', (e) => {
+            this.stopTyping();
+            this.currentLang = e.detail.lang;
+            this.currentIndex = 0;
+            this.charIndex = 0;
+            this.isDeleting = false;
+            this.element.textContent = '';
+            setTimeout(() => this.startTyping(), 100);
+        });
+    }
+
+    startTyping() {
+        this.isRunning = true;
+        this.type();
+    }
+
+    stopTyping() {
+        this.isRunning = false;
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
+    }
+
+    type() {
+        if (!this.isRunning) return;
+
+        const currentText = this.titles[this.currentLang][this.currentIndex];
+
+        if (this.isDeleting) {
+            this.element.textContent = currentText.substring(0, this.charIndex - 1);
+            this.charIndex--;
+        } else {
+            this.element.textContent = currentText.substring(0, this.charIndex + 1);
+            this.charIndex++;
+        }
+
+        let delay = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+
+        if (!this.isDeleting && this.charIndex === currentText.length) {
+            delay = this.pauseAfterType;
+            this.isDeleting = true;
+        } else if (this.isDeleting && this.charIndex === 0) {
+            this.isDeleting = false;
+            this.currentIndex = (this.currentIndex + 1) % this.titles[this.currentLang].length;
+            delay = this.pauseAfterDelete;
+        }
+
+        this.timeoutId = setTimeout(() => this.type(), delay);
+    }
+}
+
+// Education Modal
+class EducationModal {
+    constructor(portfolio) {
+        this.portfolio = portfolio;
+        this.currentLang = localStorage.getItem('language') || 'en';
+        this.modal = null;
+        this.init();
+    }
+
+    init() {
+        this.createModal();
+        this.setupClickHandlers();
+
+        window.addEventListener('languageChanged', (e) => {
+            this.currentLang = e.detail.lang;
+        });
+    }
+
+    createModal() {
+        const modalHTML = `
+            <div id="education-modal" class="modal">
+                <div class="modal-backdrop"></div>
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="modal-header">
+                        <span class="modal-tag" id="edu-modal-tag">Education</span>
+                        <h2 id="edu-modal-title"></h2>
+                        <p id="edu-modal-degree" class="modal-subtitle"></p>
+                        <div id="edu-modal-meta" class="modal-meta-info"></div>
+                    </div>
+                    <div class="modal-body" id="edu-modal-body"></div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        this.modal = document.getElementById('education-modal');
+
+        // Close handlers
+        const closeBtn = this.modal.querySelector('.modal-close');
+        const backdrop = this.modal.querySelector('.modal-backdrop');
+
+        closeBtn.addEventListener('click', () => this.closeModal());
+        backdrop.addEventListener('click', () => this.closeModal());
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                this.closeModal();
+            }
+        });
+    }
+
+    setupClickHandlers() {
+        document.querySelectorAll('.education-card.clickable').forEach((card, index) => {
+            card.addEventListener('click', () => {
+                this.openModal(card, index);
+            });
+        });
+    }
+
+    openModal(card, index) {
+        const school = card.querySelector('h4').textContent;
+        const degree = card.querySelector('.edu-degree');
+        const date = card.querySelector('.edu-date').textContent;
+        const location = card.querySelector('.edu-location')?.textContent || '';
+        const courses = card.querySelectorAll('.course-list li');
+        const badge = card.querySelector('.edu-badge span');
+
+        // Set modal content
+        document.getElementById('edu-modal-tag').textContent = this.currentLang === 'en' ? 'Education' : '學歷';
+        document.getElementById('edu-modal-title').textContent = school;
+        document.getElementById('edu-modal-degree').textContent = degree.getAttribute(`data-${this.currentLang}`) || degree.textContent;
+
+        // Meta info
+        let metaHTML = `
+            <div class="modal-meta-item">
+                <i class="fas fa-calendar"></i>
+                <span>${date}</span>
+            </div>
+        `;
+        if (location) {
+            metaHTML += `
+                <div class="modal-meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${location}</span>
+                </div>
+            `;
+        }
+        document.getElementById('edu-modal-meta').innerHTML = metaHTML;
+
+        // Body content
+        let bodyHTML = '';
+
+        // Badge (Valedictorian)
+        if (badge) {
+            const badgeText = badge.getAttribute(`data-${this.currentLang}`) || badge.textContent;
+            bodyHTML += `
+                <div class="modal-highlight">
+                    <i class="fas fa-star"></i>
+                    <span>${badgeText}</span>
+                </div>
+            `;
+        }
+
+        // Courses
+        if (courses.length > 0) {
+            bodyHTML += `
+                <div class="modal-section">
+                    <h3>${this.currentLang === 'en' ? 'Key Courses' : '重點課程'}</h3>
+                    <div class="modal-courses">
+            `;
+            courses.forEach(course => {
+                const courseText = course.getAttribute(`data-${this.currentLang}`) || course.textContent;
+                bodyHTML += `<span class="course-tag">${courseText}</span>`;
+            });
+            bodyHTML += `</div></div>`;
+        }
+
+        document.getElementById('edu-modal-body').innerHTML = bodyHTML;
+
+        // Show modal
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
 }
 
@@ -297,16 +495,13 @@ class ProjectNavigation {
             const projectLink = card.querySelector('.project-link');
             if (!projectLink) return;
 
-            // Skip modal triggers
             if (projectLink.classList.contains('modal-trigger')) return;
 
             const href = projectLink.getAttribute('href');
             if (!href) return;
 
-            // Make entire card clickable
             card.style.cursor = 'pointer';
             card.addEventListener('click', (e) => {
-                // Don't navigate if clicking on a tag or internal link
                 if (e.target.classList.contains('tag') || e.target.closest('.project-tags')) {
                     return;
                 }
@@ -322,6 +517,5 @@ const portfolio = new Portfolio();
 // Initialize Project Navigation after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ProjectNavigation();
-
     console.log('Portfolio website loaded successfully!');
 });
