@@ -52,6 +52,30 @@
     --transition-slow: 0.8s var(--ease-out-expo);
 }
 
+/* ===== Light Theme (Chinese / zh) ===== */
+html[lang="zh"] {
+    --bg-deep:        #f0f4f8;
+    --bg-primary:     #ffffff;
+    --bg-elevated:    #f1f5f9;
+    --bg-card:        #f8fafc;
+    --bg-card-hover:  #e2e8f0;
+
+    --text-primary:   #0f172a;
+    --text-secondary: rgba(15, 23, 42, 0.65);
+    --text-muted:     rgba(15, 23, 42, 0.38);
+
+    --border-subtle:  rgba(0, 0, 0, 0.06);
+    --border-default: rgba(0, 0, 0, 0.10);
+    --border-hover:   rgba(0, 0, 0, 0.20);
+
+    --primary:        #0284c7;
+    --primary-light:  #38bdf8;
+    --primary-dark:   #0369a1;
+    --primary-glow:   rgba(2, 132, 199, 0.25);
+
+    scrollbar-color: var(--primary) var(--bg-elevated);
+}
+
 /* ===== Reset & Base ===== */
 *, *::before, *::after {
     margin: 0;
@@ -75,6 +99,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -590,6 +615,21 @@ p {
 @keyframes corePulse {
     0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
     50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.hero-photo {
+    position: absolute;
+    width: 42%;
+    height: 42%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.25);
+    z-index: 1;
 }
 
 .data-particle {
