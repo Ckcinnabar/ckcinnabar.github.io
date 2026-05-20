@@ -596,7 +596,8 @@ html[lang="zh"] .result-card {
     margin: 2rem 0;
 }
 
-.image-container img {
+.image-container img,
+.image-container video {
     width: 100%;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-subtle);
