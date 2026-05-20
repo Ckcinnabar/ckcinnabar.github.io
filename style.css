@@ -630,7 +630,12 @@ p {
     border: 2px solid var(--primary);
     box-shadow: 0 0 30px rgba(56, 189, 248, 0.25);
     z-index: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s ease;
+}
+
+.hero-photo-2 {
+    opacity: 0;
+    object-position: center 25%;
 }
 
 .data-particle {

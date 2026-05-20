@@ -276,18 +276,16 @@ class Portfolio {
     }
 
     setupPhotoRotation() {
-        const photos = ['photos/self pic.PNG', 'photos/self pic2.JPG'];
-        const photo = document.querySelector('.hero-photo');
-        if (!photo) return;
-        let current = 0;
+        const photo1 = document.querySelector('.hero-photo-1');
+        const photo2 = document.querySelector('.hero-photo-2');
+        if (!photo1 || !photo2) return;
+
+        let showingFirst = true;
         setInterval(() => {
-            photo.style.opacity = '0';
-            setTimeout(() => {
-                current = (current + 1) % photos.length;
-                photo.src = photos[current];
-                photo.style.opacity = '1';
-            }, 500);
-        }, 4000);
+            showingFirst = !showingFirst;
+            photo1.style.opacity = showingFirst ? '1' : '0';
+            photo2.style.opacity = showingFirst ? '0' : '1';
+        }, 5000);
     }
 }
 
@@ -297,8 +295,8 @@ class TypewriterEffect {
         this.element = document.querySelector('.typing-text');
         this.currentLang = localStorage.getItem('language') || 'en';
         this.titles = {
-            en: ['Data Scientist', 'ML Engineer', 'AI Researcher', 'AI Engineer'],
-            zh: ['數據科學家', '機器學習工程師', 'AI 研究員', 'AI 工程師']
+            en: ['Data Scientist', 'ML Engineer', 'AI Engineer'],
+            zh: ['數據科學家', '機器學習工程師', 'AI 工程師']
         };
         this.currentIndex = 0;
         this.charIndex = 0;

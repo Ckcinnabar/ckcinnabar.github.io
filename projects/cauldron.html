@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -26,8 +32,8 @@
     <section class="project-header">
         <div class="container">
             <h1 class="project-title">cAIuldron</h1>
-            <p class="project-subtitle" data-en="AI-Powered Recipe Generation from Food Images" data-zh="基於食物圖像的 AI 食譜生成系統">
-                AI-Powered Recipe Generation from Food Images
+            <p class="project-subtitle" data-en="Cloud-Native Multi-Agent AI Recipe Generator (v1 → v2)" data-zh="雲端原生多智能體 AI 食譜生成系統（v1 → v2）">
+                Cloud-Native Multi-Agent AI Recipe Generator (v1 → v2)
             </p>
             <div class="project-meta">
                 <div class="meta-item">
@@ -45,12 +51,12 @@
             </div>
             <div class="project-tags">
                 <span class="tag">Python</span>
-                <span class="tag">Computer Vision</span>
-                <span class="tag">LLM Fine-tuning</span>
-                <span class="tag">CLIP</span>
-                <span class="tag">DETR</span>
-                <span class="tag">Llama 3.2</span>
-                <span class="tag">QLoRA</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">Groq</span>
+                <span class="tag">ChromaDB</span>
+                <span class="tag">Tavily</span>
+                <span class="tag">FLUX.1-schnell</span>
+                <span class="tag">LangSmith</span>
                 <span class="tag">Gradio</span>
             </div>
         </div>
@@ -59,16 +65,143 @@
     <!-- Project Content -->
     <div class="project-content">
         <div class="container">
+
             <!-- Overview -->
             <section class="content-section">
                 <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
-                <p class="content-text" data-en="cAIuldron is an AI-powered recipe generator that transforms ingredient photos into complete, personalized recipes using advanced machine learning. It's a production-ready full-stack system combining computer vision (CLIP + DETR), nutrition analysis (USDA FoodData Central), and large language models (fine-tuned Llama 3.2) into a seamless web interface. The system achieves 88% F1 score on ingredient detection across 525+ classes and generates high-quality recipes with 92/100 quality score while running entirely locally on consumer hardware." data-zh="cAIuldron 是一個由 AI 驅動的食譜生成器，使用先進的機器學習將成分照片轉換為完整的個性化食譜。這是一個生產就緒的全棧系統，將電腦視覺（CLIP + DETR）、營養分析（USDA FoodData Central）和大型語言模型（微調的 Llama 3.2）整合到無縫的網頁介面中。該系統在 525+ 個類別的成分檢測上達到 88% F1 分數，並生成 92/100 品質分數的高質量食譜，同時完全在消費級硬體上本地運行。">
-                    cAIuldron is an AI-powered recipe generator that transforms ingredient photos into complete, personalized recipes using advanced machine learning. It's a production-ready full-stack system combining computer vision (CLIP + DETR), nutrition analysis (USDA FoodData Central), and large language models (fine-tuned Llama 3.2) into a seamless web interface. The system achieves 88% F1 score on ingredient detection across 525+ classes and generates high-quality recipes with 92/100 quality score while running entirely locally on consumer hardware.
+                <p class="content-text" data-en="cAIuldron v2 is a cloud-native, multi-agent AI recipe system that transforms a single ingredient photo into five complete, restaurant-quality recipes in 10–20 seconds. The entire pipeline is orchestrated by a LangGraph StateGraph — a directed graph of specialized AI nodes running in sequence and in parallel. Upload one photo and the system detects ingredients via Groq Llama 4 Scout Vision, retrieves similar recipes from a 7,913-recipe ChromaDB RAG knowledge base, searches the live web for inspiration via Tavily, generates 5 Michelin-quality recipes with Groq Llama 3.3 70B, renders AI dish photos with FLUX.1-schnell, and logs every step to LangSmith — all with zero local GPU." data-zh="cAIuldron v2 是一個雲端原生多智能體 AI 食譜系統，能將一張食材照片在 10–20 秒內轉化為五道完整的餐廳級食譜。整個管道由 LangGraph StateGraph 協調——一個由專業 AI 節點順序和並行運行的有向圖。上傳一張照片，系統透過 Groq Llama 4 Scout Vision 辨識食材，從 7,913 食譜的 ChromaDB RAG 知識庫中檢索相似食譜，透過 Tavily 搜尋即時網路靈感，用 Groq Llama 3.3 70B 生成 5 道米其林級食譜，用 FLUX.1-schnell 渲染 AI 料理照片，並將每個步驟記錄到 LangSmith——完全不需要本地 GPU。">
+                    cAIuldron v2 is a cloud-native, multi-agent AI recipe system that transforms a single ingredient photo into five complete, restaurant-quality recipes in 10–20 seconds. The entire pipeline is orchestrated by a LangGraph StateGraph — a directed graph of specialized AI nodes running in sequence and in parallel. Upload one photo and the system detects ingredients via Groq Llama 4 Scout Vision, retrieves similar recipes from a 7,913-recipe ChromaDB RAG knowledge base, searches the live web for inspiration via Tavily, generates 5 Michelin-quality recipes with Groq Llama 3.3 70B, renders AI dish photos with FLUX.1-schnell, and logs every step to LangSmith — all with zero local GPU.
                 </p>
 
-                <div class="image-container" style="margin: 2rem 0;">
-                    <img src="cauldron/gradio-interface.jpeg" alt="cAIuldron Gradio Interface" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                    <p class="image-caption" style="text-align: center; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;" data-en="cAIuldron Web Interface - Transform ingredient photos into delicious recipes" data-zh="cAIuldron 網頁介面 - 將成分照片轉換為美味食譜">cAIuldron Web Interface - Transform ingredient photos into delicious recipes</p>
+                <div class="image-container">
+                    <img src="cauldron/gradio-interface.jpeg" alt="cAIuldron v2 Gradio Interface">
+                    <p class="image-caption" data-en="cAIuldron v2 — 6-tab Gradio interface: ingredients, nutrition, RAG, recipes, gallery, pipeline stats" data-zh="cAIuldron v2 — 6 分頁 Gradio 介面：食材、營養、RAG、食譜、圖庫、管道統計">cAIuldron v2 — 6-tab Gradio interface: ingredients, nutrition, RAG, recipes, gallery, pipeline stats</p>
+                </div>
+            </section>
+
+            <!-- v1 → v2 Evolution -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="v1 → v2: Evolution" data-zh="v1 → v2：演進歷程">v1 → v2: Evolution</h2>
+                <p class="content-text" data-en="cAIuldron started as a local-model pipeline (v1) using CLIP + DETR for vision and QLoRA fine-tuning of Llama 3.2 1B on a consumer GPU. v2 rebuilt the entire system as a cloud-native multi-agent architecture, eliminating GPU requirements while dramatically improving capability and speed." data-zh="cAIuldron 從本地模型管道（v1）起步，使用 CLIP + DETR 進行視覺處理，並在消費級 GPU 上對 Llama 3.2 1B 進行 QLoRA 微調。v2 將整個系統重建為雲端原生多智能體架構，消除了 GPU 需求，同時大幅提升了功能和速度。">
+                    cAIuldron started as a local-model pipeline (v1) using CLIP + DETR for vision and QLoRA fine-tuning of Llama 3.2 1B on a consumer GPU. v2 rebuilt the entire system as a cloud-native multi-agent architecture, eliminating GPU requirements while dramatically improving capability and speed.
+                </p>
+
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Capability" data-zh="功能">Capability</th>
+                                <th>v1 — Local Models</th>
+                                <th>v2 — Cloud-Native</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-en="Ingredient Detection" data-zh="食材辨識">Ingredient Detection</td>
+                                <td>CLIP ViT-Base + DETR ResNet-50, 88% F1, 2–3 GB VRAM</td>
+                                <td class="td-accent">Groq Llama 4 Scout 17B Vision API, ~1s, 0 VRAM</td>
+                            </tr>
+                            <tr>
+                                <td data-en="Recipe Generation" data-zh="食譜生成">Recipe Generation</td>
+                                <td>Llama 3.2 1B QLoRA fine-tuned, 92/100 quality</td>
+                                <td class="td-accent">Groq Llama 3.3 70B, 5 recipes in one API call</td>
+                            </tr>
+                            <tr>
+                                <td data-en="Recipe Knowledge Base" data-zh="食譜知識庫">Recipe Knowledge Base</td>
+                                <td>None</td>
+                                <td class="td-accent">ChromaDB RAG — 7,913 recipes, cosine similarity</td>
+                            </tr>
+                            <tr>
+                                <td data-en="Web Inspiration" data-zh="網路靈感">Web Inspiration</td>
+                                <td>None</td>
+                                <td class="td-accent">Tavily API — live web results injected into LLM</td>
+                            </tr>
+                            <tr>
+                                <td data-en="Dish Image Generation" data-zh="料理圖片生成">Dish Image Generation</td>
+                                <td>None</td>
+                                <td class="td-accent">FLUX.1-schnell — 5 concurrent photos per run</td>
+                            </tr>
+                            <tr>
+                                <td data-en="Agent Orchestration" data-zh="智能體協調">Agent Orchestration</td>
+                                <td>Sequential Python calls</td>
+                                <td class="td-accent">LangGraph StateGraph with parallel fork/join</td>
+                            </tr>
+                            <tr>
+                                <td data-en="GPU Requirement" data-zh="GPU 需求">GPU Requirement</td>
+                                <td>4–6 GB VRAM minimum</td>
+                                <td class="td-accent">Zero — no local AI model</td>
+                            </tr>
+                            <tr>
+                                <td data-en="Pipeline Latency" data-zh="管道延遲">Pipeline Latency</td>
+                                <td>40–80s</td>
+                                <td class="td-accent-bold">10–20s</td>
+                            </tr>
+                            <tr>
+                                <td data-en="UI Tabs" data-zh="介面分頁">UI Tabs</td>
+                                <td>2 (ingredients, recipes)</td>
+                                <td class="td-accent">6 (ingredients, nutrition, RAG, recipes, gallery, stats)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- System Architecture -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="System Architecture: LangGraph Pipeline" data-zh="系統架構：LangGraph 管道">System Architecture: LangGraph Pipeline</h2>
+                <p class="content-text" data-en="The v2 pipeline is a LangGraph StateGraph — a typed directed graph where each node is a specialized AI function passing structured state to the next. RAG search and web search run simultaneously via a parallel fork/join, then both context sources feed into a single Groq 70B recipe generation call." data-zh="v2 管道是一個 LangGraph StateGraph——一個有型別的有向圖，每個節點都是一個專業 AI 函數，將結構化狀態傳遞給下一個節點。RAG 搜尋和網路搜尋透過並行 fork/join 同時運行，然後兩個上下文來源共同輸入到單次 Groq 70B 食譜生成調用中。">
+                    The v2 pipeline is a LangGraph StateGraph — a typed directed graph where each node is a specialized AI function passing structured state to the next. RAG search and web search run simultaneously via a parallel fork/join, then both context sources feed into a single Groq 70B recipe generation call.
+                </p>
+
+                <div class="pipeline-diagram">
+<pre style="margin: 0; color: inherit;">START
+  │
+  ▼
+detect_ingredients_node     ← Groq Llama 4 Scout 17B (Vision API, ~1s)
+  │
+  ▼
+estimate_nutrition_node     ← USDA FoodData Central (local JSON, 525 ingredients, &lt;0.1s)
+  │
+  ├──────────────────────────────┐  [PARALLEL FORK]
+  ▼                              ▼
+rag_search_node            web_search_node
+ChromaDB cosine similarity  Tavily API (live web)
+top-3 from 7,913 recipes    5 recipe inspirations
+  │                              │
+  └──────────────┬───────────────┘  [PARALLEL JOIN]
+                 │
+                 ▼
+        generate_recipes_node  ← Groq Llama 3.3 70B
+          RAG + Tavily + USDA context → 5 Michelin-quality recipes (JSON)
+          Cuisine rotation: Asian · Mediterranean · American · Mexican · Italian
+                 │
+                 ▼
+        generate_images_node   ← HF FLUX.1-schnell
+          5 concurrent async HTTP calls → professional food photography 512×512
+                 │
+                 ▼
+               END → Gradio UI (6 tabs)</pre>
+                </div>
+
+                <div class="workflow-steps" style="margin-top: 2rem;">
+                    <h3 data-en="RecipeState — Typed Pipeline State:" data-zh="RecipeState — 有型別的管道狀態：">RecipeState — Typed Pipeline State:</h3>
+                    <ul class="highlights-list">
+                        <li data-en="image_bytes → detected_ingredients → nutrition_per_ingredient + nutrition_summary" data-zh="image_bytes → detected_ingredients → nutrition_per_ingredient + nutrition_summary">
+                            <strong>Stage 1–2:</strong> <code>image_bytes</code> → <code>detected_ingredients</code> → <code>nutrition_per_ingredient</code> + <code>nutrition_summary</code>
+                        </li>
+                        <li data-en="rag_retrieved_recipes + rag_context_block (parallel branch A)" data-zh="rag_retrieved_recipes + rag_context_block（並行分支 A）">
+                            <strong>Stage 3a (parallel):</strong> <code>rag_retrieved_recipes</code> + <code>rag_context_block</code>
+                        </li>
+                        <li data-en="web_search_results + web_context_block (parallel branch B)" data-zh="web_search_results + web_context_block（並行分支 B）">
+                            <strong>Stage 3b (parallel):</strong> <code>web_search_results</code> + <code>web_context_block</code>
+                        </li>
+                        <li data-en="recipes (List[Dict]) — 5 complete recipes with title, cuisine, difficulty, prep/cook time, ≥10 ingredients, ≥8 steps" data-zh="recipes (List[Dict]) — 5 道完整食譜，含名稱、料理類型、難度、準備/烹飪時間、≥10 種食材、≥8 個步驟">
+                            <strong>Stage 4:</strong> <code>recipes</code> — 5 complete recipes with title, cuisine, difficulty, prep/cook time, ≥10 ingredients, ≥8 steps
+                        </li>
+                        <li data-en="image_bytes per recipe (Optional[bytes]) — 5 concurrent FLUX.1 PNG images" data-zh="每道食譜的 image_bytes (Optional[bytes]) — 5 張並行 FLUX.1 PNG 圖片">
+                            <strong>Stage 5:</strong> <code>image_bytes</code> per recipe — 5 concurrent FLUX.1-schnell PNG images
+                        </li>
+                    </ul>
                 </div>
             </section>
 
@@ -78,320 +211,226 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🔍</div>
-                        <h3 data-en="Multi-Ingredient Detection" data-zh="多成分檢測">Multi-Ingredient Detection</h3>
-                        <p data-en="Utilizes CLIP (ViT-Base) and DETR (ResNet-50) for accurate detection of 525+ ingredient classes with 88% F1 score and 85-95% accuracy through two-stage zero-shot classification." data-zh="利用 CLIP (ViT-Base) 和 DETR (ResNet-50) 通過兩階段零樣本分類準確檢測 525+ 種成分類別，F1 分數達 88%，準確率達 85-95%。">
-                            Utilizes CLIP (ViT-Base) and DETR (ResNet-50) for accurate detection of 525+ ingredient classes with 88% F1 score and 85-95% accuracy through two-stage zero-shot classification.
+                        <h3 data-en="Groq Vision Detection" data-zh="Groq Vision 食材辨識">Groq Vision Detection</h3>
+                        <p data-en="Encodes ingredient photo as base64 JPEG and sends to Groq Llama 4 Scout 17B Vision API. Returns a parsed JSON ingredient list (max 8) in ~1 second — no local GPU, no model download." data-zh="將食材照片編碼為 base64 JPEG 並發送給 Groq Llama 4 Scout 17B Vision API。在約 1 秒內返回解析後的 JSON 食材列表（最多 8 種）——無需本地 GPU，無需下載模型。">
+                            Encodes ingredient photo as base64 JPEG and sends to Groq Llama 4 Scout 17B Vision API. Returns a parsed JSON ingredient list (max 8) in ~1 second — no local GPU, no model download.
                         </p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🤖</div>
-                        <h3 data-en="LLM-Powered Recipe Generation" data-zh="LLM 驅動的食譜生成">LLM-Powered Recipe Generation</h3>
-                        <p data-en="Fine-tuned Llama 3.2 1B model with QLoRA on consumer GPU, achieving 92/100 quality score while training only 0.23% of parameters (2.8M out of 1.2B)." data-zh="在消費級 GPU 上使用 QLoRA 微調 Llama 3.2 1B 模型，僅訓練 0.23% 的參數（1.2B 中的 2.8M）即達到 92/100 品質分數。">
-                            Fine-tuned Llama 3.2 1B model with QLoRA on consumer GPU, achieving 92/100 quality score while training only 0.23% of parameters (2.8M out of 1.2B).
+                        <div class="feature-icon">📚</div>
+                        <h3 data-en="ChromaDB RAG Knowledge Base" data-zh="ChromaDB RAG 知識庫">ChromaDB RAG Knowledge Base</h3>
+                        <p data-en="7,913 RecipeNLG recipes indexed with all-MiniLM-L6-v2 embeddings in a persistent ChromaDB vector store (cosine similarity). Retrieves top-3 most similar recipes as LLM context, built once in ~2 minutes, reloaded in ~1 second." data-zh="7,913 個 RecipeNLG 食譜以 all-MiniLM-L6-v2 嵌入索引在持久化 ChromaDB 向量庫中（餘弦相似度）。檢索前 3 個最相似的食譜作為 LLM 上下文，一次性建立約需 2 分鐘，後續重載僅需約 1 秒。">
+                            7,913 RecipeNLG recipes indexed with all-MiniLM-L6-v2 embeddings in a persistent ChromaDB vector store (cosine similarity). Retrieves top-3 most similar recipes as LLM context, built once in ~2 minutes, reloaded in ~1 second.
                         </p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🍎</div>
-                        <h3 data-en="Nutrition Estimation" data-zh="營養估算">Nutrition Estimation</h3>
-                        <p data-en="Integrates with USDA FoodData Central to provide accurate nutritional information including calories, macronutrients, vitamins, and minerals for each ingredient." data-zh="與 USDA FoodData Central 整合，為每種成分提供準確的營養資訊，包括卡路里、宏量營養素、維生素和礦物質。">
-                            Integrates with USDA FoodData Central to provide accurate nutritional information including calories, macronutrients, vitamins, and minerals for each ingredient.
+                        <div class="feature-icon">🌐</div>
+                        <h3 data-en="Tavily Live Web Search" data-zh="Tavily 即時網路搜尋">Tavily Live Web Search</h3>
+                        <p data-en="Searches the live web for real-world recipe inspiration using the detected ingredients as query. Returns up to 5 results including Tavily's answer summary, merged into the LLM prompt alongside RAG context for maximum recipe diversity." data-zh="使用辨識出的食材作為查詢在即時網路中搜尋真實食譜靈感。返回最多 5 個結果，包括 Tavily 的摘要，與 RAG 上下文一起注入 LLM 提示以最大化食譜多樣性。">
+                            Searches the live web for real-world recipe inspiration using the detected ingredients as query. Returns up to 5 results including Tavily's answer summary, merged into the LLM prompt alongside RAG context for maximum recipe diversity.
                         </p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 data-en="Fast Processing" data-zh="快速處理">Fast Processing</h3>
-                        <p data-en="Complete pipeline processes from image input to recipe output in 15-25 seconds with 98%+ recipe completeness rate through modular architecture and LLM-based fallback validation." data-zh="通過模組化架構和基於 LLM 的後備驗證，完整管道在 15-25 秒內從圖像輸入處理到食譜輸出，食譜完整度達 98%+。">
-                            Complete pipeline processes from image input to recipe output in 15-25 seconds with 98%+ recipe completeness rate through modular architecture and LLM-based fallback validation.
+                        <div class="feature-icon">🍳</div>
+                        <h3 data-en="Michelin-Quality Recipe Generation" data-zh="米其林級食譜生成">Michelin-Quality Recipe Generation</h3>
+                        <p data-en="A single Groq Llama 3.3 70B API call produces all 5 recipes as structured JSON — each with ≥10 precisely measured ingredients and ≥8 professional cooking steps including temperatures, timing cues, and plating tips across 5 cuisine types." data-zh="單次 Groq Llama 3.3 70B API 調用生成所有 5 道食譜（結構化 JSON）——每道含 ≥10 種精確測量的食材和 ≥8 個專業烹飪步驟，涵蓋 5 種料理類型。">
+                            A single Groq Llama 3.3 70B API call produces all 5 recipes as structured JSON — each with ≥10 precisely measured ingredients and ≥8 professional cooking steps including temperatures, timing cues, and plating tips across 5 cuisine types.
                         </p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎨</div>
-                        <h3 data-en="Interactive Web UI" data-zh="互動式網頁介面">Interactive Web UI</h3>
-                        <p data-en="User-friendly Gradio interface allowing users to upload food images, view detected ingredients, customize recipes, and explore nutritional information in real-time." data-zh="用戶友好的 Gradio 介面，允許用戶上傳食物圖像、查看檢測到的成分、自定義食譜，並實時探索營養資訊。">
-                            User-friendly Gradio interface allowing users to upload food images, view detected ingredients, customize recipes, and explore nutritional information in real-time.
+                        <div class="feature-icon">🖼️</div>
+                        <h3 data-en="Concurrent AI Dish Photos" data-zh="並行 AI 料理照片生成">Concurrent AI Dish Photos</h3>
+                        <p data-en="5 FLUX.1-schnell images dispatched simultaneously via httpx + asyncio.gather through HF Inference Router API. Professional food photography prompts at 512×512 PNG — all 5 images generated concurrently rather than sequentially." data-zh="5 張 FLUX.1-schnell 圖片透過 httpx + asyncio.gather 同時向 HF Inference Router API 發送。512×512 PNG 的專業食品攝影提示——5 張圖片並行生成而非逐一生成。">
+                            5 FLUX.1-schnell images dispatched simultaneously via httpx + asyncio.gather through HF Inference Router API. Professional food photography prompts at 512×512 PNG — all 5 images generated concurrently rather than sequentially.
                         </p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🔧</div>
-                        <h3 data-en="Modular Architecture" data-zh="模組化架構">Modular Architecture</h3>
-                        <p data-en="5 independent components (detection, nutrition, generation, validation, UI) that can be developed, tested, and deployed separately for maximum flexibility and maintainability." data-zh="5 個獨立組件（檢測、營養、生成、驗證、UI），可以分別開發、測試和部署，以實現最大的靈活性和可維護性。">
-                            5 independent components (detection, nutrition, generation, validation, UI) that can be developed, tested, and deployed separately for maximum flexibility and maintainability.
+                        <div class="feature-icon">📊</div>
+                        <h3 data-en="LangSmith Observability" data-zh="LangSmith 可觀測性">LangSmith Observability</h3>
+                        <p data-en="Full pipeline trace logged to LangSmith automatically via LangChain integration — per-node timing, inputs, and outputs for all 6 LangGraph nodes visible in the LangSmith dashboard. Trace link surfaced in Gradio's Pipeline Stats tab." data-zh="完整管道追蹤透過 LangChain 整合自動記錄到 LangSmith——所有 6 個 LangGraph 節點的每節點時間、輸入和輸出在 LangSmith 儀表板中可見。追蹤連結顯示在 Gradio 的管道統計分頁中。">
+                            Full pipeline trace logged to LangSmith automatically via LangChain integration — per-node timing, inputs, and outputs for all 6 LangGraph nodes visible in the LangSmith dashboard. Trace link surfaced in Gradio's Pipeline Stats tab.
                         </p>
                     </div>
                 </div>
             </section>
 
-            <!-- System Workflow -->
+            <!-- Demo Gallery -->
             <section class="content-section">
-                <h2 class="section-title" data-en="System Workflow" data-zh="系統工作流程">System Workflow</h2>
-                <p class="content-text" data-en="The cAIuldron pipeline processes ingredient photos through five distinct stages, from initial upload to final recipe generation. Each stage is modular and independently testable, ensuring reliability and maintainability." data-zh="cAIuldron 管道通過五個不同的階段處理成分照片，從初始上傳到最終食譜生成。每個階段都是模組化且可獨立測試的，確保可靠性和可維護性。">
-                    The cAIuldron pipeline processes ingredient photos through five distinct stages, from initial upload to final recipe generation. Each stage is modular and independently testable, ensuring reliability and maintainability.
+                <h2 class="section-title" data-en="Demo: Full Pipeline Walkthrough" data-zh="演示：完整管道示範">Demo: Full Pipeline Walkthrough</h2>
+                <p class="content-text" data-en="Below are real results from the cAIuldron v2 system processing an ingredient photo through all 6 LangGraph nodes — from Groq Vision detection to FLUX.1 dish image generation." data-zh="以下是 cAIuldron v2 系統通過所有 6 個 LangGraph 節點處理食材照片的實際結果——從 Groq Vision 辨識到 FLUX.1 料理圖片生成。">
+                    Below are real results from the cAIuldron v2 system processing an ingredient photo through all 6 LangGraph nodes — from Groq Vision detection to FLUX.1 dish image generation.
                 </p>
 
-                <div class="image-container" style="margin: 2rem 0;">
-                    <img src="cauldron/workflow-diagram.jpeg" alt="cAIuldron System Workflow" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                    <p class="image-caption" style="text-align: center; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;" data-en="Complete pipeline workflow from photo upload to recipe generation (15-25 seconds total)" data-zh="從照片上傳到食譜生成的完整管道工作流程（總計 15-25 秒）">Complete pipeline workflow from photo upload to recipe generation (15-25 seconds total)</p>
-                </div>
-
-                <div class="workflow-steps" style="margin-top: 2rem;">
-                    <h3 data-en="Pipeline Stages:" data-zh="管道階段：">Pipeline Stages:</h3>
-                    <ul class="highlights-list">
-                        <li data-en="Step 1: User uploads a food/ingredient photo as input" data-zh="步驟 1：用戶上傳食物/成分照片作為輸入">
-                            <strong>Step 1:</strong> User uploads a food/ingredient photo as input
-                        </li>
-                        <li data-en="Step 2: CLIP + DETR detect ingredients and output an ingredient list with bounding boxes (1-2 seconds)" data-zh="步驟 2：CLIP + DETR 檢測成分並輸出帶有邊界框的成分列表（1-2 秒）">
-                            <strong>Step 2:</strong> CLIP + DETR detect ingredients and output an ingredient list with bounding boxes (1-2 seconds)
-                        </li>
-                        <li data-en="Step 3: Map detected ingredients to USDA FoodData Central and estimate nutrition info (calories & macros) (<10ms)" data-zh="步驟 3：將檢測到的成分映射到 USDA FoodData Central 並估算營養信息（卡路里和宏量營養素）（<10ms）">
-                            <strong>Step 3:</strong> Map detected ingredients to USDA FoodData Central and estimate nutrition info (calories & macros) (<10ms)
-                        </li>
-                        <li data-en="Step 4: Generate recipes using GPT-2, Llama 3.2 1B, or Llama 3.1 8B with time field validation (1-12 seconds)" data-zh="步驟 4：使用 GPT-2、Llama 3.2 1B 或 Llama 3.1 8B 生成食譜並進行時間欄位驗證（1-12 秒）">
-                            <strong>Step 4:</strong> Generate recipes using GPT-2, Llama 3.2 1B, or Llama 3.1 8B with time field validation (1-12 seconds)
-                        </li>
-                        <li data-en="Step 5: Display complete recipe with ingredients, instructions, nutrition, and cooking times" data-zh="步驟 5：顯示包含成分、說明、營養和烹飪時間的完整食譜">
-                            <strong>Step 5:</strong> Display complete recipe with ingredients, instructions, nutrition, and cooking times
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Project Architecture -->
-            <section class="content-section">
-                <h2 class="section-title" data-en="Project Architecture" data-zh="專案架構">Project Architecture</h2>
-                <p class="content-text" data-en="cAIuldron follows a modular architecture with 5 independent components that can be developed, tested, and deployed separately. The project includes comprehensive training pipelines, datasets totaling 2.23M recipes, and production-ready models optimized for consumer GPUs." data-zh="cAIuldron 遵循模組化架構，包含 5 個可獨立開發、測試和部署的獨立組件。該專案包括全面的訓練管道、總計 223 萬個食譜的數據集，以及為消費級 GPU 優化的生產就緒模型。">
-                    cAIuldron follows a modular architecture with 5 independent components that can be developed, tested, and deployed separately. The project includes comprehensive training pipelines, datasets totaling 2.23M recipes, and production-ready models optimized for consumer GPUs.
-                </p>
-
-                <div class="image-container" style="margin: 2rem 0;">
-                    <img src="cauldron/architecture-diagram.jpeg" alt="cAIuldron Project Architecture" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                    <p class="image-caption" style="text-align: center; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;" data-en="Modular project structure with 5 core components and comprehensive training pipelines" data-zh="包含 5 個核心組件和全面訓練管道的模組化專案結構">Modular project structure with 5 core components and comprehensive training pipelines</p>
-                </div>
-
-                <div class="architecture-details" style="margin-top: 2rem;">
-                    <h3 data-en="Key Components:" data-zh="核心組件：">Key Components:</h3>
-                    <ul class="highlights-list">
-                        <li data-en="Main Application (5 modular notebooks): Model loading, ingredient detection, nutrition estimation, recipe generation, and Gradio web interface" data-zh="主應用程式（5 個模組化筆記本）：模型加載、成分檢測、營養估算、食譜生成和 Gradio 網頁介面">
-                            <strong>Main Application</strong> (5 modular notebooks): Model loading, ingredient detection, nutrition estimation, recipe generation, and Gradio web interface
-                        </li>
-                        <li data-en="Training & Development: Separate pipelines for ingredient recognition (CLIP+DETR), nutrition estimation (USDA), and recipe generation (GPT-2/Llama)" data-zh="訓練與開發：成分識別（CLIP+DETR）、營養估算（USDA）和食譜生成（GPT-2/Llama）的獨立管道">
-                            <strong>Training & Development</strong>: Separate pipelines for ingredient recognition (CLIP+DETR), nutrition estimation (USDA), and recipe generation (GPT-2/Llama)
-                        </li>
-                        <li data-en="Data & Databases: 528 ingredients with USDA nutrition data, 525+ ingredient vocabulary, 2.23M recipe dataset from RecipeNLG" data-zh="數據與數據庫：528 種帶有 USDA 營養數據的成分、525+ 成分詞彙表、來自 RecipeNLG 的 223 萬食譜數據集">
-                            <strong>Data & Databases</strong>: 528 ingredients with USDA nutrition data, 525+ ingredient vocabulary, 2.23M recipe dataset from RecipeNLG
-                        </li>
-                        <li data-en="Trained Models: GPT-2 fine-tuned (1-2 GB), Llama 3.2 1B LoRA adapters, Llama 3.1 8B quantized GGUF (5.4 GB total)" data-zh="訓練模型：GPT-2 微調（1-2 GB）、Llama 3.2 1B LoRA 適配器、Llama 3.1 8B 量化 GGUF（總計 5.4 GB）">
-                            <strong>Trained Models</strong>: GPT-2 fine-tuned (1-2 GB), Llama 3.2 1B LoRA adapters, Llama 3.1 8B quantized GGUF (5.4 GB total)
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Technical Approach -->
-            <section class="content-section">
-                <h2 class="section-title" data-en="Technical Implementation" data-zh="技術實現">Technical Implementation</h2>
-                <h3 data-en="1. Ingredient Detection Pipeline" data-zh="1. 成分檢測管道">1. Ingredient Detection Pipeline</h3>
-                <ul class="highlights-list">
-                    <li data-en="Used DETR (Detection Transformer with ResNet-50 backbone) to identify regions of interest in food images" data-zh="使用 DETR（帶有 ResNet-50 主幹的檢測轉換器）識別食物圖像中的感興趣區域">
-                        Used DETR (Detection Transformer with ResNet-50 backbone) to identify regions of interest in food images
-                    </li>
-                    <li data-en="Implemented two-stage zero-shot classification using CLIP (ViT-Base/32) for ingredient identification across 525+ classes" data-zh="使用 CLIP (ViT-Base/32) 實現兩階段零樣本分類，在 525+ 個類別中進行成分識別">
-                        Implemented two-stage zero-shot classification using CLIP (ViT-Base/32) for ingredient identification across 525+ classes
-                    </li>
-                    <li data-en="Integrated USDA FoodData Central API for nutritional data enrichment" data-zh="整合 USDA FoodData Central API 進行營養數據豐富化">
-                        Integrated USDA FoodData Central API for nutritional data enrichment
-                    </li>
-                    <li data-en="Achieved 88% F1 score and 85-95% accuracy across different ingredient categories" data-zh="在不同成分類別中達到 88% F1 分數和 85-95% 準確率">
-                        Achieved 88% F1 score and 85-95% accuracy across different ingredient categories
-                    </li>
-                </ul>
-
-                <h3 data-en="2. Recipe Generation with LLM Fine-tuning" data-zh="2. 使用 LLM 微調進行食譜生成">2. Recipe Generation with LLM Fine-tuning</h3>
-                <ul class="highlights-list">
-                    <li data-en="Fine-tuned Llama 3.2 1B (1.2 billion parameters) using QLoRA (Quantized Low-Rank Adaptation)" data-zh="使用 QLoRA（量化低秩適應）微調 Llama 3.2 1B（12 億參數）">
-                        Fine-tuned Llama 3.2 1B (1.2 billion parameters) using QLoRA (Quantized Low-Rank Adaptation)
-                    </li>
-                    <li data-en="Trained on consumer GPU (NVIDIA RTX 3060, 6GB VRAM) demonstrating parameter-efficient fine-tuning" data-zh="在消費級 GPU（NVIDIA RTX 3060，6GB VRAM）上訓練，展示參數高效微調">
-                        Trained on consumer GPU (NVIDIA RTX 3060, 6GB VRAM) demonstrating parameter-efficient fine-tuning
-                    </li>
-                    <li data-en="Optimized only 2.8M parameters (0.23% of total) while keeping base model frozen" data-zh="僅優化 2.8M 參數（總數的 0.23%），同時保持基礎模型凍結">
-                        Optimized only 2.8M parameters (0.23% of total) while keeping base model frozen
-                    </li>
-                    <li data-en="Curated training dataset from RecipeNLG with 7,913 high-quality recipes" data-zh="從 RecipeNLG 精選包含 7,913 個高質量食譜的訓練數據集">
-                        Curated training dataset from RecipeNLG with 7,913 high-quality recipes
-                    </li>
-                    <li data-en="Achieved 92/100 quality score on recipe generation evaluation metrics" data-zh="在食譜生成評估指標上達到 92/100 品質分數">
-                        Achieved 92/100 quality score on recipe generation evaluation metrics
-                    </li>
-                </ul>
-
-                <h3 data-en="3. System Architecture" data-zh="3. 系統架構">3. System Architecture</h3>
-                <ul class="highlights-list">
-                    <li data-en="Designed modular system with 5 independent components for scalability and maintainability" data-zh="設計具有 5 個獨立組件的模組化系統，以實現可擴展性和可維護性">
-                        Designed modular system with 5 independent components for scalability and maintainability
-                    </li>
-                    <li data-en="Implemented LLM-based fallback validation to ensure recipe completeness and correctness" data-zh="實現基於 LLM 的後備驗證以確保食譜完整性和正確性">
-                        Implemented LLM-based fallback validation to ensure recipe completeness and correctness
-                    </li>
-                    <li data-en="Built Gradio web interface for seamless user interaction and real-time feedback" data-zh="構建 Gradio 網頁介面以實現無縫用戶交互和實時反饋">
-                        Built Gradio web interface for seamless user interaction and real-time feedback
-                    </li>
-                    <li data-en="Optimized pipeline to process complete workflow in 15-25 seconds" data-zh="優化管道以在 15-25 秒內處理完整工作流程">
-                        Optimized pipeline to process complete workflow in 15-25 seconds
-                    </li>
-                </ul>
-            </section>
-
-            <!-- Demo Results -->
-            <section class="content-section">
-                <h2 class="section-title" data-en="Live Demo Results" data-zh="實時演示結果">Live Demo Results</h2>
-                <p class="content-text" data-en="Below are real results from the cAIuldron system processing a chicken breast photo through the complete pipeline: from ingredient detection to nutrition estimation to final recipe generation." data-zh="以下是 cAIuldron 系統通過完整管道處理雞胸肉照片的實際結果：從成分檢測到營養估算到最終食譜生成。">
-                    Below are real results from the cAIuldron system processing a chicken breast photo through the complete pipeline: from ingredient detection to nutrition estimation to final recipe generation.
-                </p>
-
-                <div class="demo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div class="demo-grid">
                     <div class="demo-item">
-                        <h3 data-en="1. Ingredient Detection" data-zh="1. 成分檢測">1. Ingredient Detection</h3>
+                        <h3 data-en="1. Ingredient Detection (Groq Vision, ~1s)" data-zh="1. 食材辨識（Groq Vision，~1 秒）">1. Ingredient Detection (Groq Vision, ~1s)</h3>
                         <div class="image-container">
-                            <img src="cauldron/detection-demo.jpeg" alt="Ingredient Detection Result" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                            <p class="image-caption" style="text-align: center; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;" data-en="Detected: Chicken breast (46.5% confidence, 4.20s)" data-zh="檢測到：雞胸肉（46.5% 置信度，4.20 秒）">Detected: Chicken breast (46.5% confidence, 4.20s)</p>
+                            <img src="cauldron/detection-demo.jpeg" alt="Ingredient Detection Result">
+                            <p class="image-caption" data-en="Groq Llama 4 Scout 17B Vision API detects ingredients in ~1s and returns a structured JSON list" data-zh="Groq Llama 4 Scout 17B Vision API 在約 1 秒內辨識食材並返回結構化 JSON 列表">Groq Llama 4 Scout 17B Vision API detects ingredients in ~1s and returns a structured JSON list</p>
                         </div>
                     </div>
 
                     <div class="demo-item">
-                        <h3 data-en="2. Nutrition Estimation" data-zh="2. 營養估算">2. Nutrition Estimation</h3>
+                        <h3 data-en="2. USDA Nutrition Lookup (&lt;0.1s)" data-zh="2. USDA 營養查詢（&lt;0.1 秒）">2. USDA Nutrition Lookup (&lt;0.1s)</h3>
                         <div class="image-container">
-                            <img src="cauldron/nutrition-panel.jpeg" alt="Nutrition Information" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                            <p class="image-caption" style="text-align: center; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;" data-en="USDA data: 320 kcal, 17.9g protein, 19.2g fat, 18.3g carbs" data-zh="USDA 數據：320 千卡，17.9 克蛋白質，19.2 克脂肪，18.3 克碳水化合物">USDA data: 320 kcal, 17.9g protein, 19.2g fat, 18.3g carbs</p>
+                            <img src="cauldron/nutrition-panel.jpeg" alt="Nutrition Information">
+                            <p class="image-caption" data-en="Per-ingredient USDA macro table: calories, protein, fat, carbs per 100g (525 ingredients, fuzzy match)" data-zh="每種食材的 USDA 宏量營養素表：每 100g 卡路里、蛋白質、脂肪、碳水化合物（525 種食材，模糊匹配）">Per-ingredient USDA macro table: calories, protein, fat, carbs per 100g (525 ingredients, fuzzy match)</p>
+                        </div>
+                    </div>
+
+                    <div class="demo-item">
+                        <h3 data-en="3. ChromaDB RAG — Similar Recipes" data-zh="3. ChromaDB RAG — 相似食譜">3. ChromaDB RAG — Similar Recipes</h3>
+                        <div class="image-container">
+                            <img src="cauldron/RAG output.jpeg" alt="RAG Similar Recipes">
+                            <p class="image-caption" data-en="Top-3 ChromaDB matches with cuisine, difficulty, cook time, and cosine similarity score" data-zh="前 3 個 ChromaDB 匹配結果，含料理類型、難度、烹飪時間和餘弦相似度分數">Top-3 ChromaDB matches with cuisine, difficulty, cook time, and cosine similarity score</p>
                         </div>
                     </div>
 
                     <div class="demo-item" style="grid-column: 1 / -1;">
-                        <h3 data-en="3. Generated Recipe" data-zh="3. 生成的食譜">3. Generated Recipe</h3>
+                        <h3 data-en="4. Generated Recipes (Groq Llama 3.3 70B)" data-zh="4. 生成的食譜（Groq Llama 3.3 70B）">4. Generated Recipes (Groq Llama 3.3 70B)</h3>
                         <div class="image-container">
-                            <img src="cauldron/recipe-output.png.png" alt="Generated Recipe Output" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                            <p class="image-caption" style="text-align: center; margin-top: 0.5rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;" data-en="Complete recipe with ingredients, instructions, and timing (10-Minute Fusion Chicken Breast)" data-zh="包含成分、說明和時間的完整食譜（10 分鐘融合雞胸肉）">Complete recipe with ingredients, instructions, and timing (10-Minute Fusion Chicken Breast)</p>
+                            <img src="cauldron/recipe-output.jpeg" alt="Generated Recipe Output">
+                            <p class="image-caption" data-en="5 complete recipes generated in one Groq API call — each with cuisine, difficulty, timing, ≥10 ingredients, ≥8 steps" data-zh="單次 Groq API 調用生成 5 道完整食譜——每道含料理類型、難度、時間、≥10 種食材、≥8 個步驟">5 complete recipes generated in one Groq API call — each with cuisine, difficulty, timing, ≥10 ingredients, ≥8 steps</p>
+                        </div>
+                    </div>
+
+                    <div class="demo-item">
+                        <h3 data-en="5. AI Dish Photos (FLUX.1-schnell)" data-zh="5. AI 料理照片（FLUX.1-schnell）">5. AI Dish Photos (FLUX.1-schnell)</h3>
+                        <div class="image-container">
+                            <img src="cauldron/image generation.jpeg" alt="AI Generated Dish Images">
+                            <p class="image-caption" data-en="5 FLUX.1-schnell food photos generated concurrently via asyncio.gather — professional food photography style" data-zh="5 張 FLUX.1-schnell 料理照片透過 asyncio.gather 並行生成——專業食品攝影風格">5 FLUX.1-schnell food photos generated concurrently via asyncio.gather — professional food photography style</p>
+                        </div>
+                    </div>
+
+                    <div class="demo-item">
+                        <h3 data-en="6. Pipeline Stats (LangSmith)" data-zh="6. 管道統計（LangSmith）">6. Pipeline Stats (LangSmith)</h3>
+                        <div class="image-container">
+                            <img src="cauldron/more info.jpeg" alt="Pipeline Statistics">
+                            <p class="image-caption" data-en="Per-node timing and LangSmith trace link — full observability across all 6 pipeline stages" data-zh="每節點時間和 LangSmith 追蹤連結——所有 6 個管道階段的完整可觀測性">Per-node timing and LangSmith trace link — full observability across all 6 pipeline stages</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="demo-highlights" style="margin-top: 2rem; padding: 1.5rem; background: #1a1a1a; border-radius: 0;">
-                    <h3 data-en="Key Observations:" data-zh="關鍵觀察：">Key Observations:</h3>
-                    <ul class="highlights-list">
-                        <li data-en="Detection completed in 4.20 seconds with 46.5% confidence (above 15% threshold)" data-zh="檢測在 4.20 秒內完成，置信度為 46.5%（高於 15% 閾值）">
-                            Detection completed in 4.20 seconds with 46.5% confidence (above 15% threshold)
-                        </li>
-                        <li data-en="Nutrition data automatically mapped from USDA FoodData Central database (528 ingredients)" data-zh="營養數據自動從 USDA FoodData Central 數據庫映射（528 種成分）">
-                            Nutrition data automatically mapped from USDA FoodData Central database (528 ingredients)
-                        </li>
-                        <li data-en="Generated recipe includes complete timing fields: Prep Time (10 min), Cook Time (20 min), Total Time (30 min)" data-zh="生成的食譜包含完整的時間欄位：準備時間（10 分鐘）、烹飪時間（20 分鐘）、總時間（30 分鐘）">
-                            Generated recipe includes complete timing fields: Prep Time (10 min), Cook Time (20 min), Total Time (30 min)
-                        </li>
-                        <li data-en="Recipe provides specific measurements, detailed instructions, and helpful cooking notes" data-zh="食譜提供具體的測量、詳細的說明和有用的烹飪提示">
-                            Recipe provides specific measurements, detailed instructions, and helpful cooking notes
-                        </li>
-                    </ul>
-                </div>
             </section>
 
-            <!-- Model Comparison -->
+            <!-- Technical Implementation -->
             <section class="content-section">
-                <h2 class="section-title" data-en="Model Comparison" data-zh="模型比較">Model Comparison</h2>
-                <p class="content-text" data-en="cAIuldron supports three different recipe generation models, allowing users to choose between speed and quality based on their needs and hardware capabilities." data-zh="cAIuldron 支持三種不同的食譜生成模型，允許用戶根據需求和硬體能力在速度和質量之間進行選擇。">
-                    cAIuldron supports three different recipe generation models, allowing users to choose between speed and quality based on their needs and hardware capabilities.
-                </p>
+                <h2 class="section-title" data-en="Technical Implementation" data-zh="技術實現">Technical Implementation</h2>
 
-                <div class="model-comparison-table" style="overflow-x: auto; margin-top: 2rem;">
-                    <table style="width: 100%; border-collapse: collapse; background: #1a1a1a; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                <h3 data-en="1. Groq Vision — Ingredient Detection" data-zh="1. Groq Vision — 食材辨識">1. Groq Vision — Ingredient Detection</h3>
+                <ul class="highlights-list">
+                    <li data-en="Encodes image as base64 JPEG and sends to Groq API with a culinary expert system prompt" data-zh="將圖片編碼為 base64 JPEG，並以料理專家系統提示發送到 Groq API">
+                        Encodes image as base64 JPEG and sends to Groq API with a culinary expert system prompt
+                    </li>
+                    <li data-en="Model: meta-llama/llama-4-scout-17b-16e-instruct via Groq API, JSON-only output, max 8 ingredients" data-zh="模型：meta-llama/llama-4-scout-17b-16e-instruct 透過 Groq API，僅 JSON 輸出，最多 8 種食材">
+                        Model: <code>meta-llama/llama-4-scout-17b-16e-instruct</code> via Groq API, JSON-only output, max 8 ingredients
+                    </li>
+                    <li data-en="Regex fallback parses [...] from raw response for robustness against malformed JSON" data-zh="正則表達式後備解析原始回應中的 [...] 以應對格式錯誤的 JSON">
+                        Regex fallback parses <code>[...]</code> from raw response for robustness against malformed JSON
+                    </li>
+                    <li data-en="v1 equivalent: CLIP (ViT-Base) + DETR (ResNet-50) two-stage zero-shot classification, 88% F1, 525+ classes — replaced by single API call at 10× speed" data-zh="v1 對應：CLIP (ViT-Base) + DETR (ResNet-50) 兩階段零樣本分類，88% F1，525+ 類別——由單次 API 調用以 10 倍速度取代">
+                        v1 equivalent: CLIP (ViT-Base) + DETR (ResNet-50) two-stage zero-shot classification, 88% F1, 525+ classes — replaced by single API call at 10× speed
+                    </li>
+                </ul>
+
+                <h3 data-en="2. ChromaDB RAG Pipeline" data-zh="2. ChromaDB RAG 管道">2. ChromaDB RAG Pipeline</h3>
+                <ul class="highlights-list">
+                    <li data-en="Index: 7,913 recipes from RecipeNLG embedded with all-MiniLM-L6-v2 (384-dimensional, runs on CPU), HNSW cosine distance" data-zh="索引：7,913 個 RecipeNLG 食譜以 all-MiniLM-L6-v2（384 維，在 CPU 上運行）嵌入，HNSW 餘弦距離">
+                        Index: 7,913 recipes from RecipeNLG embedded with <code>all-MiniLM-L6-v2</code> (384-dimensional, runs on CPU), HNSW cosine distance
+                    </li>
+                    <li data-en='Embedding format: "Recipe: {title}. Cuisine: {cuisine}. Main ingredients: {tags}." — instructions excluded to keep similarity focused on ingredients' data-zh='嵌入格式："Recipe: {title}. Cuisine: {cuisine}. Main ingredients: {tags}."——排除烹飪步驟以保持相似度聚焦於食材'>
+                        Embedding format: <em>"Recipe: {title}. Cuisine: {cuisine}. Main ingredients: {tags}."</em> — instructions excluded to keep similarity focused on ingredients
+                    </li>
+                    <li data-en="Query: top-3 results with similarity ≥ 0.25, formatted as context block injected into recipe generation prompt" data-zh="查詢：相似度 ≥ 0.25 的前 3 個結果，格式化為上下文塊注入食譜生成提示中">
+                        Query: top-3 results with similarity ≥ 0.25, formatted as context block injected into recipe generation prompt
+                    </li>
+                    <li data-en="Index built once (~2–3 min), persists to .chroma_db/, reloads in ~1s on subsequent runs" data-zh="索引一次性建立（約 2–3 分鐘），持久化到 .chroma_db/，後續運行約 1 秒重載">
+                        Index built once (~2–3 min), persists to <code>.chroma_db/</code>, reloads in ~1s on subsequent runs
+                    </li>
+                </ul>
+
+                <h3 data-en="3. LangGraph Parallel Execution" data-zh="3. LangGraph 並行執行">3. LangGraph Parallel Execution</h3>
+                <ul class="highlights-list">
+                    <li data-en="RecipeState TypedDict uses Annotated reducers for safe parallel writes — errors: Annotated[List[str], operator.add], processing_time: Annotated[Dict, merge_fn]" data-zh="RecipeState TypedDict 使用 Annotated reducers 進行安全的並行寫入——errors: Annotated[List[str], operator.add]，processing_time: Annotated[Dict, merge_fn]">
+                        <code>RecipeState</code> TypedDict uses <code>Annotated</code> reducers for safe parallel writes — prevents <code>InvalidUpdateError</code> when both fork branches write simultaneously
+                    </li>
+                    <li data-en="RAG search and Tavily web search run in parallel via LangGraph's native fork/join, both complete before recipe generation begins" data-zh="RAG 搜尋和 Tavily 網路搜尋透過 LangGraph 的原生 fork/join 並行運行，兩者都在食譜生成開始前完成">
+                        RAG search and Tavily web search run in parallel via LangGraph's native fork/join — both complete before recipe generation begins
+                    </li>
+                    <li data-en="Graph compiled with StateGraph builder: add_node + add_edge + add_conditional_edges for parallel branching" data-zh="圖使用 StateGraph 建構器編譯：add_node + add_edge + add_conditional_edges 實現並行分支">
+                        Graph compiled with <code>StateGraph</code> builder: <code>add_node</code> + <code>add_edge</code> + <code>add_conditional_edges</code> for parallel branching
+                    </li>
+                </ul>
+
+                <h3 data-en="4. Recipe Generation Prompt Design" data-zh="4. 食譜生成提示設計">4. Recipe Generation Prompt Design</h3>
+                <ul class="highlights-list">
+                    <li data-en="System: Michelin-star chef persona, strict JSON schema enforcement, minimum 10 ingredients + 8 steps, must include at least one flavour-building step (deglazing, blooming spices, sauce building)" data-zh="系統：米其林星級廚師角色，嚴格 JSON 模式執行，最少 10 種食材 + 8 個步驟，必須包含至少一個風味構建步驟（去釉、炒香料、構建醬汁）">
+                        System: Michelin-star chef persona, strict JSON schema, min 10 ingredients + 8 steps, must include ≥1 flavour-building step
+                    </li>
+                    <li data-en="User context: RAG top-3 retrieved recipes (~400 tokens) + Tavily web results (~300 tokens) + USDA nutrition summary (~100 tokens) + cuisine/difficulty target for each recipe" data-zh="用戶上下文：RAG 前 3 個檢索食譜（約 400 tokens）+ Tavily 網路結果（約 300 tokens）+ USDA 營養摘要（約 100 tokens）+ 每道食譜的料理類型/難度目標">
+                        User context: RAG top-3 (~400 tokens) + Tavily results (~300 tokens) + USDA nutrition (~100 tokens) + cuisine/difficulty targets
+                    </li>
+                    <li data-en="Single API call returns all 5 recipes as {recipes: [...]} JSON with cuisine rotation: Asian · Mediterranean · American · Mexican · Italian" data-zh="單次 API 調用返回所有 5 道食譜為 {recipes: [...]} JSON，料理輪換：亞洲 · 地中海 · 美式 · 墨西哥 · 義式">
+                        Single API call returns all 5 as <code>{"recipes": [...]}</code> JSON — cuisine rotation: Asian · Mediterranean · American · Mexican · Italian
+                    </li>
+                    <li data-en="v1 equivalent: QLoRA fine-tuned Llama 3.2 1B, training only 0.23% of parameters (2.8M), achieving 92/100 quality on 7,913 curated recipes" data-zh="v1 對應：QLoRA 微調 Llama 3.2 1B，僅訓練 0.23% 參數（2.8M），在 7,913 個精選食譜上達到 92/100 品質">
+                        v1 equivalent: QLoRA fine-tuned Llama 3.2 1B, training only 0.23% of parameters (2.8M), 92/100 quality on 7,913 curated recipes
+                    </li>
+                </ul>
+            </section>
+
+            <!-- AI Model Ecosystem -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="AI Model Ecosystem" data-zh="AI 模型生態系統">AI Model Ecosystem</h2>
+
+                <div class="table-wrapper">
+                    <table class="project-table">
                         <thead>
-                            <tr style="background: #38bdf8; color: #050505;">
-                                <th style="padding: 1rem; text-align: left; border: 1px solid rgba(255,255,255,0.1);">Model</th>
-                                <th style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">Speed</th>
-                                <th style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">Quality Score</th>
-                                <th style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">VRAM</th>
-                                <th style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">Parameters</th>
-                                <th style="padding: 1rem; text-align: left; border: 1px solid rgba(255,255,255,0.1);">Best Use Case</th>
+                            <tr>
+                                <th data-en="Component" data-zh="組件">Component</th>
+                                <th>Model</th>
+                                <th>API</th>
+                                <th style="text-align: center;" data-en="Speed" data-zh="速度">Speed</th>
+                                <th style="text-align: center;">VRAM</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 1rem; border: 1px solid rgba(255,255,255,0.1); color: #fff;"><strong>GPT-2 Fine-tuned</strong></td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">⚡⚡⚡ (1-2s)</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">60-70/100</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">1-2 GB</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">124M</td>
-                                <td style="padding: 1rem; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">Quick testing, low-end hardware</td>
-                            </tr>
-                            <tr style="background: rgba(56, 189, 248, 0.1);">
-                                <td style="padding: 1rem; border: 1px solid rgba(255,255,255,0.1); color: #38bdf8;"><strong>Llama 3.2 1B (LoRA, 4-bit)</strong> ✅ Recommended</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">⚡⚡ (3-5s)</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: #fff;"><strong>90-95/100</strong></td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">4-5 GB</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">1.2B (2.8M trained)</td>
-                                <td style="padding: 1rem; border: 1px solid rgba(255,255,255,0.1); color: #fff;"><strong>Optimal balance</strong>, consumer GPU</td>
+                                <td class="td-primary" data-en="Ingredient Detection" data-zh="食材辨識"><strong>Ingredient Detection</strong></td>
+                                <td>Llama 4 Scout 17B (Vision)</td>
+                                <td>Groq</td>
+                                <td class="td-accent" style="text-align: center;">~1–2s</td>
+                                <td class="td-accent" style="text-align: center;">0 GB</td>
                             </tr>
                             <tr>
-                                <td style="padding: 1rem; border: 1px solid rgba(255,255,255,0.1); color: #fff;"><strong>Llama 3.1 8B (GGUF Q5_K_M)</strong></td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">⚡ (8-12s)</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">95-100/100</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">4-6 GB</td>
-                                <td style="padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">8B</td>
-                                <td style="padding: 1rem; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6);">Highest quality, production deployment</td>
+                                <td class="td-primary" data-en="Recipe Generation" data-zh="食譜生成"><strong>Recipe Generation</strong></td>
+                                <td>Llama 3.3 70B Versatile</td>
+                                <td>Groq</td>
+                                <td class="td-accent" style="text-align: center;">5–15s</td>
+                                <td class="td-accent" style="text-align: center;">0 GB</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary" data-en="Recipe Embedding" data-zh="食譜嵌入"><strong>Recipe Embedding</strong></td>
+                                <td>all-MiniLM-L6-v2</td>
+                                <td>Local / CPU</td>
+                                <td style="text-align: center;">Index once</td>
+                                <td class="td-accent" style="text-align: center;">0 GB</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary" data-en="Dish Image Generation" data-zh="料理圖片生成"><strong>Dish Image Generation</strong></td>
+                                <td>FLUX.1-schnell</td>
+                                <td>HF Inference API</td>
+                                <td style="text-align: center;">×5 concurrent</td>
+                                <td class="td-accent" style="text-align: center;">0 GB</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary" data-en="Nutrition Lookup" data-zh="營養查詢"><strong>Nutrition Lookup</strong></td>
+                                <td>USDA FoodData Central</td>
+                                <td>Local JSON</td>
+                                <td class="td-accent" style="text-align: center;">&lt;0.1s</td>
+                                <td style="text-align: center;">—</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-
-                <div class="model-notes" style="margin-top: 1.5rem; padding: 1rem; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 0;">
-                    <p><strong data-en="Note:" data-zh="注意：">Note:</strong> <span data-en="Llama 3.2 1B achieves 92/100 quality score while training only 0.23% of parameters (2.8M out of 1.2B) using QLoRA on a consumer GPU (RTX 3060, 6GB VRAM). This demonstrates the power of parameter-efficient fine-tuning for resource-constrained environments." data-zh="Llama 3.2 1B 在消費級 GPU（RTX 3060，6GB VRAM）上使用 QLoRA 僅訓練 0.23% 的參數（1.2B 中的 2.8M）即達到 92/100 品質分數。這展示了參數高效微調在資源受限環境中的威力。">Llama 3.2 1B achieves 92/100 quality score while training only 0.23% of parameters (2.8M out of 1.2B) using QLoRA on a consumer GPU (RTX 3060, 6GB VRAM). This demonstrates the power of parameter-efficient fine-tuning for resource-constrained environments.</span></p>
-                </div>
-            </section>
-
-            <!-- Dataset Information -->
-            <section class="content-section">
-                <h2 class="section-title" data-en="Datasets & Training Data" data-zh="數據集與訓練數據">Datasets & Training Data</h2>
-
-                <div class="dataset-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                    <div class="dataset-card" style="padding: 1.5rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
-                        <h3 style="color: #6366f1; margin-bottom: 0.5rem;">🍎 Ingredient Vocabulary</h3>
-                        <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0; color: #fff;">525+</p>
-                        <p style="color: rgba(255, 255, 255, 0.6);">ingredient classes for zero-shot classification with CLIP</p>
-                    </div>
-
-                    <div class="dataset-card" style="padding: 1.5rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
-                        <h3 style="color: #10b981; margin-bottom: 0.5rem;">📊 USDA Nutrition Database</h3>
-                        <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0; color: #fff;">528</p>
-                        <p style="color: rgba(255, 255, 255, 0.6);">ingredients with complete nutrition data from FoodData Central</p>
-                    </div>
-
-                    <div class="dataset-card" style="padding: 1.5rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
-                        <h3 style="color: #f59e0b; margin-bottom: 0.5rem;">📖 Recipe Dataset</h3>
-                        <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0; color: #fff;">2.23M</p>
-                        <p style="color: rgba(255, 255, 255, 0.6);">recipes from RecipeNLG for model training</p>
-                    </div>
-
-                    <div class="dataset-card" style="padding: 1.5rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
-                        <h3 style="color: #ef4444; margin-bottom: 0.5rem;">🎯 Curated Training Set</h3>
-                        <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0; color: #fff;">7,913</p>
-                        <p style="color: rgba(255, 255, 255, 0.6);">high-quality recipes for Llama 3.2 fine-tuning</p>
-                    </div>
-                </div>
-
-                <div class="dataset-details" style="margin-top: 2rem;">
-                    <h3 data-en="Data Processing & Quality:" data-zh="數據處理與質量：">Data Processing & Quality:</h3>
-                    <ul class="highlights-list">
-                        <li data-en="Ingredient vocabulary covers major food categories: poultry, beef, vegetables, dairy, grains, seafood, legumes" data-zh="成分詞彙表涵蓋主要食品類別：家禽、牛肉、蔬菜、乳製品、穀物、海鮮、豆類">
-                            Ingredient vocabulary covers major food categories: poultry, beef, vegetables, dairy, grains, seafood, legumes
-                        </li>
-                        <li data-en="USDA database includes calories, protein, fat, carbohydrates, vitamins, and minerals for each ingredient" data-zh="USDA 數據庫包括每種成分的卡路里、蛋白質、脂肪、碳水化合物、維生素和礦物質">
-                            USDA database includes calories, protein, fat, carbohydrates, vitamins, and minerals for each ingredient
-                        </li>
-                        <li data-en="RecipeNLG dataset preprocessed with train/validation splits for reproducible training" data-zh="RecipeNLG 數據集預處理為訓練/驗證拆分以實現可重現的訓練">
-                            RecipeNLG dataset preprocessed with train/validation splits for reproducible training
-                        </li>
-                        <li data-en="Training recipes curated for quality, completeness, and time field accuracy" data-zh="訓練食譜經過質量、完整性和時間欄位準確性的精選">
-                            Training recipes curated for quality, completeness, and time field accuracy
-                        </li>
-                    </ul>
                 </div>
             </section>
 
@@ -401,158 +440,55 @@
                 <div class="tech-stack">
                     <div class="tech-item">
                         <i class="fab fa-python"></i>
-                        <span>Python</span>
+                        <span>Python 3.11</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-brain"></i>
-                        <span>PyTorch</span>
+                        <i class="fas fa-project-diagram"></i>
+                        <span>LangGraph</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-eye"></i>
-                        <span>CLIP</span>
+                        <i class="fas fa-bolt"></i>
+                        <span>Groq API</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <span>ChromaDB</span>
                     </div>
                     <div class="tech-item">
                         <i class="fas fa-search"></i>
-                        <span>DETR</span>
+                        <span>Tavily</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-robot"></i>
-                        <span>Llama 3.2</span>
+                        <i class="fas fa-image"></i>
+                        <span>FLUX.1-schnell</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-layer-group"></i>
-                        <span>QLoRA</span>
+                        <i class="fas fa-chart-line"></i>
+                        <span>LangSmith</span>
                     </div>
                     <div class="tech-item">
                         <i class="fas fa-desktop"></i>
                         <span>Gradio</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-database"></i>
-                        <span>USDA API</span>
+                        <i class="fas fa-brain"></i>
+                        <span>Sentence Transformers</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span>httpx + asyncio</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Challenges & Solutions -->
+            <!-- Poster -->
             <section class="content-section">
-                <h2 class="section-title" data-en="Technical Challenges & Innovative Solutions" data-zh="技術挑戰與創新解決方案">Technical Challenges & Innovative Solutions</h2>
-                <p class="content-text" data-en="Building a production-ready AI recipe generator on consumer hardware presented several significant challenges. Here's how cAIuldron overcame them through innovative engineering solutions." data-zh="在消費級硬體上構建生產就緒的 AI 食譜生成器面臨了幾個重大挑戰。以下是 cAIuldron 如何通過創新的工程解決方案克服這些挑戰。">
-                    Building a production-ready AI recipe generator on consumer hardware presented several significant challenges. Here's how cAIuldron overcame them through innovative engineering solutions.
-                </p>
-
-                <div class="challenges-grid" style="display: grid; gap: 2rem; margin-top: 2rem;">
-                    <div class="challenge-card" style="padding: 2rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border-left: 4px solid #ef4444;">
-                        <h3 style="color: #ef4444; margin-bottom: 1rem;">Challenge 1: Limited GPU Memory (6GB VRAM)</h3>
-                        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.6);"><strong data-en="Problem:" data-zh="問題:" style="color: #fff;">Problem:</strong> <span data-en="Training large language models typically requires 24GB+ VRAM, but consumer GPUs (like RTX 3060) only have 6GB, making traditional fine-tuning impossible." data-zh="訓練大型語言模型通常需要 24GB+ VRAM，但消費級 GPU（如 RTX 3060）只有 6GB，使傳統微調變得不可能。">Training large language models typically requires 24GB+ VRAM, but consumer GPUs (like RTX 3060) only have 6GB, making traditional fine-tuning impossible.</span></p>
-                        <p style="margin-bottom: 1rem; color: #fff;"><strong data-en="Solution:" data-zh="解決方案：">Solution:</strong></p>
-                        <ul class="highlights-list" style="margin-top: 0.5rem;">
-                            <li data-en="Implemented QLoRA (Quantized Low-Rank Adaptation) for parameter-efficient fine-tuning" data-zh="實現 QLoRA（量化低秩適應）進行參數高效微調">
-                                Implemented <strong>QLoRA (Quantized Low-Rank Adaptation)</strong> for parameter-efficient fine-tuning
-                            </li>
-                            <li data-en="Used 4-bit quantization to reduce model memory footprint by 75%" data-zh="使用 4 位量化將模型記憶體佔用減少 75%">
-                                Used 4-bit quantization to reduce model memory footprint by 75%
-                            </li>
-                            <li data-en="Trained only 2.8M adapter parameters (0.23%) while keeping 1.2B base model frozen" data-zh="僅訓練 280 萬個適配器參數（0.23%），同時保持 12 億基礎模型凍結">
-                                Trained only 2.8M adapter parameters (0.23%) while keeping 1.2B base model frozen
-                            </li>
-                            <li data-en="Achieved 92/100 quality score with <5GB VRAM usage during training" data-zh="在訓練期間使用 <5GB VRAM 即達到 92/100 品質分數">
-                                Achieved 92/100 quality score with <5GB VRAM usage during training
-                            </li>
-                        </ul>
-                        <p style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 0; color: rgba(255,255,255,0.6);"><strong data-en="Impact:" data-zh="影響:" style="color: #fff;">Impact:</strong> <span data-en="Democratized LLM fine-tuning for researchers and developers without access to expensive cloud GPUs or high-end workstations." data-zh="為無法使用昂貴的雲端 GPU 或高端工作站的研究人員和開發者實現 LLM 微調的民主化。">Democratized LLM fine-tuning for researchers and developers without access to expensive cloud GPUs or high-end workstations.</span></p>
-                    </div>
-
-                    <div class="challenge-card" style="padding: 2rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border-left: 4px solid #f59e0b;">
-                        <h3 style="color: #f59e0b; margin-bottom: 1rem;">Challenge 2: Ingredient Diversity & Zero-Shot Detection</h3>
-                        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.6);"><strong data-en="Problem:" data-zh="問題:" style="color: #fff;">Problem:</strong> <span data-en="Food ingredients have immense variety (thousands of types), and collecting labeled training data for object detection across all categories is impractical and expensive." data-zh="食品成分種類繁多（數千種類型），為所有類別收集標記的物體檢測訓練數據既不切實際又昂貴。">Food ingredients have immense variety (thousands of types), and collecting labeled training data for object detection across all categories is impractical and expensive.</span></p>
-                        <p style="margin-bottom: 1rem; color: #fff;"><strong data-en="Solution:" data-zh="解決方案：">Solution:</strong></p>
-                        <ul class="highlights-list" style="margin-top: 0.5rem;">
-                            <li data-en="Leveraged CLIP's zero-shot classification capabilities (no training data needed)" data-zh="利用 CLIP 的零樣本分類能力（無需訓練數據）">
-                                Leveraged <strong>CLIP's zero-shot classification</strong> capabilities (no training data needed)
-                            </li>
-                            <li data-en="Implemented two-stage pipeline: DETR for region detection → CLIP for ingredient classification" data-zh="實現兩階段管道：DETR 進行區域檢測 → CLIP 進行成分分類">
-                                Implemented two-stage pipeline: DETR for region detection → CLIP for ingredient classification
-                            </li>
-                            <li data-en="Created structured 525+ ingredient vocabulary covering major food categories" data-zh="創建涵蓋主要食品類別的結構化 525+ 成分詞彙表">
-                                Created structured 525+ ingredient vocabulary covering major food categories
-                            </li>
-                            <li data-en="Achieved 85-95% accuracy across different ingredient types without custom training" data-zh="在不同成分類型中達到 85-95% 準確率，無需自定義訓練">
-                                Achieved 85-95% accuracy across different ingredient types without custom training
-                            </li>
-                        </ul>
-                        <p style="margin-top: 1rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: 0; color: rgba(255,255,255,0.6);"><strong data-en="Impact:" data-zh="影響:" style="color: #fff;">Impact:</strong> <span data-en="Enabled scalable ingredient detection that can easily expand to new categories by simply adding them to the vocabulary, without retraining." data-zh="實現可擴展的成分檢測，只需將新類別添加到詞彙表中即可輕鬆擴展，無需重新訓練。">Enabled scalable ingredient detection that can easily expand to new categories by simply adding them to the vocabulary, without retraining.</span></p>
-                    </div>
-
-                    <div class="challenge-card" style="padding: 2rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border-left: 4px solid #10b981;">
-                        <h3 style="color: #10b981; margin-bottom: 1rem;">Challenge 3: Recipe Quality & Time Field Accuracy</h3>
-                        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.6);"><strong data-en="Problem:" data-zh="問題:" style="color: #fff;">Problem:</strong> <span data-en="LLMs often generate incomplete recipes or hallucinate unrealistic cooking times (e.g., 5-minute roast chicken), leading to poor user experience." data-zh="LLM 經常生成不完整的食譜或虛構不切實際的烹飪時間（例如，5 分鐘烤雞），導致用戶體驗不佳。">LLMs often generate incomplete recipes or hallucinate unrealistic cooking times (e.g., 5-minute roast chicken), leading to poor user experience.</span></p>
-                        <p style="margin-bottom: 1rem; color: #fff;"><strong data-en="Solution:" data-zh="解決方案：">Solution:</strong></p>
-                        <ul class="highlights-list" style="margin-top: 0.5rem;">
-                            <li data-en="Curated high-quality training set: filtered 2.23M RecipeNLG recipes down to 7,913 best examples" data-zh="精選高質量訓練集：將 223 萬 RecipeNLG 食譜過濾為 7,913 個最佳示例">
-                                Curated high-quality training set: filtered 2.23M RecipeNLG recipes down to 7,913 best examples
-                            </li>
-                            <li data-en="Implemented regex-based time field validation for Prep Time, Cook Time, Total Time, Servings" data-zh="實現基於正則表達式的時間欄位驗證，包括準備時間、烹飪時間、總時間、份量">
-                                Implemented regex-based time field validation for Prep Time, Cook Time, Total Time, Servings
-                            </li>
-                            <li data-en="Built LLM-based fallback system: if fields missing/invalid, use GPT-4 mini to estimate realistic times" data-zh="構建基於 LLM 的後備系統：如果欄位缺失/無效，使用 GPT-4 mini 估算實際時間">
-                                Built LLM-based fallback system: if fields missing/invalid, use GPT-4 mini to estimate realistic times
-                            </li>
-                            <li data-en="Achieved 98%+ recipe completeness rate with accurate, validated time information" data-zh="達到 98%+ 食譜完整率，並提供準確、經過驗證的時間信息">
-                                Achieved 98%+ recipe completeness rate with accurate, validated time information
-                            </li>
-                        </ul>
-                        <p style="margin-top: 1rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0; color: rgba(255,255,255,0.6);"><strong data-en="Impact:" data-zh="影響:" style="color: #fff;">Impact:</strong> <span data-en="Ensured production-quality output with reliable cooking instructions, making cAIuldron suitable for real-world culinary use." data-zh="確保生產質量的輸出和可靠的烹飪說明，使 cAIuldron 適合實際烹飪使用。">Ensured production-quality output with reliable cooking instructions, making cAIuldron suitable for real-world culinary use.</span></p>
-                    </div>
-
-                    <div class="challenge-card" style="padding: 2rem; background: #1a1a1a; border-radius: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3); border-left: 4px solid #6366f1;">
-                        <h3 style="color: #6366f1; margin-bottom: 1rem;">Challenge 4: System Integration & Modularity</h3>
-                        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.6);"><strong data-en="Problem:" data-zh="問題:" style="color: #fff;">Problem:</strong> <span data-en="Combining multiple AI models (CLIP, DETR, Llama) into a cohesive pipeline while maintaining code maintainability and allowing independent updates." data-zh="將多個 AI 模型（CLIP、DETR、Llama）組合成一個連貫的管道，同時保持代碼的可維護性並允許獨立更新。">Combining multiple AI models (CLIP, DETR, Llama) into a cohesive pipeline while maintaining code maintainability and allowing independent updates.</span></p>
-                        <p style="margin-bottom: 1rem; color: #fff;"><strong data-en="Solution:" data-zh="解決方案：">Solution:</strong></p>
-                        <ul class="highlights-list" style="margin-top: 0.5rem;">
-                            <li data-en="Designed 5-module architecture: Model Loading → Detection → Nutrition → Generation → Web UI" data-zh="設計 5 模塊架構：模型加載 → 檢測 → 營養 → 生成 → 網頁介面">
-                                Designed 5-module architecture: Model Loading → Detection → Nutrition → Generation → Web UI
-                            </li>
-                            <li data-en="Each module is independently testable and can be swapped/upgraded without affecting others" data-zh="每個模塊都可獨立測試，並可在不影響其他模塊的情況下交換/升級">
-                                Each module is independently testable and can be swapped/upgraded without affecting others
-                            </li>
-                            <li data-en="Created comprehensive documentation (README.md) for each pipeline component" data-zh="為每個管道組件創建全面的文檔（README.md）">
-                                Created comprehensive documentation (README.md) for each pipeline component
-                            </li>
-                            <li data-en="Implemented Gradio interface for seamless user interaction with real-time feedback" data-zh="實現 Gradio 介面以實現無縫用戶交互和實時反饋">
-                                Implemented Gradio interface for seamless user interaction with real-time feedback
-                            </li>
-                        </ul>
-                        <p style="margin-top: 1rem; padding: 1rem; background: rgba(99, 102, 241, 0.1); border-radius: 0; color: rgba(255,255,255,0.6);"><strong data-en="Impact:" data-zh="影響:" style="color: #fff;">Impact:</strong> <span data-en="Created a maintainable, scalable system suitable for both research experimentation and production deployment." data-zh="創建了一個適合研究實驗和生產部署的可維護、可擴展系統。">Created a maintainable, scalable system suitable for both research experimentation and production deployment.</span></p>
-                    </div>
-                </div>
-
-                <div class="key-innovations" style="margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 0; color: white;">
-                    <h3 style="color: white; margin-bottom: 1rem;" data-en="Key Innovations Summary" data-zh="關鍵創新總結">Key Innovations Summary</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0; display: flex; align-items: start;">
-                            <span style="margin-right: 0.5rem;">✨</span>
-                            <span data-en="First recipe generator to successfully run Llama 3.2 1B fine-tuning on consumer GPU (6GB VRAM)" data-zh="首個在消費級 GPU（6GB VRAM）上成功運行 Llama 3.2 1B 微調的食譜生成器">First recipe generator to successfully run Llama 3.2 1B fine-tuning on consumer GPU (6GB VRAM)</span>
-                        </li>
-                        <li style="padding: 0.5rem 0; display: flex; align-items: start;">
-                            <span style="margin-right: 0.5rem;">✨</span>
-                            <span data-en="Zero-shot ingredient detection across 525+ classes without custom training data" data-zh="在 525+ 個類別中進行零樣本成分檢測，無需自定義訓練數據">Zero-shot ingredient detection across 525+ classes without custom training data</span>
-                        </li>
-                        <li style="padding: 0.5rem 0; display: flex; align-items: start;">
-                            <span style="margin-right: 0.5rem;">✨</span>
-                            <span data-en="Automated nutrition estimation integrated with USDA FoodData Central (528 ingredients)" data-zh="與 USDA FoodData Central 整合的自動營養估算（528 種成分）">Automated nutrition estimation integrated with USDA FoodData Central (528 ingredients)</span>
-                        </li>
-                        <li style="padding: 0.5rem 0; display: flex; align-items: start;">
-                            <span style="margin-right: 0.5rem;">✨</span>
-                            <span data-en="Intelligent time validation with LLM-based fallback for 98%+ recipe completeness" data-zh="智能時間驗證與基於 LLM 的後備系統，達到 98%+ 食譜完整率">Intelligent time validation with LLM-based fallback for 98%+ recipe completeness</span>
-                        </li>
-                        <li style="padding: 0.5rem 0; display: flex; align-items: start;">
-                            <span style="margin-right: 0.5rem;">✨</span>
-                            <span data-en="100% local processing - no cloud dependencies, API costs, or privacy concerns" data-zh="100% 本地處理 - 無雲端依賴、API 成本或隱私問題">100% local processing - no cloud dependencies, API costs, or privacy concerns</span>
-                        </li>
-                    </ul>
+                <h2 class="section-title" data-en="Project Poster" data-zh="專案海報">Project Poster</h2>
+                <div class="image-container" style="margin: 1.5rem 0;">
+                    <img src="cauldron/CAIuldron Poster.png" alt="cAIuldron Project Poster" style="width: 100%; border-radius: 0; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
                 </div>
             </section>
+
         </div>
     </div>
 
