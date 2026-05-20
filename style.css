@@ -221,6 +221,10 @@ p {
     border-bottom: 1px solid var(--border-subtle);
 }
 
+html[lang="zh"] .navbar.scrolled {
+    background: rgba(245, 243, 239, 0.92);
+}
+
 .nav-container {
     max-width: var(--container-width);
     margin: 0 auto;
