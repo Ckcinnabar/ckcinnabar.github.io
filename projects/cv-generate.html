@@ -81,32 +81,78 @@
                     The agent is a LangGraph StateGraph where each node is a specialized stage. After hybrid retrieval, the graph pauses on a <code>human_review</code> interrupt so you can approve or override the selection. The <code>supervisor</code> and <code>render_check</code> stages form two retry loops that send feedback back to the generator until every claim passes fact-checking and the résumé fits one page.
                 </p>
 
-                <div class="pipeline-diagram">
-<pre style="margin: 0; color: inherit;">[Job Description]
-        │
-        ▼
-   select                  ← extract JD keywords, then HYBRID RAG
-   hybrid RAG: top ≤5         (dense embeddings + BM25, fused with RRF)
-        │
-        ▼
-   human_review            ← LangGraph interrupt — PAUSE
-   approve / override         you approve the picks or override them
-        │
-        ▼
-   generate  ◄─────────────┐ ← LLM writes ONLY the bullet points
-        │                  │   (titles/dates are hard-coded facts)
-        ▼                  │
-   supervisor              │ ← programmatic checks + LLM fact-checker
-        │                  │
-        ├── fail ──────────┤   feedback → regenerate
-        │                  │
-        ▼ pass             │
-   render_check            │ ← fill .docx, convert to PDF, count pages
-        │                  │
-        ├── &gt;1 page ───────┘   regenerate shorter
-        │
-        ▼ fits 1 page
-   [cv_filled.docx + cv_filled.pdf]</pre>
+                <div class="pipeline-diagram" style="display:flex; justify-content:center;">
+                    <svg viewBox="0 0 470 620" role="img" aria-label="CV Generator LangGraph pipeline: Job Description to select to human_review to generate to supervisor to render_check to one-page PDF, with supervisor and render_check looping back to generate" style="width:100%; max-width:470px; height:auto;">
+                        <style>
+                            .fl{stroke:var(--text-muted);stroke-width:1.6;fill:none}
+                            .fb{stroke:var(--primary);stroke-width:1.6;fill:none;stroke-dasharray:5 4}
+                            .bx{fill:var(--bg-elevated);stroke:var(--border-hover);stroke-width:1.5}
+                            .bxh{fill:var(--bg-elevated);stroke:var(--primary);stroke-width:1.8}
+                            .pill{fill:var(--bg-card);stroke:var(--primary);stroke-width:1.8}
+                            .t{fill:var(--text-primary);font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:600}
+                            .s{fill:var(--text-muted);font-family:ui-monospace,Menlo,monospace;font-size:11px}
+                            .al{fill:var(--text-secondary);font-family:ui-monospace,Menlo,monospace;font-size:11px}
+                            .fbl{fill:var(--primary);font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:600}
+                            .ah{fill:var(--text-muted)}
+                            .ahfb{fill:var(--primary)}
+                        </style>
+                        <defs>
+                            <marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+                            <marker id="arfb" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahfb"/></marker>
+                        </defs>
+
+                        <!-- flow arrows -->
+                        <path class="fl" marker-end="url(#ar)" d="M170,58 V90"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,150 V178"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,238 V278"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,338 V366"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,426 V454"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,514 V554"/>
+
+                        <!-- feedback loops -->
+                        <path class="fb" marker-end="url(#arfb)" d="M290,397 H370 V300 H292"/>
+                        <path class="fb" marker-end="url(#arfb)" d="M290,485 H420 V322 H292"/>
+                        <text class="fbl" x="328" y="390" text-anchor="middle">fail</text>
+                        <text class="fbl" x="356" y="478" text-anchor="middle">&gt;1 page</text>
+
+                        <!-- flow labels -->
+                        <text class="al" x="180" y="170">top &#8804;5</text>
+                        <text class="al" x="180" y="445">pass</text>
+                        <text class="al" x="180" y="539">fits 1 page</text>
+
+                        <!-- Job Description -->
+                        <rect class="pill" x="65" y="18" width="210" height="40" rx="20"/>
+                        <text class="t" x="170" y="43" text-anchor="middle">Job Description</text>
+
+                        <!-- select -->
+                        <rect class="bx" x="50" y="92" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="120" text-anchor="middle">select</text>
+                        <text class="s" x="170" y="138" text-anchor="middle">hybrid RAG &#183; dense + BM25 &#8594; RRF</text>
+
+                        <!-- human_review -->
+                        <rect class="bxh" x="50" y="180" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="208" text-anchor="middle">human_review</text>
+                        <text class="s" x="170" y="226" text-anchor="middle">&#9208; interrupt &#183; approve / override</text>
+
+                        <!-- generate -->
+                        <rect class="bx" x="50" y="280" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="308" text-anchor="middle">generate</text>
+                        <text class="s" x="170" y="326" text-anchor="middle">LLM writes bullets only</text>
+
+                        <!-- supervisor -->
+                        <rect class="bx" x="50" y="368" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="396" text-anchor="middle">supervisor</text>
+                        <text class="s" x="170" y="414" text-anchor="middle">limits + LLM fact-check</text>
+
+                        <!-- render_check -->
+                        <rect class="bx" x="50" y="456" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="484" text-anchor="middle">render_check</text>
+                        <text class="s" x="170" y="502" text-anchor="middle">fill .docx &#8594; PDF &#8594; count pages</text>
+
+                        <!-- output -->
+                        <rect class="pill" x="55" y="556" width="230" height="40" rx="20"/>
+                        <text class="t" x="170" y="581" text-anchor="middle">cv_filled.docx + .pdf</text>
+                    </svg>
                 </div>
 
                 <div class="image-container" style="max-width:520px; margin:2rem auto;">
