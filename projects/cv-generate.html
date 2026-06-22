@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Generator - Kuan-Chen Chen</title>
+    <link rel="stylesheet" href="project-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Portfolio" data-zh="返回作品集">Back to Portfolio</span>
+            </a>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh" style="display:none;">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title">CV Generator</h1>
+            <p class="project-subtitle" data-en="JD-Tailored Résumé Agent — Agentic RAG with Human-in-the-Loop" data-zh="職缺導向履歷生成智能體 — 含人工審核的 Agentic RAG">
+                JD-Tailored Résumé Agent — Agentic RAG with Human-in-the-Loop
+            </p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>University of Florida</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span data-en="Individual Project" data-zh="個人專案">Individual Project</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Jun 2026</span>
+                </div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">Claude</span>
+                <span class="tag">Hybrid RAG</span>
+                <span class="tag">ChromaDB</span>
+                <span class="tag">BM25</span>
+                <span class="tag">LangSmith</span>
+                <span class="tag">python-docx</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="container">
+
+            <!-- Overview -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
+                <p class="content-text" data-en="CV Generator is an agentic RAG system that turns a job description into a tailored, one-page résumé. Paste a JD and the agent retrieves your most relevant experiences and projects, lets you approve the selection, writes keyword-aligned bullets, fact-checks every claim against your real source material, and fills them into your Word template — then renders to PDF and guarantees it fits exactly one page. The entire workflow is orchestrated by a LangGraph stateful graph with a human-in-the-loop interrupt and automatic retry loops, and runs in a Jupyter notebook or interactively on LangGraph Studio." data-zh="CV Generator 是一個 Agentic RAG 系統，能將一段職缺描述（JD）轉化為量身打造的單頁履歷。貼上 JD，智能體會檢索你最相關的經歷與專案，讓你親自審核選擇結果，撰寫關鍵字對齊的條列，依據你真實的來源資料逐句事實查核，再填入你的 Word 範本——接著轉為 PDF 並保證剛好一頁。整個流程由 LangGraph 有狀態圖協調，包含人工審核中斷與自動重試迴圈，可在 Jupyter Notebook 或 LangGraph Studio 中互動執行。">
+                    CV Generator is an agentic RAG system that turns a job description into a tailored, one-page résumé. Paste a JD and the agent retrieves your most relevant experiences and projects, lets <em>you</em> approve the selection, writes keyword-aligned bullets, fact-checks every claim against your real source material, and fills them into your Word template — then renders to PDF and guarantees it fits exactly one page. The entire workflow is orchestrated by a LangGraph stateful graph with a human-in-the-loop interrupt and automatic retry loops, and runs in a Jupyter notebook or interactively on LangGraph Studio.
+                </p>
+            </section>
+
+            <!-- How It Works -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="How It Works: LangGraph Pipeline" data-zh="運作原理：LangGraph 管道">How It Works: LangGraph Pipeline</h2>
+                <p class="content-text" data-en="The agent is a LangGraph StateGraph where each node is a specialized stage. After hybrid retrieval, the graph pauses on a human_review interrupt so you can approve or override the selection. The supervisor and render_check stages form two retry loops that send feedback back to the generator until every claim passes fact-checking and the résumé fits one page." data-zh="此智能體是一個 LangGraph StateGraph，每個節點皆為一個專業階段。混合檢索後，圖會在 human_review 中斷處暫停，讓你核准或覆寫選擇。supervisor 與 render_check 階段構成兩個重試迴圈，將回饋送回生成器，直到每個論述都通過事實查核且履歷剛好一頁。">
+                    The agent is a LangGraph StateGraph where each node is a specialized stage. After hybrid retrieval, the graph pauses on a <code>human_review</code> interrupt so you can approve or override the selection. The <code>supervisor</code> and <code>render_check</code> stages form two retry loops that send feedback back to the generator until every claim passes fact-checking and the résumé fits one page.
+                </p>
+
+                <div class="pipeline-diagram">
+<pre style="margin: 0; color: inherit;">[Job Description]
+        │
+        ▼
+   select                  ← extract JD keywords, then HYBRID RAG
+   hybrid RAG: top ≤5         (dense embeddings + BM25, fused with RRF)
+        │
+        ▼
+   human_review            ← LangGraph interrupt — PAUSE
+   approve / override         you approve the picks or override them
+        │
+        ▼
+   generate  ◄─────────────┐ ← LLM writes ONLY the bullet points
+        │                  │   (titles/dates are hard-coded facts)
+        ▼                  │
+   supervisor              │ ← programmatic checks + LLM fact-checker
+        │                  │
+        ├── fail ──────────┤   feedback → regenerate
+        │                  │
+        ▼ pass             │
+   render_check            │ ← fill .docx, convert to PDF, count pages
+        │                  │
+        ├── &gt;1 page ───────┘   regenerate shorter
+        │
+        ▼ fits 1 page
+   [cv_filled.docx + cv_filled.pdf]</pre>
+                </div>
+
+                <div class="image-container" style="max-width:520px; margin:2rem auto;">
+                    <img src="cv-generate/langsmith%20pic.jpeg" alt="LangGraph Studio graph view of the CV Generator agent">
+                    <p class="image-caption" data-en="The live graph in LangGraph Studio — __start__ → select → human_review → generate → supervisor → __end__, with render_check looping back until the PDF fits one page" data-zh="LangGraph Studio 中的實際圖 — __start__ → select → human_review → generate → supervisor → __end__，render_check 迴圈直到 PDF 符合單頁">The live graph in LangGraph Studio — __start__ → select → human_review → generate → supervisor → __end__, with render_check looping back until the PDF fits one page</p>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Stage" data-zh="階段">Stage</th>
+                                <th data-en="What it does" data-zh="功能說明">What it does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-primary"><strong>select</strong></td>
+                                <td data-en="Extracts technical keywords from the JD, then runs hybrid retrieval (dense embeddings + BM25, fused with Reciprocal Rank Fusion) over short per-item summary cards. An LLM picks the top ≤5 experiences and projects." data-zh="從 JD 提取技術關鍵字，接著對每個項目的精簡摘要卡執行混合檢索（密集嵌入 + BM25，以 RRF 融合）。由 LLM 挑選最相關的前 ≤5 個經歷與專案。">Extracts technical keywords from the JD, then runs hybrid retrieval (dense embeddings + BM25, fused with Reciprocal Rank Fusion) over short per-item summary cards. An LLM picks the top ≤5 experiences and projects.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>human_review</strong></td>
+                                <td data-en="A LangGraph interrupt pauses the graph so you can approve the selection or override it with your own picks." data-zh="LangGraph interrupt 暫停圖的執行，讓你核准選擇，或以自己的選項覆寫。">A LangGraph <code>interrupt</code> pauses the graph so you can approve the selection or override it with your own picks.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>generate</strong></td>
+                                <td data-en="An LLM writes only the bullet points. Titles, roles, and dates are hard-coded in a TITLES map, so names and dates are never hallucinated." data-zh="LLM 只撰寫條列要點。職稱、角色與日期硬編碼於 TITLES 對照表中，因此名稱與日期絕不會被幻覺生成。">An LLM writes <em>only the bullet points</em>. Titles, roles, and dates are hard-coded in a <code>TITLES</code> map, so names and dates are never hallucinated.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>supervisor</strong></td>
+                                <td data-en="Programmatic checks (≤3 bullets/item, ≤300 chars/bullet) plus an LLM fact-checker that verifies every claim against the source README/report. On failure it sends feedback and regenerates." data-zh="程式化檢查（每項 ≤3 條、每條 ≤300 字元），加上 LLM 事實查核器，依據來源 README／報告驗證每個論述。失敗時送出回饋並重新生成。">Programmatic checks (≤3 bullets/item, ≤300 chars/bullet) plus an LLM fact-checker that verifies every claim against the source README/report. On failure it sends feedback and regenerates.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>render_check</strong></td>
+                                <td data-en="Fills the Word template, converts to PDF (MS Word via docx2pdf), counts pages, and enforces one page — if it overflows, it reports how many characters spilled over and regenerates shorter." data-zh="填入 Word 範本，轉為 PDF（透過 docx2pdf 使用 MS Word），計算頁數並強制單頁——若溢出，回報溢出多少字元並重新生成更短版本。">Fills the Word template, converts to PDF (MS Word via <code>docx2pdf</code>), counts pages, and enforces one page — if it overflows, it reports how many characters spilled over and regenerates shorter.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Retrieval Design -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Retrieval Design" data-zh="檢索設計">Retrieval Design</h2>
+                <p class="content-text" data-en="The retrieval architecture is deliberate — it separates what gets searched from what gets read, and separates facts from generated text. This is what keeps the résumé both relevant and truthful." data-zh="檢索架構經過刻意設計——將「被搜尋的內容」與「被閱讀的內容」分離，並將「事實」與「生成文字」分離。這正是讓履歷兼具相關性與真實性的關鍵。">
+                    The retrieval architecture is deliberate — it separates what gets searched from what gets read, and separates facts from generated text. This is what keeps the résumé both relevant and truthful.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3 data-en="One Project = One Document" data-zh="一個專案 = 一份文件">One Project = One Document</h3>
+                        <p data-en="Each README.md is a single retrieval unit — no mid-project chunking. A whole experience or project is retrieved or skipped as a coherent whole, never fragmented across unrelated pieces." data-zh="每個 README.md 都是單一檢索單位——不在專案中途切塊。整個經歷或專案會作為連貫整體被檢索或略過，絕不被切割成不相關的片段。">
+                            Each <code>README.md</code> is a single retrieval unit — no mid-project chunking. A whole experience or project is retrieved or skipped as a coherent whole, never fragmented across unrelated pieces.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔎</div>
+                        <h3 data-en="Retrieve on Short, Generate on Long" data-zh="短文檢索，長文生成">Retrieve on Short, Generate on Long</h3>
+                        <p data-en="A keyword-dense summary card (cached) is embedded for retrieval; the full README/report is loaded only for the few selected items at generation time — fast search, rich context only where it counts." data-zh="嵌入關鍵字密集的摘要卡（已快取）供檢索；完整的 README／報告僅在生成階段為少數被選中的項目載入——搜尋快速，且僅在關鍵處提供豐富上下文。">
+                            A keyword-dense summary card (cached) is embedded for retrieval; the full README/report is loaded only for the few selected items at generation time — fast search, rich context only where it counts.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3 data-en="Titles are Facts, Bullets are AI" data-zh="職稱是事實，條列由 AI 撰寫">Titles are Facts, Bullets are AI</h3>
+                        <p data-en="Headings come from a hand-maintained TITLES map; the model only writes bullets. This eliminates renamed companies, invented dates, and dropped items — the most common résumé-LLM failure modes." data-zh="標題來自手動維護的 TITLES 對照表；模型只撰寫條列。這消除了公司名稱被改寫、日期被捏造、項目被遺漏等履歷 LLM 最常見的失敗模式。">
+                            Headings come from a hand-maintained <code>TITLES</code> map; the model only writes bullets. This eliminates renamed companies, invented dates, and dropped items — the most common résumé-LLM failure modes.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔀</div>
+                        <h3 data-en="Hybrid Retrieval with RRF" data-zh="RRF 混合檢索">Hybrid Retrieval with RRF</h3>
+                        <p data-en="Dense semantic search (HuggingFace multilingual MiniLM embeddings + Chroma) and sparse keyword search (rank_bm25) run together, fused with Reciprocal Rank Fusion — catching both meaning-based and exact-keyword matches from the JD." data-zh="密集語意搜尋（HuggingFace 多語 MiniLM 嵌入 + Chroma）與稀疏關鍵字搜尋（rank_bm25）同時運行，以 RRF 融合——同時捕捉 JD 中基於語意與精確關鍵字的匹配。">
+                            Dense semantic search (HuggingFace multilingual MiniLM embeddings + Chroma) and sparse keyword search (<code>rank_bm25</code>) run together, fused with Reciprocal Rank Fusion — catching both meaning-based and exact-keyword matches from the JD.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⏸️</div>
+                        <h3 data-en="Human-in-the-Loop Interrupt" data-zh="人工審核中斷">Human-in-the-Loop Interrupt</h3>
+                        <p data-en="A native LangGraph interrupt pauses the graph at human_review. Resume with an empty command to accept the AI's selection, or a list of names to override it — you stay in control of what lands on the page." data-zh="原生 LangGraph interrupt 在 human_review 處暫停圖。以空指令恢復即接受 AI 的選擇，或傳入名稱列表以覆寫——你始終掌控履歷上呈現的內容。">
+                            A native LangGraph <code>interrupt</code> pauses the graph at <code>human_review</code>. Resume with an empty command to accept the AI's selection, or a list of names to override it — you stay in control of what lands on the page.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📐</div>
+                        <h3 data-en="Guaranteed One Page" data-zh="保證單頁">Guaranteed One Page</h3>
+                        <p data-en="render_check fills the template, renders to PDF, counts pages with pypdf, and loops back to shorten if it overflows — reporting exactly how many characters spilled over so the next pass trims precisely." data-zh="render_check 填入範本、轉為 PDF、以 pypdf 計算頁數，溢出時迴圈回去縮短——精確回報溢出多少字元，使下一輪精準修剪。">
+                            <code>render_check</code> fills the template, renders to PDF, counts pages with <code>pypdf</code>, and loops back to shorten if it overflows — reporting exactly how many characters spilled over so the next pass trims precisely.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Demo: Tailoring a Résumé to a JD" data-zh="演示：依 JD 客製履歷">Demo: Tailoring a Résumé to a JD</h2>
+                <p class="content-text" data-en="A real run against a Data Analyst job description. The agent extracts the JD's keywords, retrieves and ranks the most relevant experiences and projects, pauses for human approval, then rewrites the résumé and renders a guaranteed one-page PDF." data-zh="以一份資料分析師職缺描述的真實執行。智能體抽取 JD 關鍵字，檢索並排序最相關的經歷與專案，暫停等待人工核准，接著重寫履歷並輸出保證單頁的 PDF。">
+                    A real run against a Data Analyst job description. The agent extracts the JD's keywords, retrieves and ranks the most relevant experiences and projects, pauses for human approval, then rewrites the résumé and renders a guaranteed one-page PDF.
+                </p>
+
+                <div class="image-container" style="max-width:560px; margin:2rem auto;">
+                    <img src="cv-generate/HIL%20and%20keyword.jpeg" alt="Keyword extraction and human_review interrupt in LangGraph Studio">
+                    <p class="image-caption" data-en="select extracts JD keywords (Python · SQL · Databricks · dbt · Tableau · Looker · PySpark), then the human_review interrupt pauses with all 9 candidates and the 4 it picked — resume with [] to accept or a list of names to override" data-zh="select 抽取 JD 關鍵字（Python · SQL · Databricks · dbt · Tableau · Looker · PySpark），接著 human_review interrupt 暫停，列出全部 9 個候選與選出的 4 個——以 [] 接受或傳入名稱列表覆寫">select extracts JD keywords (Python · SQL · Databricks · dbt · Tableau · Looker · PySpark), then the human_review interrupt pauses with all 9 candidates and the 4 it picked — resume with [] to accept or a list of names to override</p>
+                </div>
+
+                <h3 data-en="Before → After: One-Page Output" data-zh="前後對照：單頁輸出">Before → After: One-Page Output</h3>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <div class="image-container" style="margin:1rem 0;">
+                            <iframe src="cv-generate/kuan_chen_Chen_CV%202606.pdf#toolbar=0&amp;view=FitH" title="Master résumé template (before)" style="width:100%; height:540px; border:1px solid var(--border-subtle); box-shadow:var(--shadow-lg);"></iframe>
+                            <p class="image-caption" data-en="Before — the master résumé template. Header, Education, and Skills stay fixed; only EXPERIENCE and PROJECTS are rewritten." data-zh="之前 — 主履歷範本。標頭、學歷、技能保持固定；只有 EXPERIENCE 與 PROJECTS 會被重寫。">Before — the master résumé template. Header, Education, and Skills stay fixed; only EXPERIENCE and PROJECTS are rewritten.</p>
+                            <p style="text-align:center; margin-top:0.3rem;"><a href="cv-generate/kuan_chen_Chen_CV%202606.pdf" target="_blank" style="color:var(--primary); font-size:0.85rem;"><i class="fas fa-external-link-alt"></i> <span data-en="Open PDF" data-zh="開啟 PDF">Open PDF</span></a></p>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <div class="image-container" style="margin:1rem 0;">
+                            <iframe src="cv-generate/cv_filled.pdf#toolbar=0&amp;view=FitH" title="Tailored résumé (after)" style="width:100%; height:540px; border:1px solid var(--primary); box-shadow:var(--shadow-lg);"></iframe>
+                            <p class="image-caption" data-en="After — cv_filled.pdf: experiences and projects retrieved, reordered, and rewritten for the JD, fact-checked, and forced to exactly one page." data-zh="之後 — cv_filled.pdf：經歷與專案依 JD 檢索、重新排序並重寫，經事實查核，並強制壓到剛好一頁。">After — cv_filled.pdf: experiences and projects retrieved, reordered, and rewritten for the JD, fact-checked, and forced to exactly one page.</p>
+                            <p style="text-align:center; margin-top:0.3rem;"><a href="cv-generate/cv_filled.pdf" target="_blank" style="color:var(--primary); font-size:0.85rem;"><i class="fas fa-external-link-alt"></i> <span data-en="Open PDF" data-zh="開啟 PDF">Open PDF</span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo Video -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Demo Video" data-zh="展示影片">Demo Video</h2>
+                <p class="content-text" data-en="Watch the CV Generator agent in action — from pasting a job description to hybrid retrieval, human approval, fact-checked generation, and a guaranteed one-page résumé." data-zh="觀看 CV Generator 智能體實際運行——從貼上職缺描述，到混合檢索、人工核准、事實查核生成，並輸出保證單頁的履歷。">
+                    Watch the CV Generator agent in action — from pasting a job description to hybrid retrieval, human approval, fact-checked generation, and a guaranteed one-page résumé.
+                </p>
+                <div class="image-container">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            src="https://www.youtube.com/embed/oiWgXaSH69c"
+                            title="CV Generator — JD-Tailored Résumé Agent Demo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="image-caption" data-en="CV Generator — full pipeline demo: JD → hybrid RAG select → human_review → generate → supervisor → render_check → one-page PDF" data-zh="CV Generator 完整管道展示：JD → 混合 RAG select → human_review → generate → supervisor → render_check → 單頁 PDF">CV Generator — full pipeline demo: JD → hybrid RAG select → human_review → generate → supervisor → render_check → one-page PDF</p>
+                </div>
+            </section>
+
+            <!-- AI Model Ecosystem -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="AI Model &amp; Retrieval Stack" data-zh="AI 模型與檢索堆疊">AI Model &amp; Retrieval Stack</h2>
+                <p class="content-text" data-en="Models are matched to each task: a fast, cheap Claude Haiku handles high-volume keyword extraction, selection, and summary cards, while a stronger Claude Sonnet handles generation and fact-checking where quality matters most." data-zh="模型依任務搭配：快速、低成本的 Claude Haiku 處理大量的關鍵字提取、選擇與摘要卡，而更強的 Claude Sonnet 則處理最重視品質的生成與事實查核。">
+                    Models are matched to each task: a fast, cheap Claude Haiku handles high-volume keyword extraction, selection, and summary cards, while a stronger Claude Sonnet handles generation and fact-checking where quality matters most.
+                </p>
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Component" data-zh="組件">Component</th>
+                                <th data-en="Model / Tool" data-zh="模型／工具">Model / Tool</th>
+                                <th data-en="Role" data-zh="角色">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Keyword / Selection / Summaries" data-zh="關鍵字／選擇／摘要">Keyword / Selection / Summaries</strong></td>
+                                <td>Claude Haiku</td>
+                                <td class="td-accent" data-en="Fast, cheap, high-volume tasks" data-zh="快速、低成本、高頻任務">Fast, cheap, high-volume tasks</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Generation / Fact-Checking" data-zh="生成／事實查核">Generation / Fact-Checking</strong></td>
+                                <td>Claude Sonnet</td>
+                                <td class="td-accent" data-en="High-quality bullets + verification" data-zh="高品質條列 + 驗證">High-quality bullets + verification</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Dense Retrieval" data-zh="密集檢索">Dense Retrieval</strong></td>
+                                <td>paraphrase-multilingual-MiniLM-L12-v2 + Chroma</td>
+                                <td class="td-accent" data-en="Semantic embedding search" data-zh="語意嵌入搜尋">Semantic embedding search</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Sparse Retrieval" data-zh="稀疏檢索">Sparse Retrieval</strong></td>
+                                <td>rank_bm25 + Reciprocal Rank Fusion</td>
+                                <td class="td-accent" data-en="Exact keyword match, fused with dense" data-zh="精確關鍵字匹配，與密集融合">Exact keyword match, fused with dense</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Document I/O" data-zh="文件輸入輸出">Document I/O</strong></td>
+                                <td>python-docx · docx2pdf · pypdf</td>
+                                <td class="td-accent" data-en="Fill template → PDF → page count" data-zh="填範本 → PDF → 計算頁數">Fill template → PDF → page count</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Orchestration / Observability" data-zh="協調／可觀測性">Orchestration / Observability</strong></td>
+                                <td>LangGraph + LangSmith</td>
+                                <td class="td-accent" data-en="Stateful graph, HITL, traced runs" data-zh="有狀態圖、人工審核、追蹤執行">Stateful graph, HITL, traced runs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Technical Implementation -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Implementation" data-zh="技術實現">Technical Implementation</h2>
+
+                <h3 data-en="1. Hybrid Selection" data-zh="1. 混合選擇">1. Hybrid Selection</h3>
+                <ul class="highlights-list">
+                    <li data-en="An LLM extracts technical keywords from the raw JD before retrieval, so the query is normalized to skills rather than prose" data-zh="LLM 在檢索前從原始 JD 提取技術關鍵字，使查詢正規化為技能而非散文">
+                        An LLM extracts technical keywords from the raw JD before retrieval, so the query is normalized to skills rather than prose
+                    </li>
+                    <li data-en="Dense (Chroma) and sparse (BM25) rankings are merged with Reciprocal Rank Fusion, then an LLM picks the top ≤5 items" data-zh="密集（Chroma）與稀疏（BM25）排名以 RRF 融合，再由 LLM 挑選前 ≤5 個項目">
+                        Dense (Chroma) and sparse (BM25) rankings are merged with Reciprocal Rank Fusion, then an LLM picks the top ≤5 items
+                    </li>
+                    <li data-en="Retrieval runs over cached summary cards (summaries.json) — keyword-dense one-liners that keep similarity focused and search fast" data-zh="檢索在快取的摘要卡（summaries.json）上運行——關鍵字密集的單行摘要，使相似度聚焦且搜尋快速">
+                        Retrieval runs over cached summary cards (<code>summaries.json</code>) — keyword-dense one-liners that keep similarity focused and search fast
+                    </li>
+                </ul>
+
+                <h3 data-en="2. Fact-Checked Generation" data-zh="2. 事實查核生成">2. Fact-Checked Generation</h3>
+                <ul class="highlights-list">
+                    <li data-en="The generator writes only bullets; display titles and roles come from a TITLES dict (name → (display_title, role)) so they are never hallucinated" data-zh="生成器只撰寫條列；顯示職稱與角色來自 TITLES 字典（name → (display_title, role)），絕不被幻覺生成">
+                        The generator writes only bullets; display titles and roles come from a <code>TITLES</code> dict (<code>name → (display_title, role)</code>) so they are never hallucinated
+                    </li>
+                    <li data-en="Supervisor enforces hard limits (≤3 bullets/item, ≤300 chars/bullet) and runs an LLM fact-checker against the full source README/report" data-zh="Supervisor 強制執行硬性限制（每項 ≤3 條、每條 ≤300 字元），並依完整來源 README／報告運行 LLM 事實查核器">
+                        Supervisor enforces hard limits (≤3 bullets/item, ≤300 chars/bullet) and runs an LLM fact-checker against the full source README/report
+                    </li>
+                    <li data-en="On any failure, structured feedback is fed back to the generate node, which regenerates up to MAX_ATTEMPTS times" data-zh="任何失敗時，結構化回饋會送回 generate 節點，最多重新生成 MAX_ATTEMPTS 次">
+                        On any failure, structured feedback is fed back to the <code>generate</code> node, which regenerates up to <code>MAX_ATTEMPTS</code> times
+                    </li>
+                </ul>
+
+                <h3 data-en="3. Template Filling &amp; One-Page Enforcement" data-zh="3. 範本填入與單頁強制">3. Template Filling &amp; One-Page Enforcement</h3>
+                <ul class="highlights-list">
+                    <li data-en="The filler locates the EXPERIENCE and SKILLS headings in the .docx and replaces everything between them, cloning the template's paragraph formatting" data-zh="填充器在 .docx 中定位 EXPERIENCE 與 SKILLS 標題，並取代其間的所有內容，複製範本的段落格式">
+                        The filler locates the <code>EXPERIENCE</code> and <code>SKILLS</code> headings in the <code>.docx</code> and replaces everything between them, cloning the template's paragraph formatting
+                    </li>
+                    <li data-en="Header, Education, and Skills sections are left completely untouched — only EXPERIENCE and PROJECT bullets are rewritten" data-zh="標頭、學歷與技能區塊完全保持不變——只有 EXPERIENCE 與 PROJECT 條列被重寫">
+                        Header, Education, and Skills sections are left completely untouched — only EXPERIENCE and PROJECT bullets are rewritten
+                    </li>
+                    <li data-en="render_check converts to PDF via docx2pdf (local MS Word), counts pages with pypdf, and loops back to shorten until it fits one page" data-zh="render_check 透過 docx2pdf（本地 MS Word）轉為 PDF，以 pypdf 計算頁數，並迴圈回去縮短直到符合單頁">
+                        <code>render_check</code> converts to PDF via <code>docx2pdf</code> (local MS Word), counts pages with <code>pypdf</code>, and loops back to shorten until it fits one page
+                    </li>
+                </ul>
+
+                <h3 data-en="4. Configurable Knobs" data-zh="4. 可調參數">4. Configurable Knobs</h3>
+                <ul class="highlights-list">
+                    <li data-en="MAX_PICK, MAX_BULLETS, MAX_BULLET_CHARS, MAX_ATTEMPTS control how many items appear and the page budget" data-zh="MAX_PICK、MAX_BULLETS、MAX_BULLET_CHARS、MAX_ATTEMPTS 控制呈現項目數量與頁面預算">
+                        <code>MAX_PICK</code>, <code>MAX_BULLETS</code>, <code>MAX_BULLET_CHARS</code>, <code>MAX_ATTEMPTS</code> control how many items appear and the page budget
+                    </li>
+                    <li data-en="Swap in any .docx template; the model assignment (Haiku vs Sonnet) is configurable per node" data-zh="可換入任何 .docx 範本；每個節點的模型指派（Haiku 與 Sonnet）皆可設定">
+                        Swap in any <code>.docx</code> template; the model assignment (Haiku vs Sonnet) is configurable per node
+                    </li>
+                    <li data-en="agent.py is exported from project.ipynb so the same graph runs in a notebook or via langgraph dev on LangGraph Studio" data-zh="agent.py 由 project.ipynb 匯出，因此同一張圖可在 Notebook 或透過 langgraph dev 於 LangGraph Studio 執行">
+                        <code>agent.py</code> is exported from <code>project.ipynb</code> so the same graph runs in a notebook or via <code>langgraph dev</code> on LangGraph Studio
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Technology Stack -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>LangGraph</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Claude (Haiku + Sonnet)</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <span>ChromaDB</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-search"></i>
+                        <span>rank_bm25 + RRF</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <span>HuggingFace Embeddings</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-file-word"></i>
+                        <span>python-docx</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>docx2pdf · pypdf</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>LangSmith</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-desktop"></i>
+                        <span>LangGraph Studio</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Links -->
+    <section class="links-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Project Links" data-zh="專案連結">Project Links</h2>
+            <div class="project-links">
+                <a href="https://github.com/Ckcinnabar/cv-generate" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span data-en="View Code" data-zh="查看代碼">View Code</span>
+                </a>
+                <a href="../index.html#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    <span data-en="Contact Me" data-zh="聯絡我">Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
