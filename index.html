@@ -212,6 +212,36 @@
             <div class="timeline">
                 <div class="timeline-track"></div>
 
+                <div class="timeline-year-marker">2026</div>
+
+                <div class="timeline-item clickable">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                        <div class="marker-pulse"></div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <div class="card-meta">
+                                <span class="card-date">May 2026 - Present</span>
+                                <span class="card-type" data-en="Open Source" data-zh="開源貢獻">Open Source</span>
+                            </div>
+                            <h3 class="card-title" data-en="Open-Source Contributor" data-zh="開源貢獻者">Open-Source Contributor</h3>
+                            <h4 class="card-company">NVIDIA NeMo Automodel</h4>
+                        </div>
+                        <p class="card-summary" data-en="Shipped 2 merged PRs adding LLM fine-tuning recipes to NVIDIA's distributed training library" data-zh="貢獻 2 個已合併的 PR，為 NVIDIA 的分散式訓練函式庫新增大型語言模型微調配方">
+                            Shipped 2 merged PRs adding LLM fine-tuning recipes to NVIDIA's distributed training library
+                        </p>
+                        <ul class="card-details">
+                            <li data-en="Contributed 2 merged PRs to NVIDIA's distributed LLM training library, adding 7 fine-tuning recipes (SFT, LoRA) for models from 0.5B to 34B parameters, spanning Falcon H1 (hybrid Transformer + Mamba2 SSM) and MiniCPM5-1B" data-zh="貢獻 2 個已合併的 PR 至 NVIDIA 的分散式 LLM 訓練函式庫，為 0.5B 至 34B 參數規模的模型新增 7 個微調配方（SFT、LoRA），涵蓋 Falcon H1（混合 Transformer + Mamba2 SSM 架構）與 MiniCPM5-1B">
+                                Contributed 2 merged PRs to NVIDIA's distributed LLM training library, adding 7 fine-tuning recipes (SFT, LoRA) for models from 0.5B to 34B parameters, spanning Falcon H1 (hybrid Transformer + Mamba2 SSM) and MiniCPM5-1B
+                            </li>
+                            <li data-en="Configured LoRA hyperparameters (rank, alpha, target modules) and tensor parallelism for 34B-scale training; validated convergence on T4 GPU runs" data-zh="配置 LoRA 超參數（rank、alpha、target modules）與張量平行化以支援 34B 規模訓練；並在 T4 GPU 上驗證收斂性">
+                                Configured LoRA hyperparameters (rank, alpha, target modules) and tensor parallelism for 34B-scale training; validated convergence on T4 GPU runs
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="timeline-year-marker">2025</div>
 
                 <div class="timeline-item clickable">
@@ -222,22 +252,25 @@
                     <div class="timeline-card">
                         <div class="card-header">
                             <div class="card-meta">
-                                <span class="card-date">Aug 2025 - Present</span>
+                                <span class="card-date">Aug 2025 - May 2026</span>
                                 <span class="card-type" data-en="Internship" data-zh="實習">Internship</span>
                             </div>
                             <h3 class="card-title">Data Scientist Intern</h3>
                             <h4 class="card-company">Florida Gators Women's Basketball</h4>
                             <p class="card-location"><i class="fas fa-map-marker-alt"></i> Gainesville, FL</p>
                         </div>
-                        <p class="card-summary" data-en="Built analytical models and interactive dashboards to improve team's defensive strategies" data-zh="建立分析模型和互動式儀表板以提升球隊防守策略">
-                            Built analytical models and interactive dashboards to improve team's defensive strategies
+                        <p class="card-summary" data-en="Built OA-Rating, an opponent-strength-adjusted player evaluation system using XGBoost and SHAP" data-zh="建立 OA-Rating——透過 XGBoost 與 SHAP 打造的對手強度調整球員評價系統">
+                            Built OA-Rating, an opponent-strength-adjusted player evaluation system using XGBoost and SHAP
                         </p>
                         <ul class="card-details">
-                            <li data-en="Built analytical models to evaluate opponents' historical offensive data, providing insights for lineup adjustments and defensive strategies" data-zh="建立分析模型評估對手的歷史進攻數據，提供陣容調整和防守策略的見解">
-                                Built analytical models to evaluate opponents' historical offensive data, providing insights for lineup adjustments and defensive strategies
+                            <li data-en="Built an opponent-strength-adjusted player evaluation system (OA-Rating) using XGBoost and SHAP, analyzing 120K+ game-level observations across 5,500+ NCAA players and 350+ teams" data-zh="建立對手強度調整球員評價系統（OA-Rating），使用 XGBoost 和 SHAP 分析超過 12 萬筆比賽級數據，涵蓋 5,500+ 名 NCAA 球員與 350+ 支球隊">
+                                Built an opponent-strength-adjusted player evaluation system (OA-Rating) using XGBoost and SHAP, analyzing 120K+ game-level observations across 5,500+ NCAA players and 350+ teams
                             </li>
-                            <li data-en="Developed interactive Shiny dashboards to visualize player statistics with historical performance trends" data-zh="開發互動式 Shiny 儀表板，可視化球員統計數據和歷史表現趨勢">
-                                Developed interactive Shiny dashboards to visualize player statistics with historical performance trends
+                            <li data-en="Implemented an Elo-based team rating system (ρ = 0.83 vs. NCAA NET) to track real-time team strength and support game preparation" data-zh="實作 Elo 球隊評等系統（與 NCAA NET 相關係數 ρ = 0.83），即時追蹤球隊實力以支援賽前準備">
+                                Implemented an Elo-based team rating system (ρ = 0.83 vs. NCAA NET) to track real-time team strength and support game preparation
+                            </li>
+                            <li data-en="Developed a production R Shiny dashboard for player comparison and opponent scouting, delivering insights that contributed to team improvement from 16–17 (NET 60) to 18–15 (NET 48)" data-zh="開發正式上線的 R Shiny 儀表板，用於球員比較與對手球探分析，協助球隊戰績從 16 勝 17 負（NET 60）進步至 18 勝 15 負（NET 48）">
+                                Developed a production R Shiny dashboard for player comparison and opponent scouting, delivering insights that contributed to team improvement from 16–17 (NET 60) to 18–15 (NET 48)
                             </li>
                         </ul>
                     </div>
@@ -257,12 +290,18 @@
                             <h4 class="card-company">Bioinformatics Lab, University of Florida</h4>
                             <p class="card-location"><i class="fas fa-map-marker-alt"></i> Gainesville, FL</p>
                         </div>
-                        <p class="card-summary" data-en="Analyzed blood protein data to identify key disease indicators" data-zh="分析血液蛋白質數據以識別關鍵疾病指標">
-                            Analyzed blood protein data to identify key disease indicators
+                        <p class="card-summary" data-en="Designed a stacking-ensemble model predicting whether immune-receptor CDR3 sequences cross the blood-brain barrier" data-zh="設計堆疊集成模型，預測免疫受體 CDR3 序列是否能穿越血腦屏障">
+                            Designed a stacking-ensemble model predicting whether immune-receptor CDR3 sequences cross the blood-brain barrier
                         </p>
                         <ul class="card-details">
-                            <li data-en="Analyzed blood protein data from AZ patients and identified key disease indicators through pattern analysis" data-zh="分析AZ患者的血液蛋白質數據，通過模式分析識別關鍵疾病指標">
-                                Analyzed blood protein data from AZ patients and identified key disease indicators through pattern analysis
+                            <li data-en="Designed stacking ensemble algorithm combining XGBoost, LightGBM, and Balanced Random Forest with a logistic regression meta-learner to classify 10,486 T-cell receptor CDR3 sequences, improving robustness on highly imbalanced data (1:23) and achieving ROC-AUC 0.876" data-zh="設計結合 XGBoost、LightGBM 和 Balanced Random Forest 的堆疊集成演算法，並以邏輯迴歸作為元學習器，對 10,486 條 T 細胞受體 CDR3 序列進行分類，在高度不平衡資料（1:23）下提升穩健性，達到 ROC-AUC 0.876">
+                                Designed stacking ensemble algorithm combining XGBoost, LightGBM, and Balanced Random Forest with a logistic regression meta-learner to classify 10,486 T-cell receptor CDR3 sequences, improving robustness on highly imbalanced data (1:23) and achieving ROC-AUC 0.876
+                            </li>
+                            <li data-en="Developed a biologically-informed data augmentation algorithm using the BLOSUM62 substitution matrix, generating conservative sequence variants to expand the minority class 10× (432 → 4,622) and mitigate severe class imbalance (1:23 → 1:1.5)" data-zh="開發基於 BLOSUM62 替換矩陣的生物資訊資料增強演算法，生成保守序列變體將少數類別擴增 10 倍（432 → 4,622），緩解嚴重類別不平衡（1:23 → 1:1.5）">
+                                Developed a biologically-informed data augmentation algorithm using the BLOSUM62 substitution matrix, generating conservative sequence variants to expand the minority class 10× (432 → 4,622) and mitigate severe class imbalance (1:23 → 1:1.5)
+                            </li>
+                            <li data-en="Engineered 42 physicochemical features from protein sequences and optimized decision thresholds under class imbalance, improving precision to 0.716 for high-confidence, interpretable predictions" data-zh="從蛋白質序列工程化 42 個物理化學特徵，並在類別不平衡下優化決策閾值，將精確率提升至 0.716，提供高信心且可解釋的預測">
+                                Engineered 42 physicochemical features from protein sequences and optimized decision thresholds under class imbalance, improving precision to 0.716 for high-confidence, interpretable predictions
                             </li>
                         </ul>
                     </div>
@@ -499,7 +538,7 @@
                         </p>
                         <ul class="project-highlights">
                             <li data-en="86.1% YouBike prediction accuracy" data-zh="YouBike 預測準確率 86.1%">86.1% YouBike prediction accuracy</li>
-                            <li data-en="Top 10/121 teams nationally" data-zh="全國前 10/121 隊">Top 10/121 teams nationally</li>
+                            <li data-en="Top 20 of 121 teams nationally" data-zh="全國 121 隊中進入前 20 強">Top 20 of 121 teams nationally</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">ARIMA</span>
@@ -507,6 +546,38 @@
                             <span class="tag">IoT</span>
                         </div>
                         <a href="projects/darts.html" class="project-link">
+                            <span data-en="View Project" data-zh="查看專案">View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-date">2025</span>
+                            <span class="project-category">Computer Vision</span>
+                        </div>
+                        <h3 class="project-title" data-en="Leaf Surface Texture Analysis" data-zh="葉片表面紋理分析">Leaf Surface Texture Analysis</h3>
+                        <p class="project-description" data-en="Dual-application computer vision pipeline turning a plant-disease dataset into quantitative biomimetic surface-engineering metrics" data-zh="雙應用電腦視覺管道，將植物病害資料集轉化為量化的仿生表面工程指標">
+                            Dual-application computer vision pipeline turning a plant-disease dataset into quantitative biomimetic surface-engineering metrics
+                        </p>
+                        <ul class="project-highlights">
+                            <li data-en="1,351-dim feature fusion: GLCM + fractal + vein geometry + MobileNetV2" data-zh="1,351 維特徵融合：GLCM + 碎形 + 葉脈幾何 + MobileNetV2">1,351-dim feature fusion: GLCM + fractal + vein geometry + MobileNetV2</li>
+                            <li data-en="~92% CNN classification accuracy across 10 surface-pattern classes" data-zh="10 種表面紋理類別下 CNN 分類準確率約 92%">~92% CNN classification accuracy across 10 surface-pattern classes</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">scikit-image</span>
+                        </div>
+                        <a href="projects/leaf-texture.html" class="project-link">
                             <span data-en="View Project" data-zh="查看專案">View Project</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>

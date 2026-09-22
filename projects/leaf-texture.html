@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Surface Texture Analysis - Kuan-Chen Chen</title>
+    <link rel="stylesheet" href="project-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Portfolio" data-zh="返回作品集">Back to Portfolio</span>
+            </a>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh" style="display:none;">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title" data-en="Natural Leaf Surface Texture Analysis" data-zh="天然葉片表面紋理分析">Natural Leaf Surface Texture Analysis</h1>
+            <p class="project-subtitle" data-en="From Agricultural Disease Dataset to Biomimetic Surface-Engineering Metrics" data-zh="從農業病害資料集到仿生表面工程指標">
+                From Agricultural Disease Dataset to Biomimetic Surface-Engineering Metrics
+            </p>
+            <div class="project-meta">
+                <div class="meta-item"><i class="fas fa-calendar"></i><span data-en="2025 Term Paper Project" data-zh="2025 學期論文專案">2025 Term Paper Project</span></div>
+                <div class="meta-item"><i class="fas fa-leaf"></i><span data-en="11,000 Leaf Images" data-zh="11,000 張葉片影像">11,000 Leaf Images</span></div>
+                <div class="meta-item"><i class="fas fa-chart-line"></i><span data-en="~92% Classification Accuracy" data-zh="分類準確率約 92%">~92% Classification Accuracy</span></div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">TensorFlow</span>
+                <span class="tag">OpenCV</span>
+                <span class="tag">scikit-image</span>
+                <span class="tag">scikit-learn</span>
+                <span class="tag">MobileNetV2</span>
+                <span class="tag">Unsupervised Learning</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <div class="container">
+            <section class="content-section">
+                <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
+                <p class="content-text" data-en="This project analyzes natural leaf-surface patterns using computational image-based techniques to translate biological surface variability into engineering-relevant metrics. The PlantVillage tomato leaf dataset was originally built for agricultural disease detection, but its 10 texture classes are reinterpreted here as natural surface-pattern states — bridging biomimetic surface engineering with plant pathology through a single, shared computational pipeline." data-zh="本專案使用電腦視覺技術分析天然葉片表面紋理，將生物表面變異性轉譯為工程相關指標。PlantVillage 番茄葉片資料集原本用於農業病害偵測，本研究將其 10 個類別重新詮釋為天然表面紋理狀態，透過同一套運算管道連結仿生表面工程與植物病理學。">
+                    This project analyzes natural leaf-surface patterns using computational image-based techniques to translate biological surface variability into engineering-relevant metrics. The PlantVillage tomato leaf dataset was originally built for agricultural disease detection, but its 10 texture classes are reinterpreted here as natural surface-pattern states — bridging biomimetic surface engineering with plant pathology through a single, shared computational pipeline.
+                </p>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Key Achievements" data-zh="主要成就">Key Achievements</h2>
+                <ul class="highlights-list">
+                    <li data-en="Fused 1,351-dimensional feature vectors per image — 60 GLCM texture features, 1 fractal dimension, 10 vein-geometry metrics, and 1,280 MobileNetV2 CNN embeddings" data-zh="每張影像融合 1,351 維特徵向量——60 個 GLCM 紋理特徵、1 個碎形維度、10 個葉脈幾何指標，以及 1,280 維 MobileNetV2 CNN 嵌入">Fused 1,351-dimensional feature vectors per image — 60 GLCM texture features, 1 fractal dimension, 10 vein-geometry metrics, and 1,280 MobileNetV2 CNN embeddings</li>
+                    <li data-en="Trained a MobileNetV2-based classifier reaching ~92% validation accuracy across 10,000 training / 1,000 validation images" data-zh="訓練基於 MobileNetV2 的分類器，在 10,000 張訓練影像 / 1,000 張驗證影像上達到約 92% 驗證準確率">Trained a MobileNetV2-based classifier reaching ~92% validation accuracy across 10,000 training / 1,000 validation images</li>
+                    <li data-en="Reduced the combined feature space with PCA to 50 components (~95% explained variance), then applied K-means and Ward-linkage hierarchical clustering to discover natural texture groupings" data-zh="以 PCA 將組合特徵空間降維至 50 個主成分（解釋變異量約 95%），再以 K-means 與 Ward 連結法階層式分群發現天然紋理群組">Reduced the combined feature space with PCA to 50 components (~95% explained variance), then applied K-means and Ward-linkage hierarchical clustering to discover natural texture groupings</li>
+                    <li data-en="Built a dual-application framework mapping each disease/texture class to an engineering surface analogy — from 'polished' to 'sandblasted' to 'honed' surfaces" data-zh="建立雙應用框架，將每個病害／紋理類別對應到工程表面類比——從「拋光面」到「噴砂面」再到「珩磨面」">Built a dual-application framework mapping each disease/texture class to an engineering surface analogy — from 'polished' to 'sandblasted' to 'honed' surfaces</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Dual-Application Framework" data-zh="雙應用框架">Dual-Application Framework</h2>
+                <p class="content-text" data-en="The same computational pipeline serves two purposes at once: classifying tomato leaf disease states, and extracting quantitative surface-texture descriptors that translate to engineering design." data-zh="同一套運算管道同時服務兩個目的：分類番茄葉片病害狀態，並萃取可轉譯為工程設計的量化表面紋理描述子。">
+                    The same computational pipeline serves two purposes at once: classifying tomato leaf disease states, and extracting quantitative surface-texture descriptors that translate to engineering design.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Agricultural Disease Detection" data-zh="農業病害偵測">🌱 Agricultural Disease Detection</h4>
+                        <p data-en="A fine-tuned MobileNetV2 classification head assigns each 224×224 RGB leaf image to 1 of 10 categories (9 disease states + healthy), reaching ~92% validation accuracy at ~15ms inference per image on GPU." data-zh="微調後的 MobileNetV2 分類頭將每張 224×224 RGB 葉片影像分類為 10 個類別之一（9 種病害狀態 + 健康），在 GPU 上驗證準確率約 92%，單張推論約 15 毫秒。">
+                            A fine-tuned MobileNetV2 classification head assigns each 224×224 RGB leaf image to 1 of 10 categories (9 disease states + healthy), reaching ~92% validation accuracy at ~15ms inference per image on GPU.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Engineering Surface-Texture Analysis" data-zh="工程表面紋理分析">⚙️ Engineering Surface-Texture Analysis</h4>
+                        <p data-en="Multi-modal feature extraction (GLCM + fractal + vein geometry + CNN embeddings) feeds PCA and K-means/hierarchical clustering to surface quantitative roughness, anisotropy, and complexity descriptors for biomimetic design." data-zh="多模態特徵萃取（GLCM + 碎形 + 葉脈幾何 + CNN 嵌入）輸入 PCA 與 K-means／階層式分群，產出可用於仿生設計的量化粗糙度、異向性與複雜度描述子。">
+                            Multi-modal feature extraction (GLCM + fractal + vein geometry + CNN embeddings) feeds PCA and K-means/hierarchical clustering to surface quantitative roughness, anisotropy, and complexity descriptors for biomimetic design.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Why Dual Application Matters" data-zh="雙應用的價值">💡 Why Dual Application Matters</h4>
+                        <p data-en="Disease-only classification is a black box (label only). Pairing it with interpretable engineering features gives continuous, quantitative severity metrics instead of a discrete present/absent label — and lets the same pipeline generalize to manufactured-surface inspection." data-zh="僅做病害分類是黑盒子（只有標籤）。搭配可解釋的工程特徵，能提供連續且量化的嚴重程度指標，而非離散的有／無標籤，並讓同一套管道可延伸至製造表面檢測。">
+                            Disease-only classification is a black box (label only). Pairing it with interpretable engineering features gives continuous, quantitative severity metrics instead of a discrete present/absent label — and lets the same pipeline generalize to manufactured-surface inspection.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Disease-Texture Correlation" data-zh="病害與紋理相關性">🔗 Disease-Texture Correlation</h4>
+                        <p data-en="Healthy leaves map to a low-contrast, regular-vein 'polished surface' profile; Late Blight maps to a high-contrast, irregular 'sandblasted surface' profile — showing that disease severity and engineered-surface roughness move together." data-zh="健康葉片對應低對比、規則葉脈的「拋光面」；晚疫病則對應高對比、不規則的「噴砂面」——顯示病害嚴重程度與工程表面粗糙度呈現一致趨勢。">
+                            Healthy leaves map to a low-contrast, regular-vein 'polished surface' profile; Late Blight maps to a high-contrast, irregular 'sandblasted surface' profile — showing that disease severity and engineered-surface roughness move together.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Feature Extraction Pipeline" data-zh="特徵萃取管道">Feature Extraction Pipeline</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 data-en="Gray-Level Co-occurrence Matrix (60D)" data-zh="灰階共生矩陣（60 維）">📐 Gray-Level Co-occurrence Matrix (60D)</h4>
+                        <p data-en="Contrast, correlation, energy, homogeneity, and entropy computed at 3 distances × 4 angles (0°/45°/90°/135°), giving a roughness and directional-anisotropy proxy analogous to profilometry Ra/Rq." data-zh="於 3 種距離 × 4 種角度（0°/45°/90°/135°）計算對比度、相關性、能量、均質性與熵，作為類似輪廓儀 Ra/Rq 的粗糙度與方向異向性指標。">
+                            Contrast, correlation, energy, homogeneity, and entropy computed at 3 distances × 4 angles (0°/45°/90°/135°), giving a roughness and directional-anisotropy proxy analogous to profilometry Ra/Rq.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Fractal Dimension (1D)" data-zh="碎形維度（1 維）">🌀 Fractal Dimension (1D)</h4>
+                        <p data-en="Box-counting algorithm over 20 log-spaced box sizes (2-128px) estimates multi-scale surface complexity — from D≈1.0 for smooth vein networks to D≈2.0 for space-filling, irregular disease textures." data-zh="以 20 個對數間隔的方框尺寸（2-128 像素）進行盒計數演算法，估算多尺度表面複雜度——從平滑葉脈網路的 D≈1.0 到空間填充、不規則病害紋理的 D≈2.0。">
+                            Box-counting algorithm over 20 log-spaced box sizes (2-128px) estimates multi-scale surface complexity — from D≈1.0 for smooth vein networks to D≈2.0 for space-filling, irregular disease textures.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="Vein Geometry (10D)" data-zh="葉脈幾何（10 維）">🍃 Vein Geometry (10D)</h4>
+                        <p data-en="CLAHE contrast enhancement → Canny edge detection → morphological skeletonization extracts vein density, length, branch points, and dominant orientation — analogous to groove density in engineered lubrication textures." data-zh="CLAHE 對比增強 → Canny 邊緣偵測 → 形態學骨架化，萃取葉脈密度、長度、分支點與主要方向——類似工程潤滑紋理的溝槽密度。">
+                            CLAHE contrast enhancement → Canny edge detection → morphological skeletonization extracts vein density, length, branch points, and dominant orientation — analogous to groove density in engineered lubrication textures.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4 data-en="MobileNetV2 CNN Embeddings (1,280D)" data-zh="MobileNetV2 CNN 嵌入（1,280 維）">🧠 MobileNetV2 CNN Embeddings (1,280D)</h4>
+                        <p data-en="ImageNet-pretrained MobileNetV2 with global average pooling (top removed) captures hierarchical, non-linear pattern representations that complement the hand-crafted GLCM/fractal/vein features." data-zh="以 ImageNet 預訓練的 MobileNetV2（移除分類頭並全域平均池化）擷取階層式非線性模式表示，與手工設計的 GLCM／碎形／葉脈特徵互補。">
+                            ImageNet-pretrained MobileNetV2 with global average pooling (top removed) captures hierarchical, non-linear pattern representations that complement the hand-crafted GLCM/fractal/vein features.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Preprocessing & Unsupervised Analysis" data-zh="前處理與非監督式分析">Preprocessing & Unsupervised Analysis</h2>
+                <ul class="highlights-list">
+                    <li data-en="Background removal via HSV green-channel masking with morphological open/close cleanup, isolating leaf tissue from background before feature extraction" data-zh="透過 HSV 綠色通道遮罩搭配形態學開閉運算進行背景移除，在特徵萃取前將葉片組織與背景分離">
+                        <strong>Background removal:</strong> HSV green-channel masking with morphological open/close cleanup, isolating leaf tissue from background before feature extraction
+                    </li>
+                    <li data-en="5×5 median filtering removes acquisition noise while preserving vein edges critical for geometry analysis" data-zh="5×5 中值濾波去除擷取雜訊，同時保留葉脈幾何分析所需的邊緣細節">
+                        <strong>Noise reduction:</strong> 5×5 median filtering removes acquisition noise while preserving vein edges critical for geometry analysis
+                    </li>
+                    <li data-en="StandardScaler + PCA (50 components, ~95% variance retained) compresses the 1,351-dimensional feature space into a tractable texture space for clustering" data-zh="StandardScaler + PCA（50 個主成分，保留約 95% 變異量）將 1,351 維特徵空間壓縮為適合分群的紋理空間">
+                        <strong>Dimensionality reduction:</strong> StandardScaler + PCA (50 components, ~95% variance retained) compresses the 1,351-dimensional feature space into a tractable texture space for clustering
+                    </li>
+                    <li data-en="K-means (k=5, k-means++ init, 100 restarts) and Ward-linkage hierarchical clustering both applied, with k selected via elbow method and silhouette score" data-zh="同時套用 K-means（k=5，k-means++ 初始化，100 次重啟）與 Ward 連結階層式分群，k 值以手肘法與輪廓係數選定">
+                        <strong>Clustering:</strong> K-means (k=5, k-means++ init, 100 restarts) and Ward-linkage hierarchical clustering both applied, with k selected via elbow method and silhouette score
+                    </li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Results" data-zh="結果">Results</h2>
+                <div class="results-grid">
+                    <div class="result-card"><div class="result-number">~92%</div><div class="result-label" data-en="Validation Accuracy" data-zh="驗證準確率">Validation Accuracy</div></div>
+                    <div class="result-card"><div class="result-number">1,351D</div><div class="result-label" data-en="Fused Feature Space" data-zh="融合特徵維度">Fused Feature Space</div></div>
+                    <div class="result-card"><div class="result-number">11,000</div><div class="result-label" data-en="Leaf Images" data-zh="葉片影像數">Leaf Images</div></div>
+                    <div class="result-card"><div class="result-number">10</div><div class="result-label" data-en="Texture Classes" data-zh="紋理類別數">Texture Classes</div></div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-cubes"></i>
+                        <span>TensorFlow / Keras</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-camera"></i>
+                        <span>OpenCV</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-vector-square"></i>
+                        <span>scikit-image</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>scikit-learn</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-cube"></i>
+                        <span>NumPy / Matplotlib</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p></div>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+</html>
