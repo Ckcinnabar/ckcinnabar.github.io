@@ -649,6 +649,21 @@ class ExperienceModal {
             bodyHTML += `</ul></div>`;
         }
 
+        // Links
+        const links = card.querySelectorAll('.card-links a');
+        if (links.length > 0) {
+            bodyHTML += `
+                <div class="modal-section">
+                    <h3>${this.currentLang === 'en' ? 'Links' : '相關連結'}</h3>
+                    <div class="modal-links">
+            `;
+            links.forEach(link => {
+                const linkText = link.getAttribute(`data-${this.currentLang}`) || link.textContent;
+                bodyHTML += `<a href="${link.getAttribute('href')}" class="btn btn-ghost" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span>${linkText}</span></a>`;
+            });
+            bodyHTML += `</div></div>`;
+        }
+
         document.getElementById('exp-modal-body').innerHTML = bodyHTML;
 
         // Show modal

@@ -1671,6 +1671,17 @@ section {
     gap: 0.5rem;
 }
 
+.modal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.modal-links .btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+}
+
 /* Education Modal Specific */
 .modal-meta-info {
     display: flex;
