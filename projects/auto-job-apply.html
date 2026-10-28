@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Job Applier - Kuan-Chen Chen</title>
+    <link rel="stylesheet" href="project-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Portfolio" data-zh="返回作品集">Back to Portfolio</span>
+            </a>
+            <button class="lang-toggle" id="langToggle">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh" style="display:none;">EN</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title">Auto Job Applier</h1>
+            <p class="project-subtitle" data-en="Agentic Job-Application Pipeline — Claude Tool Use in a Real Browser" data-zh="自動求職投遞智能體 — 在真實瀏覽器中運行的 Claude 工具調用">
+                Agentic Job-Application Pipeline — Claude Tool Use in a Real Browser
+            </p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span data-en="Individual Project" data-zh="個人專案">Individual Project</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Jan - Oct 2026</span>
+                </div>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Claude API</span>
+                <span class="tag">Tool Use</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">IMAP</span>
+                <span class="tag">pywebview</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Groq</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <div class="project-content">
+        <div class="container">
+
+            <!-- Overview -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Project Overview" data-zh="專案概述">Project Overview</h2>
+                <p class="content-text" data-en="Auto Job Applier turns job hunting into one command: find postings → apply to each → keep a record of every one. It searches LinkedIn for Easy Apply postings and freehire, whose keyless API serves postings crawled straight from employers' own sites (Workday, Greenhouse, Ashby and others). A Claude tool-use agent then drives a real Chrome browser through each application — creating employer accounts, reading verification emails, filling every field, uploading the résumé and the best-fitting cover letter, and submitting — while a stronger model checks the form against the applicant's data before Submit is pressed. Afterwards it reads the inbox and matches employer replies (interview invitations, assessments, rejections) to each application. The project started as a browser extension plus local service that captures job postings into Excel with Groq AI." data-zh="Auto Job Applier 把求職變成一道指令：搜尋職缺 → 逐筆投遞 → 留下每一筆紀錄。它在 LinkedIn 搜尋 Easy Apply 職缺，並搜尋 freehire——其免金鑰 API 提供直接從雇主官網（Workday、Greenhouse、Ashby 等）爬取的職缺。接著由 Claude 工具調用智能體操控真實的 Chrome 瀏覽器完成每份申請——建立雇主帳號、讀取驗證信、填寫每個欄位、上傳履歷與最合適的求職信並送出——並在按下送出前，由更強的模型依申請人資料檢查表單。之後它會讀取信箱，將雇主回信（面試邀請、測驗、拒絕信）對應到每份申請。本專案起源於一個瀏覽器擴充套件加本地服務，以 Groq AI 擷取職缺資訊並存入 Excel。">
+                    Auto Job Applier turns job hunting into one command: find postings → apply to each → keep a record of every one. It searches LinkedIn for Easy Apply postings and <a href="https://freehire.me" target="_blank" style="color:var(--primary);">freehire</a>, whose keyless API serves postings crawled straight from employers' own sites (Workday, Greenhouse, Ashby and others). A Claude tool-use agent then drives a real Chrome browser through each application — creating employer accounts, reading verification emails, filling every field, uploading the résumé and the best-fitting cover letter, and submitting — while a stronger model checks the form against the applicant's data before Submit is pressed. Afterwards it reads the inbox and matches employer replies (interview invitations, assessments, rejections) to each application. The project started as a browser extension plus local service that captures job postings into Excel with Groq AI.
+                </p>
+            </section>
+
+            <!-- How It Works -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="How It Works: One Round" data-zh="運作原理：一輪投遞">How It Works: One Round</h2>
+                <p class="content-text" data-en="Each round searches first, then works through the queue — the postings just found first, then older ones still waiting, newest first. Every job passes through the same stages; the route chosen after triage decides which model fills the form and whether it is reviewed before Submit." data-zh="每一輪先搜尋，再依序處理佇列——先處理本輪新找到的職缺，再處理先前留下的，越新的越先。每筆職缺都經過相同階段；分流後選定的路線決定由哪個模型填寫表單，以及送出前是否需要審查。">
+                    Each round searches first, then works through the queue — the postings just found first, then older ones still waiting, newest first. Every job passes through the same stages; the route chosen after triage decides which model fills the form and whether it is reviewed before Submit.
+                </p>
+
+                <div class="pipeline-diagram" style="display:flex; justify-content:center;">
+                    <svg viewBox="0 0 470 690" role="img" aria-label="Auto Job Applier pipeline: LinkedIn and freehire to discover to triage to route to agent to pre-submit review to submit and verify to a record in applier.db, with triage branching to skipped and the review looping back to the agent" style="width:100%; max-width:470px; height:auto;">
+                        <style>
+                            .fl{stroke:var(--text-muted);stroke-width:1.6;fill:none}
+                            .fb{stroke:var(--primary);stroke-width:1.6;fill:none;stroke-dasharray:5 4}
+                            .bx{fill:var(--bg-elevated);stroke:var(--border-hover);stroke-width:1.5}
+                            .bxh{fill:var(--bg-elevated);stroke:var(--primary);stroke-width:1.8}
+                            .pill{fill:var(--bg-card);stroke:var(--primary);stroke-width:1.8}
+                            .pillm{fill:var(--bg-card);stroke:var(--border-hover);stroke-width:1.5}
+                            .t{fill:var(--text-primary);font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:600}
+                            .s{fill:var(--text-muted);font-family:ui-monospace,Menlo,monospace;font-size:11px}
+                            .al{fill:var(--text-secondary);font-family:ui-monospace,Menlo,monospace;font-size:11px}
+                            .fbl{fill:var(--primary);font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:600}
+                            .ah{fill:var(--text-muted)}
+                            .ahfb{fill:var(--primary)}
+                        </style>
+                        <defs>
+                            <marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+                            <marker id="arfb" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahfb"/></marker>
+                        </defs>
+
+                        <!-- flow arrows -->
+                        <path class="fl" marker-end="url(#ar)" d="M170,58 V90"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,150 V178"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,238 V266"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,326 V354"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,414 V442"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,502 V530"/>
+                        <path class="fl" marker-end="url(#ar)" d="M170,590 V622"/>
+
+                        <!-- triage skip branch -->
+                        <path class="fl" marker-end="url(#ar)" d="M290,209 H333"/>
+                        <text class="al" x="312" y="202" text-anchor="middle">skip</text>
+                        <rect class="pillm" x="335" y="189" width="120" height="40" rx="20"/>
+                        <text class="t" x="395" y="214" text-anchor="middle">skipped</text>
+
+                        <!-- review feedback loop -->
+                        <path class="fb" marker-end="url(#arfb)" d="M290,478 H370 V395 H292"/>
+                        <text class="fbl" x="330" y="471" text-anchor="middle">problems</text>
+
+                        <!-- flow labels -->
+                        <text class="al" x="180" y="257">apply</text>
+                        <text class="al" x="180" y="521">pass</text>
+                        <text class="al" x="180" y="611">confirmed</text>
+
+                        <!-- sources -->
+                        <rect class="pill" x="65" y="18" width="210" height="40" rx="20"/>
+                        <text class="t" x="170" y="43" text-anchor="middle">LinkedIn + freehire</text>
+
+                        <!-- discover -->
+                        <rect class="bx" x="50" y="92" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="120" text-anchor="middle">discover</text>
+                        <text class="s" x="170" y="138" text-anchor="middle">search &#183; dedupe &#183; queue</text>
+
+                        <!-- triage -->
+                        <rect class="bx" x="50" y="180" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="208" text-anchor="middle">triage</text>
+                        <text class="s" x="170" y="226" text-anchor="middle">Haiku reads JD &#183; apply or skip</text>
+
+                        <!-- route -->
+                        <rect class="bx" x="50" y="268" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="296" text-anchor="middle">route</text>
+                        <text class="s" x="170" y="314" text-anchor="middle">Easy Apply &#183; employer &#183; job board</text>
+
+                        <!-- agent -->
+                        <rect class="bxh" x="50" y="356" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="384" text-anchor="middle">agent</text>
+                        <text class="s" x="170" y="402" text-anchor="middle">Claude tool use on text snapshots</text>
+
+                        <!-- pre-submit review -->
+                        <rect class="bx" x="50" y="444" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="472" text-anchor="middle">pre-submit review</text>
+                        <text class="s" x="170" y="490" text-anchor="middle">Opus checks fields vs. profile</text>
+
+                        <!-- submit + verify -->
+                        <rect class="bx" x="50" y="532" width="240" height="58" rx="12"/>
+                        <text class="t" x="170" y="560" text-anchor="middle">submit + verify</text>
+                        <text class="s" x="170" y="578" text-anchor="middle">confirmation page or email</text>
+
+                        <!-- output -->
+                        <rect class="pill" x="55" y="624" width="230" height="40" rx="20"/>
+                        <text class="t" x="170" y="649" text-anchor="middle">applier.db record</text>
+                    </svg>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Stage" data-zh="階段">Stage</th>
+                                <th data-en="What it does" data-zh="功能說明">What it does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-primary"><strong>discover</strong></td>
+                                <td data-en="Searches LinkedIn (Easy Apply only) and freehire (US only) with the same keywords, filtering by title words, clearance requirements and experience level. A posting already on record, or the same title at the same company, is not queued again." data-zh="以相同關鍵字搜尋 LinkedIn（僅限 Easy Apply）與 freehire（僅限美國），並依職稱字詞、安全許可要求與經驗等級過濾。已有紀錄的職缺，或同公司同職稱者，不會重複排入佇列。">Searches LinkedIn (Easy Apply only) and freehire (US only) with the same keywords, filtering by title words, clearance requirements and experience level. A posting already on record, or the same title at the same company, is not queued again.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>triage</strong></td>
+                                <td data-en="Claude Haiku reads the job description once and decides whether to apply: no sponsorship, too many years required, internships and work unrelated to the title are skipped. About US$0.002 per job." data-zh="Claude Haiku 讀一次職缺描述並決定是否投遞：不提供簽證擔保、年資要求過高、實習，以及與職稱無關的工作都會被略過。每筆約 US$0.002。">Claude Haiku reads the job description once and decides whether to apply: no sponsorship, too many years required, internships and work unrelated to the title are skipped. About US$0.002 per job.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>route</strong></td>
+                                <td data-en="Looks at where Apply leads — a LinkedIn Easy Apply dialog, the employer's own site, or a job board — and picks that route's model and retry policy." data-zh="檢查 Apply 通往何處——LinkedIn Easy Apply 對話框、雇主官網，或求職平台——並選用該路線的模型與重試策略。">Looks at where Apply leads — a LinkedIn Easy Apply dialog, the employer's own site, or a job board — and picks that route's model and retry policy.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>agent</strong></td>
+                                <td data-en="A Claude tool-use loop drives Playwright-controlled Chrome: it reads text snapshots of the page, creates or signs in to employer accounts, fetches email codes and links, fills every field, and uploads the résumé and cover letter." data-zh="Claude 工具調用迴圈操控由 Playwright 控制的 Chrome：讀取頁面的文字快照、建立或登入雇主帳號、取得信箱驗證碼與連結、填寫每個欄位，並上傳履歷與求職信。">A Claude tool-use loop drives Playwright-controlled Chrome: it reads text snapshots of the page, creates or signs in to employer accounts, fetches email codes and links, fills every field, and uploads the résumé and cover letter.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>pre-submit review</strong></td>
+                                <td data-en="On the employer-site and job-board routes, Claude Opus checks what was filled in against the applicant's data before Submit is pressed. Problems go back to be fixed; if it is still wrong after two rounds, nothing is submitted." data-zh="在雇主官網與求職平台路線上，Claude Opus 會在按下送出前依申請人資料檢查已填內容。發現問題即退回修正；兩輪後仍有錯，則不送出。">On the employer-site and job-board routes, Claude Opus checks what was filled in against the applicant's data before Submit is pressed. Problems go back to be fixed; if it is still wrong after two rounds, nothing is submitted.</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong>submit + verify</strong></td>
+                                <td data-en="Submits, confirms through the confirmation page or a confirmation email, and records the job as applied, submitted_unverified, skipped, blocked or failed — with evidence, screenshots and cost." data-zh="送出後以確認頁面或確認信驗證，並將職缺記錄為 applied、submitted_unverified、skipped、blocked 或 failed——附上證據、截圖與花費。">Submits, confirms through the confirmation page or a confirmation email, and records the job as applied, submitted_unverified, skipped, blocked or failed — with evidence, screenshots and cost.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 data-en="Three Routes" data-zh="三條路線" style="margin-top:2.5rem;">Three Routes</h3>
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Route" data-zh="路線">Route</th>
+                                <th data-en="When" data-zh="時機">When</th>
+                                <th data-en="If not finished" data-zh="未完成時">If not finished</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-primary"><strong>Easy Apply</strong></td>
+                                <td data-en="The form is on LinkedIn — about US$0.01 per application" data-zh="表單在 LinkedIn 上——每份申請約 US$0.01">The form is on LinkedIn — about US$0.01 per application</td>
+                                <td class="td-accent" data-en="Run once more with Sonnet" data-zh="改用 Sonnet 再跑一次">Run once more with Sonnet</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Employer site" data-zh="雇主官網">Employer site</strong></td>
+                                <td data-en="Apply leads to the employer's own site (Workday, Greenhouse, SuccessFactors …)" data-zh="Apply 通往雇主自己的網站（Workday、Greenhouse、SuccessFactors 等）">Apply leads to the employer's own site (Workday, Greenhouse, SuccessFactors …)</td>
+                                <td class="td-accent" data-en="Run once more with Sonnet" data-zh="改用 Sonnet 再跑一次">Run once more with Sonnet</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Job board" data-zh="求職平台">Job board</strong></td>
+                                <td data-en="Apply leads to a job board or reposting site — the agent never registers there; it only looks for the employer's own copy of the posting" data-zh="Apply 通往求職平台或轉貼網站——智能體絕不在那裡註冊，只尋找雇主官網上的同一職缺">Apply leads to a job board or reposting site — the agent never registers there; it only looks for the employer's own copy of the posting</td>
+                                <td class="td-accent" data-en="Not run again" data-zh="不再重跑">Not run again</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Design -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Built to Be Trusted with Real Applications" data-zh="為真實投遞而設計">Built to Be Trusted with Real Applications</h2>
+                <p class="content-text" data-en="An agent that submits applications under your name has to be accurate, cheap, and honest about what it could not do. Most of the design goes into those three things." data-zh="一個以你的名義送出申請的智能體，必須準確、便宜，並誠實回報它做不到的事。大部分的設計都圍繞著這三點。">
+                    An agent that submits applications under your name has to be accurate, cheap, and honest about what it could not do. Most of the design goes into those three things.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3 data-en="Text Snapshots, Not Pixels" data-zh="文字快照，而非像素">Text Snapshots, Not Pixels</h3>
+                        <p data-en="The agent never sees screenshots. Each snapshot lists interactive elements as [ref] role &quot;label&quot; state — across iframes, new tabs and open shadow DOM — and the agent acts on those refs. Text unchanged since the last snapshot is left out to save tokens." data-zh="智能體從不看截圖。每份快照將可互動元素列為 [ref] role &quot;label&quot; state——涵蓋 iframe、新分頁與開放的 shadow DOM——智能體依這些 ref 操作。與上一份快照相同的文字會被省略以節省 token。">
+                            The agent never sees screenshots. Each snapshot lists interactive elements as <code>[ref] role "label" state</code> — across iframes, new tabs and open shadow DOM — and the agent acts on those refs. Text unchanged since the last snapshot is left out to save tokens.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚫</div>
+                        <h3 data-en="Never Guesses Facts" data-zh="絕不猜測事實">Never Guesses Facts</h3>
+                        <p data-en="Answers come only from the profile, the résumé and an answer bank of earlier answers. A required factual question with no answer stops the job as skipped; answer it once with python -m applier answers and every later form reuses it." data-zh="答案只來自個人資料、履歷，以及累積先前回答的答案庫。遇到無法回答的必填事實題時，該職缺記為 skipped；用 python -m applier answers 回答一次後，之後的表單都會沿用。">
+                            Answers come only from the profile, the résumé and an answer bank of earlier answers. A required factual question with no answer stops the job as <code>skipped</code>; answer it once with <code>python -m applier answers</code> and every later form reuses it.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3 data-en="Tiered Models, Capped Spend" data-zh="分層模型，花費設限">Tiered Models, Capped Spend</h3>
+                        <p data-en="Haiku does the bulk of the work, Sonnet retries what Haiku could not finish, and Opus reviews before Submit. Spending is capped per run (US$30), per job (US$2.50), and on the stronger models per application (US$0.80)." data-zh="Haiku 負責大部分工作，Sonnet 重跑 Haiku 未完成的職缺，Opus 在送出前審查。花費設有上限：每輪 US$30、每筆 US$2.50，強模型每份申請 US$0.80。">
+                            Haiku does the bulk of the work, Sonnet retries what Haiku could not finish, and Opus reviews before Submit. Spending is capped per run (US$30), per job (US$2.50), and on the stronger models per application (US$0.80).
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3 data-en="Hand-off Instead of Dead Ends" data-zh="交給你，而非半途而廢">Hand-off Instead of Dead Ends</h3>
+                        <p data-en="When a filled-in form hits a CAPTCHA or a site error, the page is kept open (up to 12 at once, memory permitting) and brought to the front for you to submit. The program then watches the inbox for the confirmation email and records the result." data-zh="已填好的表單遇到 CAPTCHA 或網站錯誤時，頁面會保持開啟（最多同時 12 個，視記憶體而定）並移到前景讓你送出。程式接著在信箱中等待確認信並記錄結果。">
+                            When a filled-in form hits a CAPTCHA or a site error, the page is kept open (up to 12 at once, memory permitting) and brought to the front for you to submit. The program then watches the inbox for the confirmation email and records the result.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 data-en="Four Applications at Once" data-zh="同時投遞四份">Four Applications at Once</h3>
+                        <p data-en="Up to 4 jobs run in parallel, each in its own off-screen Chrome window sharing one signed-in session. Two jobs of one company never run together, LinkedIn forms are filled one at a time as a person would, and no new window opens below 1.5 GB of free memory." data-zh="最多 4 筆職缺並行，各自在畫面外的 Chrome 視窗中執行，共用同一個登入工作階段。同一家公司的兩筆職缺不會同時進行，LinkedIn 表單像真人一樣一次填一份，可用記憶體低於 1.5 GB 時不再開新視窗。">
+                            Up to 4 jobs run in parallel, each in its own off-screen Chrome window sharing one signed-in session. Two jobs of one company never run together, LinkedIn forms are filled one at a time as a person would, and no new window opens below 1.5 GB of free memory.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3 data-en="Secrets Stay Local" data-zh="機密留在本機">Secrets Stay Local</h3>
+                        <p data-en="The mailbox app password and the employer-site password live in Windows Credential Manager — never written to a file, never sent to the model. Page text is treated as untrusted content, not instructions, and the agent never enters an SSN or government ID number." data-zh="信箱應用程式密碼與雇主網站密碼存放在 Windows 認證管理員——絕不寫入檔案，也絕不傳給模型。網頁文字一律視為不可信任的內容而非指令，智能體也絕不輸入社會安全號碼或政府身分證號。">
+                            The mailbox app password and the employer-site password live in Windows Credential Manager — never written to a file, never sent to the model. Page text is treated as untrusted content, not instructions, and the agent never enters an SSN or government ID number.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Application Panel -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Application Panel &amp; Reply Tracking" data-zh="投遞面板與回音追蹤">Application Panel &amp; Reply Tracking</h2>
+                <p class="content-text" data-en="python -m applier ui opens a desktop window (pywebview) that works only on this computer, in Chinese or English. Runs are processes of their own: closing the panel does not stop a run, and rounds started from a terminal or by Windows Task Scheduler (a round every few hours) show up there too. Every 15 minutes while it is open, the panel reads the mailbox over IMAP and matches employer replies to their applications." data-zh="python -m applier ui 會開啟一個僅在本機運作的桌面視窗（pywebview），支援中文與英文。每次執行都是獨立的程序：關閉面板不會中止執行，從終端機或 Windows 工作排程器（每隔幾小時一輪）啟動的執行也會顯示在面板上。面板開啟時每 15 分鐘透過 IMAP 讀取信箱，將雇主回信對應到各自的申請。">
+                    <code>python -m applier ui</code> opens a desktop window (pywebview) that works only on this computer, in Chinese or English. Runs are processes of their own: closing the panel does not stop a run, and rounds started from a terminal or by Windows Task Scheduler (a round every few hours) show up there too. Every 15 minutes while it is open, the panel reads the mailbox over IMAP and matches employer replies to their applications.
+                </p>
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Page" data-zh="頁面">Page</th>
+                                <th data-en="Contents" data-zh="內容">Contents</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Overview" data-zh="總覽">Overview</strong></td>
+                                <td data-en="Start a round (how many companies, how many hours back); progress toward the goal, spending, and a live screen and Skip button for each parallel slot" data-zh="啟動一輪（投遞幾家公司、往回搜尋幾小時）；目標進度、花費，以及每個並行槽位的即時畫面與跳過按鈕">Start a round (how many companies, how many hours back); progress toward the goal, spending, and a live screen and Skip button for each parallel slot</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Records" data-zh="投遞紀錄">Records</strong></td>
+                                <td data-en="Every job: each attempt's model and cost, the fields entered at Submit, the pre-submit check's verdict, and every step with screenshots" data-zh="每筆職缺：每次嘗試的模型與花費、送出時填入的欄位、送出前檢查的結論，以及每一步驟與截圖">Every job: each attempt's model and cost, the fields entered at Submit, the pre-submit check's verdict, and every step with screenshots</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Replies" data-zh="回音">Replies</strong></td>
+                                <td data-en="Interview invitations, assessments, rejections and confirmations matched to applications; reply rates by kind of role" data-zh="面試邀請、測驗、拒絕信與確認信對應到各申請；依職務類型統計的回覆率">Interview invitations, assessments, rejections and confirmations matched to applications; reply rates by kind of role</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Costs" data-zh="花費">Costs</strong></td>
+                                <td data-en="Totals overall and for today, average per application; by date, by outcome and by model" data-zh="總計與今日花費、每份申請平均；依日期、結果與模型分類">Totals overall and for today, average per application; by date, by outcome and by model</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Settings" data-zh="設定">Settings</strong></td>
+                                <td data-en="Automatic schedule, questions waiting for an answer, job titles, sources, excluded companies, per-round limits, parallel jobs, notifications" data-zh="自動排程、待回答的問題、搜尋職稱、職缺來源、排除公司、每輪上限、並行數量、通知">Automatic schedule, questions waiting for an answer, job titles, sources, excluded companies, per-round limits, parallel jobs, notifications</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="image-container">
+                    <img src="auto-job-apply/1.png" alt="Application panel overview: four jobs running at once, each slot showing its Chrome window live">
+                    <p class="image-caption" data-en="Overview during a run — four jobs at once, each slot streaming its own off-screen Chrome window, with the agent's latest tool calls (fill, click) listed under it and a Skip button per slot" data-zh="執行中的總覽——同時處理四筆職缺，每個槽位即時顯示各自畫面外的 Chrome 視窗，下方列出智能體最新的工具呼叫（fill、click），每個槽位都有跳過按鈕">Overview during a run — four jobs at once, each slot streaming its own off-screen Chrome window, with the agent's latest tool calls (fill, click) listed under it and a Skip button per slot</p>
+                </div>
+
+                <div class="image-container">
+                    <img src="auto-job-apply/2.png" alt="Records page listing applications with status, reason, employer reply, model, cost and time">
+                    <p class="image-caption" data-en="Records — 2,457 jobs handled so far: 854 applied, 252 needing a person, 1,207 skipped (closed postings, no sponsorship, too many years required), each with its reason, the employer's reply, the model and the cost" data-zh="投遞紀錄——目前共處理 2,457 筆職缺：854 筆已投遞、252 筆需要人工處理、1,207 筆略過（職缺已關閉、不提供簽證擔保、年資要求過高），每筆都附上原因、雇主回音、模型與花費">Records — 2,457 jobs handled so far: 854 applied, 252 needing a person, 1,207 skipped (closed postings, no sponsorship, too many years required), each with its reason, the employer's reply, the model and the cost</p>
+                </div>
+
+                <div class="image-container" style="max-width:900px; margin:2rem auto;">
+                    <img src="auto-job-apply/3.png" alt="Settings page with per-round limits, spending caps, parallel jobs and LinkedIn daily limits">
+                    <p class="image-caption" data-en="Settings — attempts and spending per round, the Sonnet / Opus cap per job, jobs at once, stuck forms kept open, and LinkedIn's daily search and Easy Apply limits" data-zh="設定——每輪嘗試次數與花費上限、每筆職缺的 Sonnet / Opus 花費上限、並行數量、保留開啟的卡住表單數，以及 LinkedIn 每日搜尋與 Easy Apply 上限">Settings — attempts and spending per round, the Sonnet / Opus cap per job, jobs at once, stuck forms kept open, and LinkedIn's daily search and Easy Apply limits</p>
+                </div>
+            </section>
+
+            <!-- AI Model Stack -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="AI Model Stack" data-zh="AI 模型堆疊">AI Model Stack</h2>
+                <p class="content-text" data-en="Each model is matched to how much a mistake costs: the cheapest model handles every form first, and the strongest one is spent only where a wrong answer would be sent to an employer." data-zh="每個模型依犯錯的代價來搭配：最便宜的模型先處理每一份表單，最強的模型只用在錯誤答案會被送到雇主手上的地方。">
+                    Each model is matched to how much a mistake costs: the cheapest model handles every form first, and the strongest one is spent only where a wrong answer would be sent to an employer.
+                </p>
+                <div class="table-wrapper">
+                    <table class="project-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Component" data-zh="組件">Component</th>
+                                <th data-en="Model / Tool" data-zh="模型／工具">Model / Tool</th>
+                                <th data-en="Role" data-zh="角色">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Triage" data-zh="分流">Triage</strong></td>
+                                <td>Claude Haiku 5.5</td>
+                                <td class="td-accent" data-en="Apply-or-skip decision, ~US$0.002/job" data-zh="決定投遞或略過，每筆約 US$0.002">Apply-or-skip decision, ~US$0.002/job</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Form Filling" data-zh="表單填寫">Form Filling</strong></td>
+                                <td>Claude Haiku 5.5</td>
+                                <td class="td-accent" data-en="Easy Apply, employer sites, job boards" data-zh="Easy Apply、雇主官網、求職平台">Easy Apply, employer sites, job boards</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Retry" data-zh="重試">Retry</strong></td>
+                                <td>Claude Sonnet 5.5</td>
+                                <td class="td-accent" data-en="Re-runs jobs the cheaper model did not finish" data-zh="重跑較便宜模型未完成的職缺">Re-runs jobs the cheaper model did not finish</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Pre-Submit Review" data-zh="送出前審查">Pre-Submit Review</strong></td>
+                                <td>Claude Opus 5.5</td>
+                                <td class="td-accent" data-en="Checks every field against the applicant's data" data-zh="依申請人資料檢查每個欄位">Checks every field against the applicant's data</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Posting Extraction" data-zh="職缺擷取">Posting Extraction</strong></td>
+                                <td>Groq · llama-3.1-8b-instant</td>
+                                <td class="td-accent" data-en="Browser extension: company, title, salary, location → Excel" data-zh="瀏覽器擴充套件：公司、職稱、薪資、地點 → Excel">Browser extension: company, title, salary, location → Excel</td>
+                            </tr>
+                            <tr>
+                                <td class="td-primary"><strong data-en="Browser / Storage" data-zh="瀏覽器／儲存">Browser / Storage</strong></td>
+                                <td>Playwright · SQLite</td>
+                                <td class="td-accent" data-en="Chrome automation; applier.db is the master record" data-zh="Chrome 自動化；applier.db 為主要紀錄">Chrome automation; applier.db is the master record</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Technical Implementation -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technical Implementation" data-zh="技術實現">Technical Implementation</h2>
+
+                <h3 data-en="1. Agent Loop" data-zh="1. 智能體迴圈">1. Agent Loop</h3>
+                <ul class="highlights-list">
+                    <li data-en="run_agent() drives the browser through the tools in tools.py until the agent calls finish(); finalize() then checks the outcome independently before it is recorded" data-zh="run_agent() 透過 tools.py 中的工具操控瀏覽器，直到智能體呼叫 finish()；接著由 finalize() 在記錄前獨立檢查結果">
+                        <code>run_agent()</code> drives the browser through the tools in <code>tools.py</code> until the agent calls <code>finish()</code>; <code>finalize()</code> then checks the outcome independently before it is recorded
+                    </li>
+                    <li data-en="Accounts, verification codes, sign-in links and password resets are handled by dedicated tools (fill_credentials, get_email_code, open_email_link), so passwords never pass through the model" data-zh="帳號、驗證碼、登入連結與密碼重設由專用工具處理（fill_credentials、get_email_code、open_email_link），因此密碼從不經過模型">
+                        Accounts, verification codes, sign-in links and password resets are handled by dedicated tools (<code>fill_credentials</code>, <code>get_email_code</code>, <code>open_email_link</code>), so passwords never pass through the model
+                    </li>
+                    <li data-en="Five prepared cover-letter versions (ML engineer, AI engineer, data scientist, data analyst, forward deployed engineer); the agent picks the best fit and uploads it as a PDF or pastes it as text" data-zh="五個預先準備的求職信版本（ML 工程師、AI 工程師、資料科學家、資料分析師、Forward Deployed 工程師）；智能體挑選最合適的版本，以 PDF 上傳或以文字貼上">
+                        Five prepared cover-letter versions (ML engineer, AI engineer, data scientist, data analyst, forward deployed engineer); the agent picks the best fit and uploads it as a PDF or pastes it as text
+                    </li>
+                </ul>
+
+                <h3 data-en="2. Running Unattended" data-zh="2. 無人值守運行">2. Running Unattended</h3>
+                <ul class="highlights-list">
+                    <li data-en="A run never stops to wait for a person: CAPTCHAs, SMS checks and unanswerable questions are recorded with a reason, and the round moves on to the next job" data-zh="執行過程從不停下來等人：CAPTCHA、簡訊驗證與無法回答的問題都會附上原因記錄下來，接著繼續處理下一筆職缺">
+                        A run never stops to wait for a person: CAPTCHAs, SMS checks and unanswerable questions are recorded with a reason, and the round moves on to the next job
+                    </li>
+                    <li data-en="API outages put the job back in the queue and back off from 30 seconds, doubling each time; only after 10 minutes without the API does the round end" data-zh="API 中斷時職缺會放回佇列，並從 30 秒開始退避、每次加倍；連續 10 分鐘無法連上 API 才結束這一輪">
+                        API outages put the job back in the queue and back off from 30 seconds, doubling each time; only after 10 minutes without the API does the round end
+                    </li>
+                    <li data-en="Chrome runs as a real window placed off the screen; when it takes the keyboard focus, the program gives it back to your window within about 0.15 seconds" data-zh="Chrome 以真實視窗形式放在螢幕外；當它搶走鍵盤焦點時，程式會在約 0.15 秒內把焦點還給你正在使用的視窗">
+                        Chrome runs as a real window placed off the screen; when it takes the keyboard focus, the program gives it back to your window within about 0.15 seconds
+                    </li>
+                </ul>
+
+                <h3 data-en="3. Reliability Engineering" data-zh="3. 可靠性工程">3. Reliability Engineering</h3>
+                <ul class="highlights-list">
+                    <li data-en="Found and patched a Python 3.14 asyncio.wait leak that kept every Playwright call's task in memory — measured at ~7 MB a minute, near 2 GB by the end of a round" data-zh="發現並修補 Python 3.14 asyncio.wait 的記憶體洩漏，該問題使每次 Playwright 呼叫的 task 都留在記憶體中——實測每分鐘約 7 MB，一輪結束時接近 2 GB">
+                        Found and patched a Python 3.14 <code>asyncio.wait</code> leak that kept every Playwright call's task in memory — measured at ~7 MB a minute, near 2 GB by the end of a round
+                    </li>
+                    <li data-en="Each job starts in a new tab and closes its tabs when it ends, since a tab keeps everything its pages loaded until it is closed" data-zh="每筆職缺都在新分頁開始，結束時關閉其分頁，因為分頁會一直保留其頁面載入的所有內容直到關閉">
+                        Each job starts in a new tab and closes its tabs when it ends, since a tab keeps everything its pages loaded until it is closed
+                    </li>
+                    <li data-en="Offline test suite over local HTML fixtures — Easy Apply dialogs, SuccessFactors forms, iframes, closed and no-sponsorship postings, submit errors" data-zh="以本地 HTML 測試頁面進行離線測試——Easy Apply 對話框、SuccessFactors 表單、iframe、已關閉與不擔保簽證的職缺、送出錯誤">
+                        Offline test suite over local HTML fixtures — Easy Apply dialogs, SuccessFactors forms, iframes, closed and no-sponsorship postings, submit errors
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Technology Stack -->
+            <section class="content-section">
+                <h2 class="section-title" data-en="Technology Stack" data-zh="技術棧">Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Claude (Haiku · Sonnet · Opus)</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Playwright</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <span>SQLite</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>IMAP</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-desktop"></i>
+                        <span>pywebview</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Windows Task Scheduler</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-chrome"></i>
+                        <span>Browser Extension</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-server"></i>
+                        <span>FastAPI</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Groq</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Links -->
+    <section class="links-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Project Links" data-zh="專案連結">Project Links</h2>
+            <div class="project-links">
+                <a href="https://github.com/Ckcinnabar/auto-JOB-apply-docs" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span data-en="View Code" data-zh="查看代碼">View Code</span>
+                </a>
+                <a href="../index.html#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    <span data-en="Contact Me" data-zh="聯絡我">Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Kuan-Chen Chen. <span data-en="All rights reserved." data-zh="版權所有。">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
